@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Konsep Crawling &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Tugas Crawling';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My sample book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Konsep Crawling</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTugas Crawling.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Tugas Crawling.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Konsep Crawling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Konsep Crawling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis">Jenis-Jenis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-web-crawling">Contoh Web Crawling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#teknik-dan-cara-crawling-menggunakan-python">Teknik dan Cara Crawling Menggunakan Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-dan-library-yang-digunakan">Tool dan Library Yang Digunakan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penggunaan">Contoh Penggunaan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting">Tips Penting:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling">Proses Crawling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementasi">Code Implementasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-crawling">Output Crawling</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Nama : Ahmad Nasrudin Jamil</p>
+<p>Nim  : 210411100098</p>
+<p>Kelas : Pencarian dan Penambangan Web B</p>
+<section class="tex2jax_ignore mathjax_ignore" id="konsep-crawling">
+<h1>Konsep Crawling<a class="headerlink" href="#konsep-crawling" title="Link to this heading">#</a></h1>
+<section id="pengertian">
+<h2>Pengertian<a class="headerlink" href="#pengertian" title="Link to this heading">#</a></h2>
+<p>Crawling adalah proses otomatis yang dilakukan oleh perangkat lunak, yang biasa disebut <strong>web crawler</strong> atau <strong>spider</strong>, untuk menelusuri dan mengumpulkan informasi dari halaman-halaman web di internet. Web crawler secara sistematis mengikuti tautan dari satu halaman ke halaman lainnya, mengindeks konten yang ditemukan, dan menyimpannya dalam basis data atau sistem pengindeksan. Proses ini memungkinkan mesin pencari, seperti Google, untuk membangun indeks besar dari halaman web sehingga pengguna dapat mencari informasi secara efisien.</p>
+<p>Dalam crawling, web crawler dimulai dari satu atau lebih URL yang disebut <strong>seed</strong>, kemudian mengakses halaman tersebut, dan memproses informasi yang tersedia, termasuk tautan ke halaman lain. Crawler kemudian mengikuti tautan tersebut untuk menemukan halaman web lainnya. Informasi yang diambil oleh crawler biasanya mencakup teks, metadata, dan struktur halaman web.</p>
+<p>Crawler diatur dengan kebijakan tertentu, seperti <strong>robots.txt</strong> yang ditetapkan oleh pemilik situs web untuk membatasi bagian situs mana yang boleh atau tidak boleh diakses oleh crawler. Tujuan dari crawling adalah untuk memastikan bahwa mesin pencari atau aplikasi lain yang memerlukan data web memiliki akses ke konten yang relevan dan up-to-date.</p>
+</section>
+<section id="tujuan">
+<h2>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<p>Tujuan dari crawling adalah untuk mengumpulkan, mengindeks, dan memperbarui informasi dari halaman-halaman web di internet. Secara lebih rinci, tujuan-tujuan crawling meliputi:</p>
+<ol class="arabic simple">
+<li><p><strong>Membangun Indeks Mesin Pencari:</strong> Web crawler digunakan oleh mesin pencari seperti Google untuk mengumpulkan data dari halaman web. Informasi ini kemudian diindeks, sehingga ketika pengguna melakukan pencarian, mesin pencari dapat menemukan dan menampilkan hasil yang relevan dengan cepat.</p></li>
+<li><p><strong>Memastikan Data Terkini:</strong> Crawling memungkinkan mesin pencari untuk terus memperbarui indeksnya dengan data terbaru dari web. Ini penting untuk memberikan hasil pencarian yang akurat dan up-to-date kepada pengguna.</p></li>
+<li><p><strong>Menemukan Halaman Web Baru:</strong> Crawling membantu mesin pencari menemukan halaman web baru yang belum terindeks sebelumnya, sehingga lebih banyak konten yang dapat diakses oleh pengguna melalui pencarian.</p></li>
+<li><p><strong>Mengumpulkan Data untuk Analisis:</strong> Perusahaan atau organisasi dapat menggunakan crawler untuk mengumpulkan data dari web untuk berbagai tujuan, seperti analisis pasar, pemantauan kompetitor, atau penelitian.</p></li>
+<li><p><strong>Mengoptimalkan Pengalaman Pengguna:</strong> Dengan memastikan bahwa konten yang diindeks relevan dan berkualitas, crawling membantu mesin pencari memberikan pengalaman pencarian yang lebih baik bagi pengguna.</p></li>
+<li><p><strong>Pemantauan Situs Web:</strong> Crawling juga digunakan untuk memantau situs web, seperti untuk mengidentifikasi masalah teknis, memastikan kepatuhan terhadap standar SEO, atau melacak perubahan konten.</p></li>
+</ol>
+</section>
+<section id="jenis-jenis">
+<h2>Jenis-Jenis<a class="headerlink" href="#jenis-jenis" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>News Crawling</strong> adalah proses pengumpulan data dari situs berita dan portal berita online. Tujuannya adalah untuk memastikan bahwa mesin pencari memiliki informasi terkini dan relevan dari berbagai sumber berita sehingga pengguna dapat menemukan berita terbaru dengan cepat.</p></li>
+<li><p><strong>Social Media Crawling</strong> adalah proses pengumpulan data dari platform media sosial seperti Twitter, Facebook, dan Instagram. Tujuannya adalah untuk mengumpulkan data yang dapat digunakan untuk analisis tren, pemantauan merek, atau riset pemasaran, serta memahami opini publik atau reaksi terhadap peristiwa tertentu.</p></li>
+<li><p><strong>Video Crawling</strong> adalah proses pengumpulan informasi dari situs-situs berbagi video seperti YouTube dan Vimeo. Tujuannya adalah untuk mengindeks video untuk mesin pencari video atau untuk analisis tren, rekomendasi konten, atau pengelompokan video berdasarkan topik.</p></li>
+<li><p><strong>Image Crawling</strong> adalah proses pengumpulan gambar dari web. Tujuannya adalah untuk mengindeks gambar untuk mesin pencari gambar, melatih model pengenalan gambar, atau untuk riset yang memerlukan pengumpulan data visual.</p></li>
+<li><p><strong>Email Crawling</strong> adalah proses pengumpulan alamat email dari berbagai situs web. Tujuannya adalah untuk mengumpulkan alamat email untuk keperluan pemasaran, membangun daftar pelanggan, atau dalam beberapa kasus, untuk aktivitas spam.</p></li>
+</ol>
+</section>
+<section id="contoh-web-crawling">
+<h2>Contoh Web Crawling<a class="headerlink" href="#contoh-web-crawling" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Duckduc Bot</strong> adalah bot web yang digunakan oleh mesin pencari DuckDuckGo. Tujuannya adalah untuk mengindeks halaman web sehingga informasi tersebut dapat muncul dalam hasil pencarian DuckDuckGo, yang menonjolkan privasi pengguna sebagai keunggulan utamanya.</p></li>
+<li><p><strong>Baiduspider</strong> adalah bot web yang dimiliki oleh Baidu, mesin pencari terbesar di Tiongkok. Tujuannya adalah untuk mengindeks halaman-halaman web, terutama untuk pasar Tiongkok, agar konten tersebut dapat diakses melalui hasil pencarian Baidu.</p></li>
+<li><p><strong>Alexabot</strong> adalah bot yang digunakan oleh Alexa Internet, anak perusahaan Amazon, untuk mengumpulkan data tentang lalu lintas web. Tujuannya adalah untuk menyediakan analisis, peringkat, dan statistik web yang digunakan oleh layanan Alexa untuk memantau kinerja situs web.</p></li>
+<li><p><strong>Yahoo! Slurp Bot</strong> adalah crawler yang digunakan oleh Yahoo! untuk mengindeks halaman web. Tujuannya adalah memastikan konten yang diindeks dapat ditemukan dan ditampilkan dalam hasil pencarian Yahoo!, yang merupakan salah satu mesin pencari terkemuka di masa lalu.</p></li>
+<li><p><strong>Yandex Bot</strong> adalah bot web yang digunakan oleh Yandex, mesin pencari terbesar di Rusia. Tujuannya adalah untuk mengindeks halaman web agar informasi tersebut tersedia dalam hasil pencarian Yandex, yang melayani pengguna di Rusia dan negara-negara berbahasa Rusia lainnya.</p></li>
+<li><p><strong>Bingbot</strong> adalah bot web milik Microsoft yang digunakan oleh mesin pencari Bing. Tujuannya adalah untuk mengindeks konten dari halaman web di seluruh dunia sehingga informasi tersebut dapat ditemukan dalam hasil pencarian Bing.</p></li>
+<li><p><strong>Facebook External Hit</strong> Hit adalah bot yang digunakan oleh Facebook untuk merayapi halaman web ketika pengguna membagikan tautan di platform tersebut. Tujuannya adalah untuk mengumpulkan metadata dan gambar dari halaman web guna membuat pratinjau (preview) yang menarik saat tautan dibagikan di Facebook.</p></li>
+</ol>
+</section>
+<section id="cara-kerja">
+<h2>Cara Kerja<a class="headerlink" href="#cara-kerja" title="Link to this heading">#</a></h2>
+<p>Cara kerja crawling melibatkan beberapa langkah utama yang dilakukan oleh program komputer yang disebut crawler atau spider. Berikut adalah penjelasan langkah demi langkah mengenai cara kerja crawling:</p>
+<ol class="arabic simple">
+<li><p><strong>Inisialisasi URL</strong>: Crawling dimulai dengan daftar URL awal yang disebut sebagai “seed URLs.” URL ini biasanya diambil dari halaman-halaman web yang sudah diketahui penting atau populer, seperti halaman beranda situs terkenal.</p></li>
+<li><p><strong>Mengunjungi Halaman Web</strong>: Crawler mengunjungi setiap URL dalam daftar seed. Saat mengunjungi halaman, crawler membaca dan mengunduh konten halaman web tersebut, termasuk teks, gambar, dan elemen-elemen lainnya.</p></li>
+<li><p><strong>Ekstraksi Tautan (Link Extraction)</strong>: Setelah mengunduh halaman, crawler mengekstrak semua tautan (link) yang ada di dalamnya. Tautan-tautan ini menunjuk ke halaman lain baik di dalam situs yang sama maupun di situs web lain. Tautan baru ini ditambahkan ke daftar URL yang harus dikunjungi.</p></li>
+<li><p><strong>Penyimpanan dan Indeksasi</strong>: Crawler menyimpan salinan halaman web yang diunduh dan mengirimkan informasi yang relevan ke mesin indeks. Mesin indeks mengolah informasi ini untuk mempermudah pencarian di masa mendatang, misalnya dengan menganalisis kata kunci, metadata, dan struktur halaman.</p></li>
+<li><p><strong>Mengikuti Tautan</strong>: Crawler kemudian mengunjungi tautan-tautan baru yang telah diekstrak. Proses ini diulang terus menerus, menciptakan siklus yang memungkinkan crawler untuk menjelajahi seluruh web secara bertahap.</p></li>
+<li><p><strong>Penyaringan (Filtering)</strong>: Tidak semua halaman yang ditemukan oleh crawler diindeks. Crawler menggunakan berbagai aturan untuk menyaring halaman yang dianggap tidak relevan, seperti halaman yang berisi spam, duplikat konten, atau halaman dengan sedikit konten.</p></li>
+<li><p><strong>Pemutakhiran (Update Crawling)</strong>: Crawlers juga secara berkala mengunjungi ulang halaman yang sudah diindeks untuk memperbarui informasi yang ada. Halaman yang sering berubah mungkin lebih sering dikunjungi ulang oleh crawler.</p></li>
+<li><p><strong>Prioritas (Crawling Priority)</strong>: Crawler biasanya memprioritaskan halaman berdasarkan berbagai faktor, seperti popularitas, kualitas tautan, atau seberapa sering konten halaman diperbarui.</p></li>
+<li><p><strong>Kepatuhan terhadap Robot.txt</strong>: Sebelum mengunjungi halaman, crawler memeriksa file <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> di setiap situs untuk melihat apakah ada aturan yang membatasi bagian mana dari situs yang boleh atau tidak boleh diakses.</p></li>
+<li><p><strong>Penanganan Kesalahan</strong>: Crawler juga menangani berbagai kesalahan yang mungkin terjadi, seperti halaman tidak ditemukan (404 error), waktu tunggu (timeout), atau masalah akses lainnya.</p></li>
+</ol>
+<p>Dengan mengikuti langkah-langkah ini, crawler dapat menjelajahi web secara efisien, mengumpulkan data yang dibutuhkan, dan memastikan mesin pencari memiliki indeks yang up-to-date dan relevan untuk digunakan dalam menampilkan hasil pencarian kepada pengguna.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="teknik-dan-cara-crawling-menggunakan-python">
+<h1>Teknik dan Cara Crawling Menggunakan Python<a class="headerlink" href="#teknik-dan-cara-crawling-menggunakan-python" title="Link to this heading">#</a></h1>
+<p>Crawling menggunakan Python melibatkan beberapa teknik yang memungkinkan pengumpulan data dari situs web secara otomatis. Teknik dasar termasuk penggunaan pustaka <code class="docutils literal notranslate"><span class="pre">requests</span></code> untuk mengunduh halaman web, di mana kontennya dapat diambil dan diproses. Setelah halaman diunduh, pustaka <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> sering digunakan untuk memparsing dokumen HTML atau XML, memungkinkan ekstraksi elemen spesifik seperti tautan atau teks. Untuk tugas crawling yang lebih kompleks dan terstruktur, <code class="docutils literal notranslate"><span class="pre">Scrapy</span></code> adalah framework populer yang menawarkan kemampuan untuk membangun spider yang dapat menjelajahi dan mengumpulkan data dari banyak halaman web secara efisien. Untuk situs web dinamis yang mengandalkan JavaScript, <code class="docutils literal notranslate"><span class="pre">Selenium</span></code> digunakan untuk mengotomatisasi browser dan mengambil konten yang di-render, memastikan data dari situs dinamis dapat diakses. Selain itu, teknik tambahan seperti menambahkan <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> dan jeda antar permintaan dengan <code class="docutils literal notranslate"><span class="pre">time.sleep</span></code> digunakan untuk menghindari pemblokiran oleh situs web, menjaga agar proses crawling terlihat lebih alami dan menghindari deteksi.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tool-dan-library-yang-digunakan">
+<h1>Tool dan Library Yang Digunakan<a class="headerlink" href="#tool-dan-library-yang-digunakan" title="Link to this heading">#</a></h1>
+<p>Sebgai contoh disini menggunakan Beautiful Soup untuk crawling website berita, maka harus mempersiapkan beberapa tools dan library. Berikut langkah-langkahnya:</p>
+<ol class="arabic">
+<li><p><strong>Install Python</strong>:
+Memastikan Python terinstal di sistem, jika belum maka dapat mengunduhnya dari <a class="reference external" href="https://www.python.org/downloads/">python.org</a>.</p></li>
+<li><p><strong>Install Library yang Dibutuhkan</strong>:</p>
+<ul class="simple">
+<li><p><strong>Requests</strong>: Untuk mengirim permintaan HTTP ke situs web yang ingin dicrawl.</p></li>
+<li><p><strong>Beautiful Soup</strong>: Untuk memparsing HTML dan mengekstrak data yang diinginkan.</p></li>
+</ul>
+<p>Menginstal kedua library ini menggunakan pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>requests
+pip<span class="w"> </span>install<span class="w"> </span>beautifulsoup4
+</pre></div>
+</div>
+</li>
+<li><p><strong>Library Tambahan (Opsional)</strong>:
+<strong>lxml</strong> atau <strong>html5lib</strong>: Untuk parsing HTML yang lebih kuat, maka dapat menginstal parser ini. Beautiful Soup mendukung berbagai parser, tetapi <code class="docutils literal notranslate"><span class="pre">lxml</span></code> atau <code class="docutils literal notranslate"><span class="pre">html5lib</span></code> sering digunakan untuk parsing yang lebih kompleks.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>lxml
+pip<span class="w"> </span>install<span class="w"> </span>html5lib
+</pre></div>
+</div>
+</li>
+<li><p><strong>IDE atau Text Editor</strong>:
+Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan Notepad++ untuk menulis skrip Python.</p></li>
+</ol>
+<section id="contoh-penggunaan">
+<h2>Contoh Penggunaan<a class="headerlink" href="#contoh-penggunaan" title="Link to this heading">#</a></h2>
+<p>Berikut adalah contoh sederhana menggunakan Requests dan Beautiful Soup untuk melakukan crawling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="c1"># URL yang ingin di crawl</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://example.com&#39;</span>
+
+<span class="c1"># Mengirimkan permintaan HTTP ke URL</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Memastikan permintaan berhasil</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="c1"># Parsing HTML menggunakan Beautiful Soup</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Mengekstrak data yang diinginkan, misalnya semua judul artikel</span>
+    <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to retrieve the webpage.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tips-penting">
+<h2>Tips Penting:<a class="headerlink" href="#tips-penting" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Patuhilah Robots.txt</strong>: Sebelum melakukan crawling, pastikan untuk memeriksa file <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> situs web tersebut untuk melihat aturan yang harus dipatuhi.</p></li>
+<li><p><strong>Rate Limiting</strong>: Untuk menghindari pembatasan atau pemblokiran, tambahkan jeda waktu antara permintaan.</p></li>
+<li><p><strong>Menggunakan User-Agent</strong>: Kadang-kadang perlu untuk menyetel <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> header dalam permintaan HTTP untuk menghindari deteksi sebagai bot.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="proses-crawling">
+<h1>Proses Crawling<a class="headerlink" href="#proses-crawling" title="Link to this heading">#</a></h1>
+<section id="library-yang-digunakan">
+<h2>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-implementasi">
+<h2>Code Implementasi<a class="headerlink" href="#code-implementasi" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty list to store results</span>
+<span class="n">article_result</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Iterasi page dari 1 to 10</span>
+<span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://indeks.kompas.com/?page=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page_num</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleItem&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">:</span>
+        <span class="n">article_url</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;article-link&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleTitle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articlePost-subtitle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articlePost-date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="n">cPage</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">article_url</span><span class="p">)</span>
+        <span class="n">cSoup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">cPage</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+        <span class="n">content_paragraphs</span> <span class="o">=</span> <span class="n">cSoup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__content&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">content_paragraphs</span><span class="p">])</span>
+        
+        <span class="c1"># Append the article details to the results list</span>
+        <span class="n">article_result</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">category</span><span class="p">])</span>
+
+<span class="c1"># Convert the results into a DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">article_result</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-2-2392b1658f47&gt;</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="n">date</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articlePost-date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> 
+<span class="ne">---&gt; </span><span class="mi">17</span>         <span class="n">cPage</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">article_url</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">cSoup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">cPage</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> 
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/api.py</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span><span class="s2"> </span>
+<span class="ne">---&gt; </span><span class="mi">73</span><span class="s2">     return request(&quot;get&quot;, url, params=params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span><span class="s2"> </span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/api.py</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="s2">     # cases, and look like a memory leak in others.</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="s2">     with sessions.Session() as session:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span><span class="s2">         return session.request(method=method, url=url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="s2"> </span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span><span class="s2">         }</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span><span class="s2">         send_kwargs.update(settings)</span>
+<span class="ne">--&gt; </span><span class="mi">589</span><span class="s2">         resp = self.send(prep, **send_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">590</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span><span class="s2">         return resp</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2">         # Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">703</span><span class="s2">         r = adapter.send(request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span><span class="s2">         # Total elapsed time of the request (approximately)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span><span class="s2">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span><span class="s2">             resp = conn.urlopen(</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span><span class="s2">                 method=request.method,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span><span class="s2">                 url=url,</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">789</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span><span class="s2">             # Make the request on the HTTPConnection object</span>
+<span class="ne">--&gt; </span><span class="mi">791</span><span class="s2">             response = self._make_request(</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span><span class="s2">                 conn,</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span><span class="s2">                 method,</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span><span class="s2">         # Receive the response from the server</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span><span class="s2">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">537</span><span class="s2">             response = conn.getresponse()</span>
+<span class="g g-Whitespace">    </span><span class="mi">538</span><span class="s2">         except (BaseSSLError, OSError) as e:</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span><span class="s2">             self._raise_timeout(err=e, url=url, timeout_value=read_timeout)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connection.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span><span class="s2">         # Get the response from http.client.HTTPConnection</span>
+<span class="ne">--&gt; </span><span class="mi">461</span><span class="s2">         httplib_response = super().getresponse()</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span><span class="s2">         try:</span>
+
+<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1373</span><span class="s2">         try:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1374</span><span class="s2">             try:</span>
+<span class="ne">-&gt; </span><span class="mi">1375</span><span class="s2">                 response.begin()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1376</span><span class="s2">             except ConnectionError:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1377</span><span class="s2">                 self.close()</span>
+
+<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span><span class="s2">         # read until we get a non-100 response</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span><span class="s2">         while True:</span>
+<span class="ne">--&gt; </span><span class="mi">318</span><span class="s2">             version, status, reason = self._read_status()</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="s2">             if status != CONTINUE:</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="s2">                 break</span>
+
+<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span><span class="s2">     def _read_status(self):</span>
+<span class="ne">--&gt; </span><span class="mi">279</span><span class="s2">         line = str(self.fp.readline(_MAXLINE + 1), &quot;iso-8859-1&quot;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span><span class="s2">         if len(line) &gt; _MAXLINE:</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span><span class="s2">             raise LineTooLong(&quot;status line&quot;)</span>
+
+<span class="nn">/usr/lib/python3.10/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2">         while True:</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2">             try:</span>
+<span class="ne">--&gt; </span><span class="mi">705</span><span class="s2">                 return self._sock.recv_into(b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span><span class="s2">             except timeout:</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span><span class="s2">                 self._timeout_occurred = True</span>
+
+<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1301</span><span class="s2">                   &quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot; %</span>
+<span class="g g-Whitespace">   </span><span class="mi">1302</span><span class="s2">                   self.__class__)</span>
+<span class="ne">-&gt; </span><span class="mi">1303</span><span class="s2">             return self.read(nbytes, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span><span class="s2">         else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1305</span><span class="s2">             return super().recv_into(buffer, nbytes, flags)</span>
+
+<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1157</span><span class="s2">         try:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1158</span><span class="s2">             if buffer is not None:</span>
+<span class="ne">-&gt; </span><span class="mi">1159</span><span class="s2">                 return self._sslobj.read(len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1160</span><span class="s2">             else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span><span class="s2">                 return self._sslobj.read(len)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penjelasan-code">
+<h2>Penjelasan Code<a class="headerlink" href="#penjelasan-code" title="Link to this heading">#</a></h2>
+<p>Berikut ini adalah penjelasan untuk kode diatas:</p>
+<ol class="arabic">
+<li><p>Inisialisasi List Kosong untuk Menyimpan Hasil</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">article_result</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">article_result</span></code> adalah list kosong yang akan digunakan untuk menyimpan data dari setiap artikel yang berhasil diambil dari beberapa halaman web.</p>
+</li>
+<li><p>Iterasi Halaman dari 1 hingga 10</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://indeks.kompas.com/?page=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page_num</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleItem&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page_num</span> <span class="pre">in</span> <span class="pre">range(1,</span> <span class="pre">11)</span></code></strong>: Loop ini digunakan untuk mengiterasi halaman web dari 1 hingga 10. <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">11)</span></code> menghasilkan angka dari 1 sampai 10 (inklusif).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">url</span> <span class="pre">=</span> <span class="pre">&quot;https://indeks.kompas.com/?page={}&quot;.format(page_num)</span></code></strong>: Untuk setiap nomor halaman (<code class="docutils literal notranslate"><span class="pre">page_num</span></code>), kode ini membangun URL dengan menambahkan nomor halaman sebagai parameter di akhir URL.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">page</span> <span class="pre">=</span> <span class="pre">requests.get(url)</span></code></strong>: Mengirimkan permintaan HTTP GET ke URL yang dibentuk untuk setiap halaman, dan respons HTML disimpan di variabel <code class="docutils literal notranslate"><span class="pre">page</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">soup</span> <span class="pre">=</span> <span class="pre">BeautifulSoup(page.text,</span> <span class="pre">'html.parser')</span></code></strong>: Mem-parsing konten HTML dari <code class="docutils literal notranslate"><span class="pre">page</span></code> menggunakan BeautifulSoup untuk diolah lebih lanjut.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">articles</span> <span class="pre">=</span> <span class="pre">soup.find_all('div',</span> <span class="pre">class_='articleItem')</span></code></strong>: Mencari semua elemen <code class="docutils literal notranslate"><span class="pre">div</span></code> dengan class <code class="docutils literal notranslate"><span class="pre">articleItem</span></code> dalam halaman web tersebut. Setiap elemen <code class="docutils literal notranslate"><span class="pre">div</span></code> ini dianggap mewakili satu artikel di halaman tersebut.</p></li>
+</ul>
+</li>
+<li><p>Mengiterasi Artikel dalam Setiap Halaman</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">:</span>
+    <span class="n">article_url</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;article-link&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleTitle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articlePost-subtitle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articlePost-date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">article</span> <span class="pre">in</span> <span class="pre">articles</span></code></strong>: Loop ini mengiterasi setiap artikel yang ditemukan dalam halaman yang sedang diproses.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">article_url</span> <span class="pre">=</span> <span class="pre">article.find('a',</span> <span class="pre">class_='article-link')['href']</span></code></strong>: Mengambil URL lengkap dari artikel dengan mencari elemen <code class="docutils literal notranslate"><span class="pre">a</span></code> yang memiliki class <code class="docutils literal notranslate"><span class="pre">article-link</span></code> dan mengambil atribut <code class="docutils literal notranslate"><span class="pre">href</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">title</span> <span class="pre">=</span> <span class="pre">article.find('h2',</span> <span class="pre">class_='articleTitle').text.strip()</span></code></strong>: Mengambil judul artikel dari elemen <code class="docutils literal notranslate"><span class="pre">h2</span></code> dengan class <code class="docutils literal notranslate"><span class="pre">articleTitle</span></code> dan menghapus spasi yang tidak perlu menggunakan <code class="docutils literal notranslate"><span class="pre">strip()</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">category</span> <span class="pre">=</span> <span class="pre">article.find('div',</span> <span class="pre">class_='articlePost-subtitle').text.strip()</span></code></strong>: Mengambil kategori artikel dari elemen <code class="docutils literal notranslate"><span class="pre">div</span></code> dengan class <code class="docutils literal notranslate"><span class="pre">articlePost-subtitle</span></code> dan membersihkannya dari spasi yang tidak perlu.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">date</span> <span class="pre">=</span> <span class="pre">article.find('div',</span> <span class="pre">class_='articlePost-date').text.strip()</span></code></strong>: Mengambil tanggal artikel dari elemen <code class="docutils literal notranslate"><span class="pre">div</span></code> dengan class <code class="docutils literal notranslate"><span class="pre">articlePost-date</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Mengambil Konten dari Setiap Artikel</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cPage</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">article_url</span><span class="p">)</span>
+<span class="n">cSoup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">cPage</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+<span class="n">content_paragraphs</span> <span class="o">=</span> <span class="n">cSoup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__content&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">content_paragraphs</span><span class="p">])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cPage</span> <span class="pre">=</span> <span class="pre">requests.get(article_url)</span></code></strong>: Mengirimkan permintaan HTTP GET ke URL artikel yang diambil pada langkah sebelumnya.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cSoup</span> <span class="pre">=</span> <span class="pre">BeautifulSoup(cPage.text,</span> <span class="pre">'html.parser')</span></code></strong>: Mem-parsing halaman artikel untuk mengambil konten utamanya.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">content_paragraphs</span> <span class="pre">=</span> <span class="pre">cSoup.find('div',</span> <span class="pre">class_='read__content').find_all('p')</span></code></strong>: Mencari elemen <code class="docutils literal notranslate"><span class="pre">div</span></code> dengan class <code class="docutils literal notranslate"><span class="pre">read__content</span></code> yang biasanya menyimpan isi utama dari artikel, dan mengambil semua paragraf (<code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">content</span> <span class="pre">=</span> <span class="pre">&quot;\n&quot;.join([p.text.strip()</span> <span class="pre">for</span> <span class="pre">p</span> <span class="pre">in</span> <span class="pre">content_paragraphs])</span></code></strong>: Menggabungkan teks dari setiap paragraf menjadi satu string besar, dipisahkan oleh newline (<code class="docutils literal notranslate"><span class="pre">\n</span></code>).</p></li>
+</ul>
+</li>
+<li><p>Menyimpan Data Artikel ke dalam List</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">article_result</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">category</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Data artikel yang terdiri dari judul (<code class="docutils literal notranslate"><span class="pre">title</span></code>), konten (<code class="docutils literal notranslate"><span class="pre">content</span></code>), tanggal (<code class="docutils literal notranslate"><span class="pre">date</span></code>), dan kategori (<code class="docutils literal notranslate"><span class="pre">category</span></code>) disimpan sebagai satu entri dalam list <code class="docutils literal notranslate"><span class="pre">article_result</span></code>.</p>
+</li>
+<li><p>Mengonversi Hasil Menjadi DataFrame</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">article_result</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Setelah semua halaman dan artikel diproses, <code class="docutils literal notranslate"><span class="pre">article_result</span></code> diubah menjadi DataFrame dengan menggunakan <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, yang memudahkan analisis data lebih lanjut. Kolom DataFrame diberi nama <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">content</span></code>, <code class="docutils literal notranslate"><span class="pre">date</span></code>, dan <code class="docutils literal notranslate"><span class="pre">category</span></code>.</p>
+</li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="output-crawling">
+<h1>Output Crawling<a class="headerlink" href="#output-crawling" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>content</th>
+      <th>date</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sebulan Pascanikah, Aaliyah Massaid: Sekarang ...</td>
+      <td>JAKARTA, KOMPAS.com - Artis Aaliyah Massaid pa...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Beasiswa Bill Gates 2025 Dibuka, Kuliah S2-S3 ...</td>
+      <td>KOMPAS.com - Beasiswa Bill Gates 2025 sudah di...</td>
+      <td>04/09/2024</td>
+      <td>EDUKASI</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Suami yang Bunuh Istrinya di Pasar Minggu Semp...</td>
+      <td>JAKARTA, KOMPAS.com - A (30), sempat dikeroyok...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Motor Baru Yamaha Masih Harus Inreyen, Jangan ...</td>
+      <td>JAKARTA, KOMPAS.com - Beredar video Yamaha NMA...</td>
+      <td>04/09/2024</td>
+      <td>OTOMOTIF</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Punya Penghasilan RP 1,5 Triliun, Kucing Taylo...</td>
+      <td>KOMPAS.com- Kucing Taylor Swift, Olivia Benson...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>Seorang Istri Dibunuh Suaminya di Rumah Kontra...</td>
+      <td>JAKARTA, KOMPAS.com - Seorang wanita berinisia...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>Indonesia Lihat Peluang Kerjasama Baterai EV d...</td>
+      <td>JAKARTA, KOMPAS.com - Menteri Investasi/Kepala...</td>
+      <td>04/09/2024</td>
+      <td>OTOMOTIF</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>9.000 Aparat Gabungan Dikerahkan Amankan Misa ...</td>
+      <td>JAKARTA, KOMPAS.com - Sebanyak 9.000 aparat ga...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>Pantai Ria di Ende, NTT: Daya Tarik, Harga Tik...</td>
+      <td>KOMPAS.com - Pantai Ria adalah salah satu pant...</td>
+      <td>04/09/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>GOTO Tutup Layanan Gojek di Vietnam</td>
+      <td>JAKARTA, KOMPAS.com - PT GoTo Gojek Tokopedia ...</td>
+      <td>04/09/2024</td>
+      <td>MONEY</td>
+    </tr>
+  </tbody>
+</table>
+<p>120 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">csv_filename</span> <span class="o">=</span> <span class="s2">&quot;berita_crawling_kompas.csv&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data berita telah disimpan ke </span><span class="si">{</span><span class="n">csv_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data berita telah disimpan ke berita_crawling_kompas.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Konsep Crawling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis">Jenis-Jenis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-web-crawling">Contoh Web Crawling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#teknik-dan-cara-crawling-menggunakan-python">Teknik dan Cara Crawling Menggunakan Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-dan-library-yang-digunakan">Tool dan Library Yang Digunakan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penggunaan">Contoh Penggunaan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting">Tips Penting:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling">Proses Crawling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementasi">Code Implementasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-crawling">Output Crawling</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
