@@ -557,12 +557,12 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 <span class="n">article_result</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Iterasi page dari 1 to 10</span>
-<span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
     <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://indeks.kompas.com/?page=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page_num</span><span class="p">)</span>
     <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
     <span class="n">articles</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleItem&#39;</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">:</span>
         <span class="n">article_url</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;article-link&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleTitle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -574,124 +574,12 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 
         <span class="n">content_paragraphs</span> <span class="o">=</span> <span class="n">cSoup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__content&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
         <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">content_paragraphs</span><span class="p">])</span>
-        
+
         <span class="c1"># Append the article details to the results list</span>
         <span class="n">article_result</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">category</span><span class="p">])</span>
 
 <span class="c1"># Convert the results into a DataFrame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">article_result</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-2-2392b1658f47&gt;</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="n">date</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articlePost-date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> 
-<span class="ne">---&gt; </span><span class="mi">17</span>         <span class="n">cPage</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">article_url</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">cSoup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">cPage</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> 
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/api.py</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span><span class="s2"> </span>
-<span class="ne">---&gt; </span><span class="mi">73</span><span class="s2">     return request(&quot;get&quot;, url, params=params, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span><span class="s2"> </span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/api.py</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="s2">     # cases, and look like a memory leak in others.</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="s2">     with sessions.Session() as session:</span>
-<span class="ne">---&gt; </span><span class="mi">59</span><span class="s2">         return session.request(method=method, url=url, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="s2"> </span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span><span class="s2">         }</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span><span class="s2">         send_kwargs.update(settings)</span>
-<span class="ne">--&gt; </span><span class="mi">589</span><span class="s2">         resp = self.send(prep, **send_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">590</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span><span class="s2">         return resp</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2">         # Send the request</span>
-<span class="ne">--&gt; </span><span class="mi">703</span><span class="s2">         r = adapter.send(request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span><span class="s2">         # Total elapsed time of the request (approximately)</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span><span class="s2">         try:</span>
-<span class="ne">--&gt; </span><span class="mi">667</span><span class="s2">             resp = conn.urlopen(</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span><span class="s2">                 method=request.method,</span>
-<span class="g g-Whitespace">    </span><span class="mi">669</span><span class="s2">                 url=url,</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">789</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span><span class="s2">             # Make the request on the HTTPConnection object</span>
-<span class="ne">--&gt; </span><span class="mi">791</span><span class="s2">             response = self._make_request(</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span><span class="s2">                 conn,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span><span class="s2">                 method,</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
-<span class="g g-Whitespace">    </span><span class="mi">535</span><span class="s2">         # Receive the response from the server</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span><span class="s2">         try:</span>
-<span class="ne">--&gt; </span><span class="mi">537</span><span class="s2">             response = conn.getresponse()</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span><span class="s2">         except (BaseSSLError, OSError) as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span><span class="s2">             self._raise_timeout(err=e, url=url, timeout_value=read_timeout)</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connection.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span><span class="s2">         # Get the response from http.client.HTTPConnection</span>
-<span class="ne">--&gt; </span><span class="mi">461</span><span class="s2">         httplib_response = super().getresponse()</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span><span class="s2">         try:</span>
-
-<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1373</span><span class="s2">         try:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1374</span><span class="s2">             try:</span>
-<span class="ne">-&gt; </span><span class="mi">1375</span><span class="s2">                 response.begin()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1376</span><span class="s2">             except ConnectionError:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1377</span><span class="s2">                 self.close()</span>
-
-<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span><span class="s2">         # read until we get a non-100 response</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span><span class="s2">         while True:</span>
-<span class="ne">--&gt; </span><span class="mi">318</span><span class="s2">             version, status, reason = self._read_status()</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="s2">             if status != CONTINUE:</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="s2">                 break</span>
-
-<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">277</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span><span class="s2">     def _read_status(self):</span>
-<span class="ne">--&gt; </span><span class="mi">279</span><span class="s2">         line = str(self.fp.readline(_MAXLINE + 1), &quot;iso-8859-1&quot;)</span>
-<span class="g g-Whitespace">    </span><span class="mi">280</span><span class="s2">         if len(line) &gt; _MAXLINE:</span>
-<span class="g g-Whitespace">    </span><span class="mi">281</span><span class="s2">             raise LineTooLong(&quot;status line&quot;)</span>
-
-<span class="nn">/usr/lib/python3.10/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2">         while True:</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2">             try:</span>
-<span class="ne">--&gt; </span><span class="mi">705</span><span class="s2">                 return self._sock.recv_into(b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span><span class="s2">             except timeout:</span>
-<span class="g g-Whitespace">    </span><span class="mi">707</span><span class="s2">                 self._timeout_occurred = True</span>
-
-<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1301</span><span class="s2">                   &quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot; %</span>
-<span class="g g-Whitespace">   </span><span class="mi">1302</span><span class="s2">                   self.__class__)</span>
-<span class="ne">-&gt; </span><span class="mi">1303</span><span class="s2">             return self.read(nbytes, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1304</span><span class="s2">         else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1305</span><span class="s2">             return super().recv_into(buffer, nbytes, flags)</span>
-
-<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1157</span><span class="s2">         try:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1158</span><span class="s2">             if buffer is not None:</span>
-<span class="ne">-&gt; </span><span class="mi">1159</span><span class="s2">                 return self._sslobj.read(len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1160</span><span class="s2">             else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1161</span><span class="s2">                 return self._sslobj.read(len)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -778,7 +666,9 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-ec866823-9969-4804-82b1-521b652539ba" class="colab-df-container">
+    <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -805,85 +695,299 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
   <tbody>
     <tr>
       <th>0</th>
-      <td>Sebulan Pascanikah, Aaliyah Massaid: Sekarang ...</td>
-      <td>JAKARTA, KOMPAS.com - Artis Aaliyah Massaid pa...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Beasiswa Bill Gates 2025 Dibuka, Kuliah S2-S3 ...</td>
-      <td>KOMPAS.com - Beasiswa Bill Gates 2025 sudah di...</td>
-      <td>04/09/2024</td>
-      <td>EDUKASI</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Suami yang Bunuh Istrinya di Pasar Minggu Semp...</td>
-      <td>JAKARTA, KOMPAS.com - A (30), sempat dikeroyok...</td>
-      <td>04/09/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Motor Baru Yamaha Masih Harus Inreyen, Jangan ...</td>
-      <td>JAKARTA, KOMPAS.com - Beredar video Yamaha NMA...</td>
-      <td>04/09/2024</td>
-      <td>OTOMOTIF</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Punya Penghasilan RP 1,5 Triliun, Kucing Taylo...</td>
-      <td>KOMPAS.com- Kucing Taylor Swift, Olivia Benson...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>115</th>
-      <td>Seorang Istri Dibunuh Suaminya di Rumah Kontra...</td>
-      <td>JAKARTA, KOMPAS.com - Seorang wanita berinisia...</td>
-      <td>04/09/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>116</th>
-      <td>Indonesia Lihat Peluang Kerjasama Baterai EV d...</td>
-      <td>JAKARTA, KOMPAS.com - Menteri Investasi/Kepala...</td>
-      <td>04/09/2024</td>
-      <td>OTOMOTIF</td>
-    </tr>
-    <tr>
-      <th>117</th>
-      <td>9.000 Aparat Gabungan Dikerahkan Amankan Misa ...</td>
-      <td>JAKARTA, KOMPAS.com - Sebanyak 9.000 aparat ga...</td>
-      <td>04/09/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>118</th>
-      <td>Pantai Ria di Ende, NTT: Daya Tarik, Harga Tik...</td>
-      <td>KOMPAS.com - Pantai Ria adalah salah satu pant...</td>
+      <td>Baru Ada 1 Calon, Muncul Ajakan Pilih Kotak Ko...</td>
+      <td>BANYUMAS, KOMPAS.com - Memasuki hari terakhir ...</td>
       <td>04/09/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
-      <th>119</th>
-      <td>GOTO Tutup Layanan Gojek di Vietnam</td>
-      <td>JAKARTA, KOMPAS.com - PT GoTo Gojek Tokopedia ...</td>
+      <th>1</th>
+      <td>Game Lokal Battle of Guardians Siap Unjuk Gigi...</td>
+      <td>KOMPAS.com - PON XXI 2024 akan menjadi panggun...</td>
+      <td>04/09/2024</td>
+      <td>BOLA</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Keluarga Laporkan Senior Dokter ARL Terkait Du...</td>
+      <td>SEMARANG, KOMPAS.com - Keluarga dokter ARL lap...</td>
+      <td>04/09/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Sumut Raih Emas Keempat di PON Melalui Barongsai</td>
+      <td>MEDAN, KOMPAS.com - Tim barongsai Sumatera Uta...</td>
+      <td>04/09/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Rute Menuju Kebun Refugia dari Pusat Kota Magetan</td>
+      <td>KOMPAS.com - Kebun Refugia Magetan terletak di...</td>
+      <td>04/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Rusia Serang Ukraina Barat, Polandia Mulai Ker...</td>
+      <td>\nWARSAWA, KOMPAS.com - Polandia, yang merupak...</td>
+      <td>04/09/2024</td>
+      <td>GLOBAL</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Lirik dan Chord Lagu Sweet Music - Alicia Keys</td>
+      <td>JAKARTA, KOMPAS.com - "Sweet Music" merupakan ...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Berapa Lama Anak Boleh Dibiarkan Tantrum?</td>
+      <td>KOMPAS.com - Anak usia satu hingga tiga tahun,...</td>
+      <td>04/09/2024</td>
+      <td>LIFESTYLE</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ungkapan Hati Guru asal Buton kepada Paus Fran...</td>
+      <td>JAKARTA, KOMPAS.com - Seorang guru asal Pulau ...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Tak Terima Diberi Rp 10.000, Ormas Geruduk Tok...</td>
+      <td>JAKARTA, KOMPAS.com - Sekelompok orang yang me...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>KemenKopUKM Fasilitasi Sertifikasi Halal bagi ...</td>
+      <td>BANTEN, KOMPAS.com -  Kementerian Koperasi dan...</td>
+      <td>04/09/2024</td>
+      <td>UMKM</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Gudang Furnitur di Duren Sawit Kebakaran, Bela...</td>
+      <td>JAKARTA, KOMPAS.com - Kebakaran terjadi di seb...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>McCormick Prediksi Makanan Rasa Asam Tamarin A...</td>
+      <td>JAKARTA, KOMPAS.com - Perusahaan inovasi rasa ...</td>
       <td>04/09/2024</td>
       <td>MONEY</td>
     </tr>
+    <tr>
+      <th>13</th>
+      <td>Belum Ada Perintah Impor, Bulog Was-was Cadang...</td>
+      <td>KOMPAS.com - Perum Bulog berharap perintah pen...</td>
+      <td>04/09/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Lirik dan Chord Lagu Slow Down - Alicia Keys</td>
+      <td>JAKARTA, KOMPAS.com - Pada 2003, penyanyi R&amp;B ...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Viral, Lirik Lagu Team Tomodachi Versi Ramengvrl</td>
+      <td>JAKARTA, KOMPAS.com - Lagu "Team Tomodachi" ve...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Cek Syarat Daftar STIN, Sekolah Gratis dan Lul...</td>
+      <td>KOMPAS.com - Siswa kelas 12 SMA/SMK yang masih...</td>
+      <td>04/09/2024</td>
+      <td>EDUKASI</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Perusahaan Pabrik Gula Ini Beri Kemudahan Kary...</td>
+      <td>JAKARTA, KOMPAS.com - Perusahaan perkebunan da...</td>
+      <td>04/09/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>KPU Akan Konsultasi ke DPR Bahas Potensi Kotak...</td>
+      <td>JAKARTA, KOMPAS.com - Komisi Pemilihan Umum (K...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Golkar Tak Keberatan Dico Jadi Kader PKB untuk...</td>
+      <td>SEMARANG, KOMPAS.com - Ketua Badan Pemenangan ...</td>
+      <td>04/09/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>5 Buah yang "Berbahaya" Bagi Penderita Diabetes</td>
+      <td>KOMPAS.com - Buah-buahan identik dengan rasa s...</td>
+      <td>04/09/2024</td>
+      <td>TREN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Paus Fransiskus Tinggalkan Gereja Katedral, Wa...</td>
+      <td>JAKARTA, KOMPAS.com - Warga dan umat Katolik s...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Lirik dan Chord Lagu Cinta yang Lain - Element</td>
+      <td>JAKARTA, KOMPAS.com - "Cinta yang Lain" adalah...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Panser Anoa dengan Sistem Kendali Tembak Dipam...</td>
+      <td>\nJAKARTA, KOMPAS.com - Sejumlah alat utama si...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Eks GM PT Timah Cerita Didatangi Intel karena ...</td>
+      <td>JAKARTA, KOMPAS.com - Mantan General Manager O...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Chelsea Islan, Happy Salma, Nadia Mulya, dan M...</td>
+      <td>JAKARTA, KOMPAS.com - Aktris Indonesia yakni C...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Petugas Evkuasi Truk Tangki yang Kecelakaan Be...</td>
+      <td>JAKARTA, KOMPAS.com - Truk tangki yang kecelak...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Terima Suap Rp 4,9 Miliar, Mantan Anggota DPRD...</td>
+      <td>MEDAN, KOMPAS.com - Rudi Syahputra, mantan Ang...</td>
+      <td>04/09/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Tak Terima Dituduh Cerai dan Nikah Siri, Atta ...</td>
+      <td>JAKARTA, KOMPAS.com - Pasangan artis Atta Hali...</td>
+      <td>04/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Perawat yang Mengaku sebagai Dokter di Klinik ...</td>
+      <td>TANGERANG, KOMPAS.com - N (49), pria yang meng...</td>
+      <td>04/09/2024</td>
+      <td>NEWS</td>
+    </tr>
   </tbody>
 </table>
-<p>120 rows × 4 columns</p>
-</div></div></div>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-ec866823-9969-4804-82b1-521b652539ba')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-ec866823-9969-4804-82b1-521b652539ba button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-ec866823-9969-4804-82b1-521b652539ba');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
