@@ -147,8 +147,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
   
-    <p class="title logo__title">My sample book</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -553,16 +559,17 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 <h2>Code Implementasi<a class="headerlink" href="#code-implementasi" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty list to store results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat variabel list kosong menampung hasil berita</span>
 <span class="n">article_result</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="c1"># Iterasi page dari 1 to 10</span>
+<span class="c1"># Iterasi page dari 1 sampai 10</span>
 <span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
     <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://indeks.kompas.com/?page=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page_num</span><span class="p">)</span>
     <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
     <span class="n">articles</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleItem&#39;</span><span class="p">)</span>
 
+    <span class="c1"># Iterasi artikel dalam setiap halaman</span>
     <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">articles</span><span class="p">:</span>
         <span class="n">article_url</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;article-link&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;articleTitle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -575,10 +582,10 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
         <span class="n">content_paragraphs</span> <span class="o">=</span> <span class="n">cSoup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__content&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
         <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">content_paragraphs</span><span class="p">])</span>
 
-        <span class="c1"># Append the article details to the results list</span>
+        <span class="c1"># Menggabungkan detail artikel ke dalam list hasil</span>
         <span class="n">article_result</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">category</span><span class="p">])</span>
 
-<span class="c1"># Convert the results into a DataFrame</span>
+<span class="c1"># Konversi hasil ke Dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">article_result</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -604,7 +611,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page_num</span> <span class="pre">in</span> <span class="pre">range(1,</span> <span class="pre">11)</span></code></strong>: Loop ini digunakan untuk mengiterasi halaman web dari 1 hingga 10. <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">11)</span></code> menghasilkan angka dari 1 sampai 10 (inklusif).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page_num</span> <span class="pre">in</span> <span class="pre">range(1,</span> <span class="pre">11)</span></code></strong>: Loop ini digunakan untuk mengiterasi halaman web dari 1 hingga 10. <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">11)</span></code> menghasilkan angka dari 1 sampai 10.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">url</span> <span class="pre">=</span> <span class="pre">&quot;https://indeks.kompas.com/?page={}&quot;.format(page_num)</span></code></strong>: Untuk setiap nomor halaman (<code class="docutils literal notranslate"><span class="pre">page_num</span></code>), kode ini membangun URL dengan menambahkan nomor halaman sebagai parameter di akhir URL.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">page</span> <span class="pre">=</span> <span class="pre">requests.get(url)</span></code></strong>: Mengirimkan permintaan HTTP GET ke URL yang dibentuk untuk setiap halaman, dan respons HTML disimpan di variabel <code class="docutils literal notranslate"><span class="pre">page</span></code>.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">soup</span> <span class="pre">=</span> <span class="pre">BeautifulSoup(page.text,</span> <span class="pre">'html.parser')</span></code></strong>: Mem-parsing konten HTML dari <code class="docutils literal notranslate"><span class="pre">page</span></code> menggunakan BeautifulSoup untuk diolah lebih lanjut.</p></li>
@@ -667,7 +674,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-ec866823-9969-4804-82b1-521b652539ba" class="colab-df-container">
+  <div id="df-807138f5-772b-48a6-a0c4-c5e72f490ad1" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -695,213 +702,213 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
   <tbody>
     <tr>
       <th>0</th>
-      <td>Baru Ada 1 Calon, Muncul Ajakan Pilih Kotak Ko...</td>
-      <td>BANYUMAS, KOMPAS.com - Memasuki hari terakhir ...</td>
-      <td>04/09/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Game Lokal Battle of Guardians Siap Unjuk Gigi...</td>
-      <td>KOMPAS.com - PON XXI 2024 akan menjadi panggun...</td>
-      <td>04/09/2024</td>
-      <td>BOLA</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Keluarga Laporkan Senior Dokter ARL Terkait Du...</td>
-      <td>SEMARANG, KOMPAS.com - Keluarga dokter ARL lap...</td>
-      <td>04/09/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Sumut Raih Emas Keempat di PON Melalui Barongsai</td>
-      <td>MEDAN, KOMPAS.com - Tim barongsai Sumatera Uta...</td>
-      <td>04/09/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Rute Menuju Kebun Refugia dari Pusat Kota Magetan</td>
-      <td>KOMPAS.com - Kebun Refugia Magetan terletak di...</td>
-      <td>04/09/2024</td>
-      <td>TRAVEL</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Rusia Serang Ukraina Barat, Polandia Mulai Ker...</td>
-      <td>\nWARSAWA, KOMPAS.com - Polandia, yang merupak...</td>
-      <td>04/09/2024</td>
-      <td>GLOBAL</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Lirik dan Chord Lagu Sweet Music - Alicia Keys</td>
-      <td>JAKARTA, KOMPAS.com - "Sweet Music" merupakan ...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Berapa Lama Anak Boleh Dibiarkan Tantrum?</td>
-      <td>KOMPAS.com - Anak usia satu hingga tiga tahun,...</td>
-      <td>04/09/2024</td>
-      <td>LIFESTYLE</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Ungkapan Hati Guru asal Buton kepada Paus Fran...</td>
-      <td>JAKARTA, KOMPAS.com - Seorang guru asal Pulau ...</td>
-      <td>04/09/2024</td>
+      <td>Imam Besar Masjid Istiqlal Minta Paus Fransisk...</td>
+      <td>JAKARTA, KOMPAS.com - Imam Besar Masjid Istiql...</td>
+      <td>05/09/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
+      <th>1</th>
+      <td>Per Agustus 2024, Populasi Motor Listrik Dikla...</td>
+      <td>JAKARTA, KOMPAS.com - Ketua Umum Asosiasi Indu...</td>
+      <td>05/09/2024</td>
+      <td>OTOMOTIF</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7 Contoh Pajak yang Termasuk Pajak Pusat</td>
+      <td>KOMPAS.com - Pajak adalah kontribusi wajib yan...</td>
+      <td>05/09/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Profil Eka Maulana, Pengusaha Muda yang Maju d...</td>
+      <td>BOGOR, KOMPAS.com- Eka Maulana ikut berkontest...</td>
+      <td>05/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ketua Suporter Garis Keras Inter Milan Bunuh P...</td>
+      <td>MILAN, KOMPAS.com - Ketua suporter garis keras...</td>
+      <td>05/09/2024</td>
+      <td>GLOBAL</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Bakal Disertifikasi, Apa Itu Tanah Ulayat?</td>
+      <td>KOMPAS.com - Sebanyak 3,8 juta hektar tanah ul...</td>
+      <td>05/09/2024</td>
+      <td>PROPERTI</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Akhir 2024, "Fintech" Komunal Bidik Deposito N...</td>
+      <td>SURABAYA, KOMPAS.com - Perusahaan fintech peer...</td>
+      <td>05/09/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Kebutuhan Mandor Bersertifikat di IKN Meningka...</td>
+      <td>NUSANTARA, KOMPAS.com - Semen Merah Putih meng...</td>
+      <td>05/09/2024</td>
+      <td>IKN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Penjelasan Istana soal Jokowi Naik Innova Zeni...</td>
+      <td>KOMPAS.com - Presiden Joko Widodo (Jokowi) men...</td>
+      <td>05/09/2024</td>
+      <td>TREN</td>
+    </tr>
+    <tr>
       <th>9</th>
-      <td>Tak Terima Diberi Rp 10.000, Ormas Geruduk Tok...</td>
-      <td>JAKARTA, KOMPAS.com - Sekelompok orang yang me...</td>
-      <td>04/09/2024</td>
+      <td>Paus Fransiskus: Saya Berdoa agar Allah Berkat...</td>
+      <td>JAKARTA, KOMPAS.com - Pemimpin tertinggi Gerej...</td>
+      <td>05/09/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>KemenKopUKM Fasilitasi Sertifikasi Halal bagi ...</td>
-      <td>BANTEN, KOMPAS.com -  Kementerian Koperasi dan...</td>
-      <td>04/09/2024</td>
-      <td>UMKM</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Gudang Furnitur di Duren Sawit Kebakaran, Bela...</td>
-      <td>JAKARTA, KOMPAS.com - Kebakaran terjadi di seb...</td>
-      <td>04/09/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>McCormick Prediksi Makanan Rasa Asam Tamarin A...</td>
-      <td>JAKARTA, KOMPAS.com - Perusahaan inovasi rasa ...</td>
-      <td>04/09/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Belum Ada Perintah Impor, Bulog Was-was Cadang...</td>
-      <td>KOMPAS.com - Perum Bulog berharap perintah pen...</td>
-      <td>04/09/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Lirik dan Chord Lagu Slow Down - Alicia Keys</td>
-      <td>JAKARTA, KOMPAS.com - Pada 2003, penyanyi R&amp;B ...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Viral, Lirik Lagu Team Tomodachi Versi Ramengvrl</td>
-      <td>JAKARTA, KOMPAS.com - Lagu "Team Tomodachi" ve...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Cek Syarat Daftar STIN, Sekolah Gratis dan Lul...</td>
-      <td>KOMPAS.com - Siswa kelas 12 SMA/SMK yang masih...</td>
-      <td>04/09/2024</td>
-      <td>EDUKASI</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Perusahaan Pabrik Gula Ini Beri Kemudahan Kary...</td>
-      <td>JAKARTA, KOMPAS.com - Perusahaan perkebunan da...</td>
-      <td>04/09/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>KPU Akan Konsultasi ke DPR Bahas Potensi Kotak...</td>
-      <td>JAKARTA, KOMPAS.com - Komisi Pemilihan Umum (K...</td>
-      <td>04/09/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Golkar Tak Keberatan Dico Jadi Kader PKB untuk...</td>
-      <td>SEMARANG, KOMPAS.com - Ketua Badan Pemenangan ...</td>
-      <td>04/09/2024</td>
+      <td>Bawaslu Kota Yogyakarta Lakukan Klarifikasi ke...</td>
+      <td>YOGYAKARTA, KOMPAS.com - Badan Pengawas Pemilu...</td>
+      <td>05/09/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
-      <th>20</th>
-      <td>5 Buah yang "Berbahaya" Bagi Penderita Diabetes</td>
-      <td>KOMPAS.com - Buah-buahan identik dengan rasa s...</td>
-      <td>04/09/2024</td>
+      <th>11</th>
+      <td>Cerita Aura Kasih tentang Pertemuan Anaknya de...</td>
+      <td>JAKARTA, KOMPAS.com - Butuh waktu empat tahun ...</td>
+      <td>05/09/2024</td>
+      <td>HYPE</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Acer Rilis Nitro Blaze 7, Handheld Gaming deng...</td>
+      <td>KOMPAS.com - Perusahaan teknologi Acer resmi m...</td>
+      <td>05/09/2024</td>
+      <td>TEKNO</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Sedang Tren, Apa Kegunaan dari Wedding Robe?</td>
+      <td>JAKARTA, KOMPAS.com - Wedding robe belakangan ...</td>
+      <td>05/09/2024</td>
+      <td>LIFESTYLE</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sambut Kedatangan Paus Fransiskus di Indonesia...</td>
+      <td>KOMPAS.com - Kedatangan Paus Fransiskus ke Ind...</td>
+      <td>05/09/2024</td>
+      <td>ADVERTORIAL</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Singgung Persahabatan, Paus Apresiasi Terowong...</td>
+      <td>JAKARTA, KOMPAS.com - Paus Fransiskus mengapre...</td>
+      <td>05/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Duduk Perkara Lansia Diduga Pensiunan Polisi L...</td>
+      <td>BOGOR, KOMPAS.com - Seorang pria lanjut usia (...</td>
+      <td>05/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Polisi Tangkap Mahasiswa di Jaktim yang Kirim ...</td>
+      <td>JAKARTA, KOMPAS.com - Polda Metro Jaya menangk...</td>
+      <td>05/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>4 Fakta Siswi SMP Palembang Dibunuh 4 Remaja d...</td>
+      <td>KOMPAS.com - Seorang siswi SMP berinisial AA (...</td>
+      <td>05/09/2024</td>
       <td>TREN</td>
     </tr>
     <tr>
+      <th>19</th>
+      <td>Bertemu Pelaku Usaha Kanada, Menko Airlangga K...</td>
+      <td>KOMPAS.com - Menteri Koordinator Bidang Pereko...</td>
+      <td>05/09/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>KJP Plus September 2024 Sudah Cair, Ini Jumlah...</td>
+      <td>KOMPAS.com - Bantuan Kartu Jakarta Pintar (KJP...</td>
+      <td>05/09/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
       <th>21</th>
-      <td>Paus Fransiskus Tinggalkan Gereja Katedral, Wa...</td>
-      <td>JAKARTA, KOMPAS.com - Warga dan umat Katolik s...</td>
-      <td>04/09/2024</td>
+      <td>Disambut Marawis, Paus Fransiskus Tiba di Masj...</td>
+      <td>JAKARTA, KOMPAS.com - Paus Fransiskus tiba di ...</td>
+      <td>05/09/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>Lirik dan Chord Lagu Cinta yang Lain - Element</td>
-      <td>JAKARTA, KOMPAS.com - "Cinta yang Lain" adalah...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
+      <td>Yamaha Sebut Butuh Bertahun-tahun Untuk Bisa K...</td>
+      <td>JAKARTA, KOMPAS.com - Sudah beberapa musim bel...</td>
+      <td>05/09/2024</td>
+      <td>OTOMOTIF</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>Panser Anoa dengan Sistem Kendali Tembak Dipam...</td>
-      <td>\nJAKARTA, KOMPAS.com - Sejumlah alat utama si...</td>
-      <td>04/09/2024</td>
+      <td>Kesederhanaan Paus Fransiskus Patut jadi Conto...</td>
+      <td>JAKARTA, KOMPAS.com - Kunjungan Sri Paus Frans...</td>
+      <td>05/09/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>Eks GM PT Timah Cerita Didatangi Intel karena ...</td>
-      <td>JAKARTA, KOMPAS.com - Mantan General Manager O...</td>
-      <td>04/09/2024</td>
+      <td>Paus Fransiskus Tiba di Masjid Istiqlal, Kemba...</td>
+      <td>JAKARTA, KOMPAS.com - Paus Fransiskus telah ti...</td>
+      <td>05/09/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>Chelsea Islan, Happy Salma, Nadia Mulya, dan M...</td>
-      <td>JAKARTA, KOMPAS.com - Aktris Indonesia yakni C...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
+      <td>Tersangka Kekerasan Seksual di Klinik Cipadu T...</td>
+      <td>TANGERANG, KOMPAS.com - N (49), tersangka kasu...</td>
+      <td>05/09/2024</td>
+      <td>NEWS</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>Petugas Evkuasi Truk Tangki yang Kecelakaan Be...</td>
-      <td>JAKARTA, KOMPAS.com - Truk tangki yang kecelak...</td>
-      <td>04/09/2024</td>
-      <td>NEWS</td>
+      <td>Pengguna Instagram Kini Bisa Kirim Komentar di...</td>
+      <td>KOMPAS.com - Instagram (IG) meluncurkan fitur ...</td>
+      <td>05/09/2024</td>
+      <td>TEKNO</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>Terima Suap Rp 4,9 Miliar, Mantan Anggota DPRD...</td>
-      <td>MEDAN, KOMPAS.com - Rudi Syahputra, mantan Ang...</td>
-      <td>04/09/2024</td>
-      <td>REGIONAL</td>
+      <td>Cara Membuat Kulit Risoles Agak Lentur, Aduk A...</td>
+      <td>KOMPAS.com - Kulit risoles yang lentur dan tid...</td>
+      <td>05/09/2024</td>
+      <td>FOOD</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>Tak Terima Dituduh Cerai dan Nikah Siri, Atta ...</td>
-      <td>JAKARTA, KOMPAS.com - Pasangan artis Atta Hali...</td>
-      <td>04/09/2024</td>
-      <td>HYPE</td>
+      <td>Harga LCGC Baru per September 2024, Mulai Rp 1...</td>
+      <td>JAKARTA, KOMPAS.com - Harga mobil murah ramah ...</td>
+      <td>05/09/2024</td>
+      <td>OTOMOTIF</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>Perawat yang Mengaku sebagai Dokter di Klinik ...</td>
-      <td>TANGERANG, KOMPAS.com - N (49), pria yang meng...</td>
-      <td>04/09/2024</td>
-      <td>NEWS</td>
+      <td>Siswa 14 Tahun Tembak Guru dan Temannya di Sek...</td>
+      <td>TBILISI, KOMPAS.com - Seorang siswa berusia 14...</td>
+      <td>05/09/2024</td>
+      <td>GLOBAL</td>
     </tr>
   </tbody>
 </table>
@@ -909,7 +916,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-ec866823-9969-4804-82b1-521b652539ba')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-807138f5-772b-48a6-a0c4-c5e72f490ad1')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -961,12 +968,12 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 
     <script>
       const buttonEl =
-        document.querySelector('#df-ec866823-9969-4804-82b1-521b652539ba button.colab-df-convert');
+        document.querySelector('#df-807138f5-772b-48a6-a0c4-c5e72f490ad1 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-ec866823-9969-4804-82b1-521b652539ba');
+        const element = document.querySelector('#df-807138f5-772b-48a6-a0c4-c5e72f490ad1');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
