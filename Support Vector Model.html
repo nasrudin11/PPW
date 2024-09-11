@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Vector Space Model &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Support Vector Model';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Konsep Crawling" href="Tugas%20Crawling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tugas%20Crawling.html">Konsep Crawling</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Vector Space Model</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FSupport Vector Model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Support Vector Model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Vector Space Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector Space Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumen-dan-kueri-sebagai-vektor">1. <strong>Dokumen dan Kueri sebagai Vektor</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-kata-term-weighting">2. <strong>Pembobotan Kata (Term Weighting)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kesamaan-antar-dokumen">3. <strong>Menghitung Kesamaan Antar Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengurutan-dokumen">4. <strong>Pengurutan Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-keterbatasan-vsm">5. <strong>Keuntungan dan Keterbatasan VSM</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh Sederhana:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="vector-space-model">
+<h1>Vector Space Model<a class="headerlink" href="#vector-space-model" title="Link to this heading">#</a></h1>
+<p>Vector Space Model (VSM) adalah pendekatan yang menggunakan vektor untuk merepresentasikan setiap kata dalam suatu ruang dimensi. Dalam VSM, dokumen dilihat sebagai vektor yang memiliki panjang (magnitudo) dan arah. Setiap kata dalam dokumen diwakili oleh sebuah dimensi dalam ruang vektor. Relevansi dokumen terhadap kueri dihitung berdasarkan kesamaan antara vektor dokumen dan vektor kueri.</p>
+<p>VSM mendukung pencocokan parsial dengan menetapkan bobot non-biner pada kata-kata dalam dokumen dan kueri. Bobot tersebut digunakan untuk mengukur kesamaan antara dokumen yang tersimpan dan kueri pengguna. Dokumen yang ditemukan diurutkan berdasarkan tingkat kemiripannya, sehingga dokumen yang paling relevan ditampilkan lebih akurat sesuai dengan kebutuhan pengguna.</p>
+<p>Berikut secara rinci langkah-langkah dan konsep di balik VSM:</p>
+<section id="dokumen-dan-kueri-sebagai-vektor">
+<h2>1. <strong>Dokumen dan Kueri sebagai Vektor</strong><a class="headerlink" href="#dokumen-dan-kueri-sebagai-vektor" title="Link to this heading">#</a></h2>
+<p>Pada dasarnya, setiap dokumen atau kueri direpresentasikan sebagai sebuah vektor. Namun, vektor ini tidak seperti vektor geometris biasa, tetapi memiliki dimensi sebanyak jumlah kata unik (vocabulary) dalam koleksi dokumen. Setiap dimensi dalam vektor mewakili satu kata atau istilah dari koleksi.</p>
+<ul class="simple">
+<li><p><strong>Dimensi Vektor</strong>: Jika kita memiliki sebuah kumpulan dokumen yang terdiri dari 1.000 kata unik, maka setiap dokumen dan kueri akan direpresentasikan oleh vektor dengan 1.000 dimensi.</p></li>
+<li><p><strong>Isi Vektor</strong>: Setiap elemen dalam vektor merepresentasikan bobot dari sebuah kata dalam dokumen tertentu. Sebagai contoh, jika kata “AI” muncul dalam dokumen, maka elemen yang merepresentasikan kata “AI” akan memiliki nilai lebih besar dari nol, sedangkan kata-kata yang tidak muncul akan bernilai nol.</p></li>
+</ul>
+<p>Contoh representasi sederhana:</p>
+<ul class="simple">
+<li><p>Dokumen 1: “Belajar AI adalah masa depan”</p></li>
+<li><p>Dokumen 2: “AI bisa menggantikan manusia”</p></li>
+<li><p>Kueri: “AI dan masa depan”</p></li>
+</ul>
+<p>Vektor untuk Dokumen 1 mungkin tampak seperti:
+<code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">0)</span></code> untuk kata-kata <code class="docutils literal notranslate"><span class="pre">(&quot;Belajar&quot;,</span> <span class="pre">&quot;AI&quot;,</span> <span class="pre">&quot;adalah&quot;,</span> <span class="pre">&quot;masa&quot;,</span> <span class="pre">&quot;depan&quot;)</span></code>, di mana angka 1 menunjukkan bahwa kata tersebut muncul sekali.</p>
+</section>
+<section id="pembobotan-kata-term-weighting">
+<h2>2. <strong>Pembobotan Kata (Term Weighting)</strong><a class="headerlink" href="#pembobotan-kata-term-weighting" title="Link to this heading">#</a></h2>
+<p>Dalam VSM, tidak semua kata memiliki nilai yang sama. Untuk membuat model lebih efisien dalam menangkap kata-kata penting, VSM biasanya menggunakan teknik <strong>pembobotan</strong>. Teknik yang paling umum adalah <strong>TF-IDF (Term Frequency - Inverse Document Frequency)</strong>. TF-IDF membantu menghitung seberapa penting sebuah kata dalam sebuah dokumen dibandingkan dengan seluruh kumpulan dokumen.</p>
+<ul class="simple">
+<li><p><strong>Term Frequency (TF)</strong>: Ini adalah jumlah kemunculan sebuah kata dalam dokumen. Semakin sering sebuah kata muncul, semakin besar bobot TF-nya. Namun, sering kali kita menggunakan versi termodifikasi seperti TF relatif (jumlah kemunculan kata dibagi total kata dalam dokumen).</p></li>
+<li><p><strong>Inverse Document Frequency (IDF)</strong>: Kata yang sering muncul di seluruh dokumen (misalnya “adalah” atau “dan”) biasanya kurang informatif, sehingga diberi bobot lebih rendah. IDF membantu mengurangi bobot kata-kata yang terlalu umum dengan menghitung kebalikan dari frekuensi dokumen yang mengandung kata tersebut.</p></li>
+</ul>
+<p>Formula umum untuk TF-IDF:</p>
+<div class="math notranslate nohighlight">
+\[\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\left(\frac{N}{\text{DF}(t)}\right)\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((t)\)</span> adalah kata (term)</p></li>
+<li><p><span class="math notranslate nohighlight">\((d)\)</span> adalah dokumen</p></li>
+<li><p><span class="math notranslate nohighlight">\((N)\)</span> adalah jumlah total dokumen</p></li>
+<li><p><span class="math notranslate nohighlight">\((DF(t))\)</span> adalah jumlah dokumen yang mengandung kata (t)</p></li>
+</ul>
+<p>Dengan TF-IDF, kata yang unik untuk sebuah dokumen (misalnya istilah teknis atau nama produk) akan memiliki bobot lebih tinggi dibandingkan dengan kata-kata yang umum di seluruh dokumen.</p>
+</section>
+<section id="menghitung-kesamaan-antar-dokumen">
+<h2>3. <strong>Menghitung Kesamaan Antar Dokumen</strong><a class="headerlink" href="#menghitung-kesamaan-antar-dokumen" title="Link to this heading">#</a></h2>
+<p>Setelah setiap dokumen dan kueri direpresentasikan sebagai vektor, kita bisa menghitung <strong>kesamaan</strong> antar dua vektor (dokumen atau dokumen-kueri). Salah satu metode paling umum adalah <strong>Cosine Similarity</strong>.</p>
+<ul class="simple">
+<li><p><strong>Cosine Similarity</strong>: Ini adalah ukuran yang menghitung sudut antara dua vektor dalam ruang multidimensi. Semakin kecil sudutnya, semakin dekat atau mirip dua vektor tersebut. Nilai cosine similarity berkisar dari 0 (tidak mirip sama sekali) hingga 1 (sangat mirip).</p></li>
+</ul>
+<p>Formula cosine similarity:</p>
+<div class="math notranslate nohighlight">
+\[ \text{cosine\_similarity}(A, B) = \frac{A \cdot B}{||A|| \cdot ||B||} \]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((A \cdot B)\)</span> adalah dot product dari vektor A dan B (hasil perkalian elemen-elemen vektor yang sesuai)</p></li>
+<li><p><span class="math notranslate nohighlight">\((||A||)\)</span> dan <span class="math notranslate nohighlight">\((||B||)\)</span> adalah norma (panjang) dari vektor A dan B</p></li>
+</ul>
+<p>Dengan menghitung cosine similarity, kita dapat mengetahui seberapa mirip dokumen dengan kueri. Jika nilai cosine similarity tinggi, berarti dokumen tersebut lebih relevan dengan kueri, sehingga dokumen tersebut dapat ditempatkan di urutan yang lebih tinggi dalam hasil pencarian.</p>
+</section>
+<section id="pengurutan-dokumen">
+<h2>4. <strong>Pengurutan Dokumen</strong><a class="headerlink" href="#pengurutan-dokumen" title="Link to this heading">#</a></h2>
+<p>Setelah kita menghitung cosine similarity antara kueri dan setiap dokumen dalam koleksi, dokumen-dokumen tersebut bisa diurutkan berdasarkan nilai similarity dari yang tertinggi ke yang terendah. Hasil ini bisa digunakan dalam <strong>sistem pencarian</strong> untuk menampilkan dokumen yang paling relevan di posisi teratas.</p>
+</section>
+<section id="keuntungan-dan-keterbatasan-vsm">
+<h2>5. <strong>Keuntungan dan Keterbatasan VSM</strong><a class="headerlink" href="#keuntungan-dan-keterbatasan-vsm" title="Link to this heading">#</a></h2>
+<p><strong>Keuntungan</strong>:</p>
+<ul class="simple">
+<li><p><strong>Sederhana dan Efisien</strong>: VSM mudah diimplementasikan dan cukup efisien dalam menangani koleksi dokumen besar.</p></li>
+<li><p><strong>Penanganan Sinonim dan Polisemik Terbatas</strong>: Meski VSM sederhana, ia tidak menangani masalah sinonim (kata-kata berbeda dengan makna sama) dan polisemik (kata yang sama dengan makna berbeda) dengan baik.</p></li>
+</ul>
+<p><strong>Keterbatasan</strong>:</p>
+<ul class="simple">
+<li><p><strong>Kata-Kata Independen</strong>: VSM mengasumsikan bahwa kata-kata dalam dokumen tidak memiliki hubungan satu sama lain, sehingga konteks sering kali hilang. Misalnya, frase “tidak setuju” akan diperlakukan sebagai dua kata terpisah, meskipun maknanya berubah ketika digabungkan.</p></li>
+<li><p><strong>Dimensi yang Tinggi</strong>: Ketika bekerja dengan kumpulan dokumen besar, jumlah kata yang unik bisa sangat banyak, menyebabkan vektor memiliki dimensi yang sangat tinggi, yang dapat menyebabkan masalah performa.</p></li>
+</ul>
+</section>
+<section id="contoh-sederhana">
+<h2>Contoh Sederhana:<a class="headerlink" href="#contoh-sederhana" title="Link to this heading">#</a></h2>
+<p>Misalkan kita memiliki tiga dokumen:</p>
+<ol class="arabic simple">
+<li><p>“Belajar AI adalah masa depan”</p></li>
+<li><p>“AI bisa menggantikan manusia”</p></li>
+<li><p>“Manusia belajar dari AI masa depan”</p></li>
+</ol>
+<p>Jika kuerinya adalah “belajar AI”, kita bisa menghitung cosine similarity antara kueri dan setiap dokumen. Dokumen dengan cosine similarity tertinggi adalah dokumen yang paling relevan dengan kueri.</p>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Vector Space Model (VSM) adalah pendekatan sederhana namun sangat efektif untuk merepresentasikan dokumen dan kueri dalam ruang vektor, memungkinkan pencarian dan pengurutan dokumen berdasarkan kesamaan konten. Meskipun ada beberapa keterbatasan, VSM masih digunakan secara luas dalam sistem pencarian informasi, terutama ketika dipadukan dengan teknik pembobotan seperti TF-IDF.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi">
+<h1>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h1>
+<section id="library-yang-digunakan">
+<h2>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h2>
+</section>
+<section id="implementasi-code">
+<h2>Implementasi Code<a class="headerlink" href="#implementasi-code" title="Link to this heading">#</a></h2>
+</section>
+<section id="penjelasan-code">
+<h2>Penjelasan Code<a class="headerlink" href="#penjelasan-code" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tugas%20Crawling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Konsep Crawling</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector Space Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumen-dan-kueri-sebagai-vektor">1. <strong>Dokumen dan Kueri sebagai Vektor</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-kata-term-weighting">2. <strong>Pembobotan Kata (Term Weighting)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kesamaan-antar-dokumen">3. <strong>Menghitung Kesamaan Antar Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengurutan-dokumen">4. <strong>Pengurutan Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-keterbatasan-vsm">5. <strong>Keuntungan dan Keterbatasan VSM</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh Sederhana:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
