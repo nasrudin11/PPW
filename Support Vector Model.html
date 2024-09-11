@@ -395,8 +395,32 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-case">Lower Case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cleansing-text">Cleansing Text</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenisasi">Tokenisasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">Stopword Removal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming">Stemming</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cossine-similiarity">Cossine Similiarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">1. <strong>Import Library</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-file-csv-dari-google-drive">2. <strong>Mengunduh File CSV dari Google Drive</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-csv-ke-dalam-dataframe">3. <strong>Membaca CSV ke dalam DataFrame</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-dan-menampilkan-jumlah-artikel-per-kategori">4. <strong>Menghitung dan Menampilkan Jumlah Artikel per Kategori</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembersihan-teks">5. <strong>Proses Pembersihan Teks</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming-mengubah-kata-menjadi-bentuk-dasar">6. <strong>Stemming (Mengubah Kata Menjadi Bentuk Dasar)</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency-vectorization">7. <strong>TF-IDF (Term Frequency-Inverse Document Frequency) Vectorization</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity-mengukur-kesamaan-teks">8. <strong>Cosine Similarity (Mengukur Kesamaan Teks)</strong>:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -411,7 +435,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="vector-space-model">
+  <p>Nama: Ahmad Nasrudin Jamil</p>
+<p>NIM : 210411100098</p>
+<p>Kelas : Pencarian dan Penambangan Web B</p>
+<section class="tex2jax_ignore mathjax_ignore" id="vector-space-model">
 <h1>Vector Space Model<a class="headerlink" href="#vector-space-model" title="Link to this heading">#</a></h1>
 <p>Vector Space Model (VSM) adalah pendekatan yang menggunakan vektor untuk merepresentasikan setiap kata dalam suatu ruang dimensi. Dalam VSM, dokumen dilihat sebagai vektor yang memiliki panjang (magnitudo) dan arah. Setiap kata dalam dokumen diwakili oleh sebuah dimensi dalam ruang vektor. Relevansi dokumen terhadap kueri dihitung berdasarkan kesamaan antara vektor dokumen dan vektor kueri.</p>
 <p>VSM mendukung pencocokan parsial dengan menetapkan bobot non-biner pada kata-kata dalam dokumen dan kueri. Bobot tersebut digunakan untuk mengukur kesamaan antara dokumen yang tersimpan dan kueri pengguna. Dokumen yang ditemukan diurutkan berdasarkan tingkat kemiripannya, sehingga dokumen yang paling relevan ditampilkan lebih akurat sesuai dengan kebutuhan pengguna.</p>
@@ -503,12 +530,1022 @@ document.write(`
 <h1>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h1>
 <section id="library-yang-digunakan">
 <h2>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>gdown
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: gdown in /usr/local/lib/python3.10/dist-packages (5.1.0)
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.10/dist-packages (from gdown) (4.12.3)
+Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from gdown) (3.16.0)
+Requirement already satisfied: requests[socks] in /usr/local/lib/python3.10/dist-packages (from gdown) (2.32.3)
+Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from gdown) (4.66.5)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.10/dist-packages (from beautifulsoup4-&gt;gdown) (2.6)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (3.8)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (2024.8.30)
+Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (1.7.1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdown</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-2-64f82c86e57b&gt;</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">re</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;Sastrawi&#39;
+
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
+<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+
+<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
+<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to C:\Users\EBC
+[nltk_data]     KOMPUTER\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ganti dengan ID file Anda</span>
+<span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;13CkN5K_Bfo_V1-dTYulHoUeWClIA3s9f&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://drive.google.com/uc?id=</span><span class="si">{</span><span class="n">file_id</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;crawling_2_kategori.csv&#39;</span>
+
+<span class="c1"># Unduh file dari Google Drive</span>
+<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading...
+From: https://drive.google.com/uc?id=13CkN5K_Bfo_V1-dTYulHoUeWClIA3s9f
+To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kategori.csv
+100%|███████████████████████████████████████████████████████████████████████████████| 253k/253k [00:00&lt;00:00, 2.37MB/s]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;crawling_2_kategori.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membaca file CSV ke DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="implementasi-code">
 <h2>Implementasi Code<a class="headerlink" href="#implementasi-code" title="Link to this heading">#</a></h2>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>content</th>
+      <th>date</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jadwal Pendaftaran STIS 2025, Siswa Kelas 12 S...</td>
+      <td>KOMPAS.com - Masuk Sekolah Tinggi Ilmu Statist...</td>
+      <td>11/09/2024</td>
+      <td>Edu</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>PKKMB UDB Surakarta Gandeng Kompas.com Asah Ke...</td>
+      <td>KOMPAS.com - Fakultas Hukum dan Bisnis Univers...</td>
+      <td>11/09/2024</td>
+      <td>Edu</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mahasiswa Unesa, Raih Medali Emas untuk Indone...</td>
+      <td>KOMPAS.com - Mahasiswa Universitas Negeri Sura...</td>
+      <td>11/09/2024</td>
+      <td>Edu</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Rayakan HUT ke-30, Sekolah Bogor Raya Luncurka...</td>
+      <td>KOMPAS.com - Merayakan hari ulang tahun ke-30,...</td>
+      <td>11/09/2024</td>
+      <td>Edu</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Sambut Mahasiswa Baru, Podomoro University Ber...</td>
+      <td>KOMPAS.com - Podomoro University menggelar pro...</td>
+      <td>11/09/2024</td>
+      <td>Edu</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Diabetes Tidak Boleh Makan Buah Apa? Berikut 5...</td>
+      <td>KOMPAS.com - Beberapa jenis buah memiliki kand...</td>
+      <td>08/09/2024</td>
+      <td>Health</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Apa Penyebab Badan Terasa Lemas? Berikut 29 Da...</td>
+      <td>KOMPAS.com - Badan yang terasa lemas bisa bera...</td>
+      <td>08/09/2024</td>
+      <td>Health</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>8 Manfaat Nanas untuk Kesehatan, Termasuk Menu...</td>
+      <td>KOMPAS.com - Buah nanas memiliki beberapa jeni...</td>
+      <td>08/09/2024</td>
+      <td>Health</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Apa yang Terjadi jika Konsumsi Garam Terlalu B...</td>
+      <td>KOMPAS.com - Tubuh Anda bisa mengalami berbaga...</td>
+      <td>07/09/2024</td>
+      <td>Health</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Apa yang Terjadi jika Hipoglikemia Tidak Dioba...</td>
+      <td>KOMPAS.com - Hipoglikemia atau kadar gula dara...</td>
+      <td>07/09/2024</td>
+      <td>Health</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="jumlah-dataset-per-label">
+<h3>Jumlah Dataset Per Label<a class="headerlink" href="#jumlah-dataset-per-label" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung jumlah artikel per kategori</span>
+<span class="n">category_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="c1"># Tampilkan grafik batang</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">category_counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Jumlah Artikel per Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Artikel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/486f40ebfe880e1e5c443ee2a3e095aa15d0fc5339edc97315d15583eeb3ff06.png" src="_images/486f40ebfe880e1e5c443ee2a3e095aa15d0fc5339edc97315d15583eeb3ff06.png" />
+</div>
+</div>
+</section>
+<section id="preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h3>
+<section id="lower-case">
+<h4>Lower Case<a class="headerlink" href="#lower-case" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;lower_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>lower_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>KOMPAS.com - Masuk Sekolah Tinggi Ilmu Statist...</td>
+      <td>kompas.com - masuk sekolah tinggi ilmu statist...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>KOMPAS.com - Fakultas Hukum dan Bisnis Univers...</td>
+      <td>kompas.com - fakultas hukum dan bisnis univers...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>KOMPAS.com - Mahasiswa Universitas Negeri Sura...</td>
+      <td>kompas.com - mahasiswa universitas negeri sura...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>KOMPAS.com - Merayakan hari ulang tahun ke-30,...</td>
+      <td>kompas.com - merayakan hari ulang tahun ke-30,...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>KOMPAS.com - Podomoro University menggelar pro...</td>
+      <td>kompas.com - podomoro university menggelar pro...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>KOMPAS.com - Beberapa jenis buah memiliki kand...</td>
+      <td>kompas.com - beberapa jenis buah memiliki kand...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>KOMPAS.com - Badan yang terasa lemas bisa bera...</td>
+      <td>kompas.com - badan yang terasa lemas bisa bera...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>KOMPAS.com - Buah nanas memiliki beberapa jeni...</td>
+      <td>kompas.com - buah nanas memiliki beberapa jeni...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>KOMPAS.com - Tubuh Anda bisa mengalami berbaga...</td>
+      <td>kompas.com - tubuh anda bisa mengalami berbaga...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>KOMPAS.com - Hipoglikemia atau kadar gula dara...</td>
+      <td>kompas.com - hipoglikemia atau kadar gula dara...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="cleansing-text">
+<h4>Cleansing Text<a class="headerlink" href="#cleansing-text" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\W&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">,</span> <span class="s1">&#39;cleaned_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lower_text</th>
+      <th>cleaned_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kompas.com - masuk sekolah tinggi ilmu statist...</td>
+      <td>kompas com   masuk sekolah tinggi ilmu statist...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kompas.com - fakultas hukum dan bisnis univers...</td>
+      <td>kompas com   fakultas hukum dan bisnis univers...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kompas.com - mahasiswa universitas negeri sura...</td>
+      <td>kompas com   mahasiswa universitas negeri sura...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kompas.com - merayakan hari ulang tahun ke-30,...</td>
+      <td>kompas com   merayakan hari ulang tahun ke 30 ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>kompas.com - podomoro university menggelar pro...</td>
+      <td>kompas com   podomoro university menggelar pro...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>kompas.com - beberapa jenis buah memiliki kand...</td>
+      <td>kompas com   beberapa jenis buah memiliki kand...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>kompas.com - badan yang terasa lemas bisa bera...</td>
+      <td>kompas com   badan yang terasa lemas bisa bera...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>kompas.com - buah nanas memiliki beberapa jeni...</td>
+      <td>kompas com   buah nanas memiliki beberapa jeni...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>kompas.com - tubuh anda bisa mengalami berbaga...</td>
+      <td>kompas com   tubuh anda bisa mengalami berbaga...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>kompas.com - hipoglikemia atau kadar gula dara...</td>
+      <td>kompas com   hipoglikemia atau kadar gula dara...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="tokenisasi">
+<h4>Tokenisasi<a class="headerlink" href="#tokenisasi" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">,</span> <span class="s1">&#39;tokenized_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cleaned_text</th>
+      <th>tokenized_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kompas com   masuk sekolah tinggi ilmu statist...</td>
+      <td>[kompas, com, masuk, sekolah, tinggi, ilmu, st...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kompas com   fakultas hukum dan bisnis univers...</td>
+      <td>[kompas, com, fakultas, hukum, dan, bisnis, un...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kompas com   mahasiswa universitas negeri sura...</td>
+      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kompas com   merayakan hari ulang tahun ke 30 ...</td>
+      <td>[kompas, com, merayakan, hari, ulang, tahun, k...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>kompas com   podomoro university menggelar pro...</td>
+      <td>[kompas, com, podomoro, university, menggelar,...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>kompas com   beberapa jenis buah memiliki kand...</td>
+      <td>[kompas, com, beberapa, jenis, buah, memiliki,...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>kompas com   badan yang terasa lemas bisa bera...</td>
+      <td>[kompas, com, badan, yang, terasa, lemas, bisa...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>kompas com   buah nanas memiliki beberapa jeni...</td>
+      <td>[kompas, com, buah, nanas, memiliki, beberapa,...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>kompas com   tubuh anda bisa mengalami berbaga...</td>
+      <td>[kompas, com, tubuh, anda, bisa, mengalami, be...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>kompas com   hipoglikemia atau kadar gula dara...</td>
+      <td>[kompas, com, hipoglikemia, atau, kadar, gula,...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="stopword-removal">
+<h4>Stopword Removal<a class="headerlink" href="#stopword-removal" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tokens</span><span class="p">:</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">])</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">,</span> <span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tokenized_text</th>
+      <th>no_stopwords_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[kompas, com, masuk, sekolah, tinggi, ilmu, st...</td>
+      <td>[kompas, com, masuk, sekolah, ilmu, statistik,...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[kompas, com, fakultas, hukum, dan, bisnis, un...</td>
+      <td>[kompas, com, fakultas, hukum, bisnis, univers...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
+      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[kompas, com, merayakan, hari, ulang, tahun, k...</td>
+      <td>[kompas, com, merayakan, ulang, 30, sekolah, b...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[kompas, com, podomoro, university, menggelar,...</td>
+      <td>[kompas, com, podomoro, university, menggelar,...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>[kompas, com, beberapa, jenis, buah, memiliki,...</td>
+      <td>[kompas, com, jenis, buah, memiliki, kandungan...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>[kompas, com, badan, yang, terasa, lemas, bisa...</td>
+      <td>[kompas, com, badan, lemas, berangsur, membaik...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>[kompas, com, buah, nanas, memiliki, beberapa,...</td>
+      <td>[kompas, com, buah, nanas, memiliki, jenis, mi...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>[kompas, com, tubuh, anda, bisa, mengalami, be...</td>
+      <td>[kompas, com, tubuh, mengalami, kondisi, menge...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>[kompas, com, hipoglikemia, atau, kadar, gula,...</td>
+      <td>[kompas, com, hipoglikemia, kadar, gula, darah...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="stemming">
+<h4>Stemming<a class="headerlink" href="#stemming" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat objek Stemmer dari Sastrawi</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">StemmerFactory</span><span class="p">()</span>
+<span class="n">stemmer</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_stemmer</span><span class="p">()</span>
+
+<span class="c1"># Menggunakan Sastrawi untuk stemming teks</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;stemmed_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tokens</span><span class="p">:</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;final_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stemmed_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">,</span> <span class="s1">&#39;final_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>no_stopwords_text</th>
+      <th>final_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[kompas, com, masuk, sekolah, ilmu, statistik,...</td>
+      <td>kompas com masuk sekolah ilmu statistik stis s...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[kompas, com, fakultas, hukum, bisnis, univers...</td>
+      <td>kompas com fakultas hukum bisnis universitas d...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
+      <td>kompas com mahasiswa universitas negeri suraba...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[kompas, com, merayakan, ulang, 30, sekolah, b...</td>
+      <td>kompas com raya ulang 30 sekolah bogor raya sb...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[kompas, com, podomoro, university, menggelar,...</td>
+      <td>kompas com podomoro university gelar program k...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>[kompas, com, jenis, buah, memiliki, kandungan...</td>
+      <td>kompas com jenis buah milik kandung gula tingk...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>[kompas, com, badan, lemas, berangsur, membaik...</td>
+      <td>kompas com badan lemas angsur baik jangka seba...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>[kompas, com, buah, nanas, memiliki, jenis, mi...</td>
+      <td>kompas com buah nanas milik jenis mineral zat ...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>[kompas, com, tubuh, mengalami, kondisi, menge...</td>
+      <td>kompas com tubuh alami kondisi kena konsumsi g...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>[kompas, com, hipoglikemia, kadar, gula, darah...</td>
+      <td>kompas com hipoglikemia kadar gula darah renda...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tf-idf">
+<h3>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vect</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">X_array</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_array</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.03312885 0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ ...
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.03599698 0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur_kata</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah fitur kata dari hasil TF-IDF:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fitur_kata</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur kata dari hasil TF-IDF: 4743
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cossine-similiarity">
+<h3>Cossine Similiarity<a class="headerlink" href="#cossine-similiarity" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cosine_sim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Langkah 4: Menyusun DataFrame untuk menampilkan hasil cosine similarity</span>
+<span class="n">cosine_sim_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cosine_sim</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span>
+
+<span class="c1"># Menampilkan beberapa baris dari matriks cosine similarity</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cosine_sim_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>category       Edu       Edu       Edu       Edu       Edu       Edu  \
+category                                                               
+Edu       1.000000  0.091693  0.077027  0.127135  0.068241  0.107589   
+Edu       0.091693  1.000000  0.119180  0.090717  0.284201  0.115269   
+Edu       0.077027  0.119180  1.000000  0.060997  0.104898  0.046514   
+Edu       0.127135  0.090717  0.060997  1.000000  0.072921  0.102683   
+Edu       0.068241  0.284201  0.104898  0.072921  1.000000  0.074666   
+
+category       Edu       Edu       Edu       Edu  ...    Health    Health  \
+category                                          ...                       
+Edu       0.268005  0.076923  0.124029  0.076964  ...  0.047007  0.040384   
+Edu       0.056911  0.112718  0.052267  0.137848  ...  0.047570  0.052708   
+Edu       0.067137  0.091481  0.211862  0.107909  ...  0.032137  0.024289   
+Edu       0.042622  0.048685  0.078675  0.063733  ...  0.034082  0.034648   
+Edu       0.055064  0.168138  0.041886  0.164383  ...  0.042891  0.064187   
+
+category    Health    Health    Health    Health    Health    Health  \
+category                                                               
+Edu       0.040330  0.045409  0.042095  0.052984  0.055139  0.050291   
+Edu       0.041362  0.047463  0.048793  0.053110  0.047364  0.052206   
+Edu       0.027607  0.035132  0.028328  0.030289  0.033834  0.035281   
+Edu       0.040528  0.033484  0.035594  0.053788  0.039508  0.048666   
+Edu       0.034212  0.030762  0.042322  0.047084  0.036720  0.044706   
+
+category    Health    Health  
+category                      
+Edu       0.053544  0.070003  
+Edu       0.067338  0.065036  
+Edu       0.042063  0.032977  
+Edu       0.047673  0.043380  
+Edu       0.054086  0.039382  
+
+[5 rows x 100 columns]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="penjelasan-code">
 <h2>Penjelasan Code<a class="headerlink" href="#penjelasan-code" title="Link to this heading">#</a></h2>
+<p>Baik, mari kita uraikan kode secara rinci, dengan fokus pada setiap bagian untuk menjelaskan cara kerjanya dan tujuannya.</p>
+<section id="import-library">
+<h3>1. <strong>Import Library</strong><a class="headerlink" href="#import-library" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdown</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Penjelasan</strong>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">gdown</span></code></strong>: Digunakan untuk mengunduh file dari Google Drive.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pandas</span></code> (<code class="docutils literal notranslate"><span class="pre">pd</span></code>) &amp; <code class="docutils literal notranslate"><span class="pre">numpy</span></code> (<code class="docutils literal notranslate"><span class="pre">np</span></code>)</strong>: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> untuk manipulasi data dalam bentuk tabel (DataFrame), sedangkan <code class="docutils literal notranslate"><span class="pre">numpy</span></code> untuk operasi numerik.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> (<code class="docutils literal notranslate"><span class="pre">plt</span></code>)</strong>: Digunakan untuk membuat visualisasi grafik, seperti grafik batang.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">nltk.corpus.stopwords</span></code></strong>: Mengimpor daftar stopwords (kata-kata umum yang tidak penting seperti “dan”, “di”, “untuk”) untuk dihilangkan dari teks.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Sastrawi</span></code></strong>: Untuk stemming (mengubah kata menjadi bentuk dasar, misalnya “bermain” menjadi “main”).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">re</span></code></strong>: Ekspresi reguler, digunakan untuk membersihkan teks (misalnya menghilangkan karakter non-alfabet).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code></strong>: Mengubah teks menjadi representasi numerik berdasarkan TF-IDF.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cosine_similarity</span></code></strong>: Menghitung kemiripan kosinus antara teks.</p></li>
+</ul>
+<p>Bagian ini mengimpor semua alat yang diperlukan untuk proses unduhan, pemrosesan teks, analisis, dan visualisasi.</p>
+</section>
+<hr class="docutils" />
+<section id="mengunduh-file-csv-dari-google-drive">
+<h3>2. <strong>Mengunduh File CSV dari Google Drive</strong><a class="headerlink" href="#mengunduh-file-csv-dari-google-drive" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;13CkN5K_Bfo_V1-dTYulHoUeWClIA3s9f&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://drive.google.com/uc?id=</span><span class="si">{</span><span class="n">file_id</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;crawling_2_kategori.csv&#39;</span>
+
+<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Cara Kerja</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file_id</span></code> adalah ID file di Google Drive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">url</span></code> dibentuk dengan menggabungkan ID file ke dalam format URL yang dapat digunakan untuk mengunduh file dari Google Drive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdown.download(url,</span> <span class="pre">output,</span> <span class="pre">quiet=False)</span></code> mengunduh file dari URL dan menyimpannya dengan nama <code class="docutils literal notranslate"><span class="pre">crawling_2_kategori.csv</span></code>.</p></li>
+</ul>
+<p>Bagian ini digunakan untuk mengunduh file CSV yang berisi artikel yang akan dianalisis. Kode ini mengotomatisasi pengunduhan dari Google Drive.</p>
+</section>
+<hr class="docutils" />
+<section id="membaca-csv-ke-dalam-dataframe">
+<h3>3. <strong>Membaca CSV ke dalam DataFrame</strong><a class="headerlink" href="#membaca-csv-ke-dalam-dataframe" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Cara Kerja</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.read_csv(output)</span></code> membaca file CSV yang diunduh dan memuatnya ke dalam DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+</ul>
+<p>DataFrame adalah struktur data yang mirip tabel. Setiap kolom dalam CSV menjadi kolom dalam DataFrame, yang memudahkan manipulasi dan analisis data.</p>
+</section>
+<hr class="docutils" />
+<section id="menghitung-dan-menampilkan-jumlah-artikel-per-kategori">
+<h3>4. <strong>Menghitung dan Menampilkan Jumlah Artikel per Kategori</strong><a class="headerlink" href="#menghitung-dan-menampilkan-jumlah-artikel-per-kategori" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">category_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">category_counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Jumlah Artikel per Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Artikel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Cara Kerja</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df['category'].value_counts()</span></code> menghitung berapa kali setiap kategori muncul dalam kolom <code class="docutils literal notranslate"><span class="pre">category</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plt.figure(figsize=(10,</span> <span class="pre">6))</span></code> membuat kanvas untuk plot dengan ukuran tertentu.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">category_counts.plot(kind='bar',</span> <span class="pre">color='skyblue')</span></code> membuat grafik batang dengan warna ‘skyblue’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plt.title()</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.xlabel()</span></code>, dan <code class="docutils literal notranslate"><span class="pre">plt.ylabel()</span></code> menambahkan judul dan label sumbu.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plt.xticks(rotation=45)</span></code> memutar label sumbu x sebesar 45 derajat untuk keterbacaan.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plt.tight_layout()</span></code> mengatur layout agar lebih rapi, dan <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> menampilkan plot.</p></li>
+</ul>
+<p>Visualisasi ini digunakan untuk melihat jumlah artikel dalam setiap kategori secara sekilas. Grafik batang memudahkan identifikasi kategori yang dominan.</p>
+</section>
+<hr class="docutils" />
+<section id="proses-pembersihan-teks">
+<h3>5. <strong>Proses Pembersihan Teks</strong><a class="headerlink" href="#proses-pembersihan-teks" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Konversi Teks ke Huruf Kecil</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Semua teks di kolom <code class="docutils literal notranslate"><span class="pre">content</span></code> diubah menjadi huruf kecil. Hal ini penting agar proses selanjutnya konsisten, karena dalam pemrosesan teks, huruf besar dan kecil dianggap berbeda.</p>
+</li>
+<li><p><strong>Pembersihan Teks dari Karakter Non-Alfabet</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\W&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Menggunakan ekspresi reguler <code class="docutils literal notranslate"><span class="pre">\W</span></code> untuk menghilangkan semua karakter non-alfabet (misalnya tanda baca dan angka) dan menggantinya dengan spasi. Ini membuat teks lebih bersih untuk analisis lebih lanjut.</p>
+</li>
+<li><p><strong>Tokenisasi (Memecah Teks Menjadi Kata-kata Terpisah)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Memecah teks menjadi kata-kata individu menggunakan metode <code class="docutils literal notranslate"><span class="pre">split()</span></code>, sehingga setiap teks menjadi daftar kata.</p>
+</li>
+<li><p><strong>Menghilangkan Stopwords</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tokens</span><span class="p">:</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Daftar kata umum yang tidak penting (stopwords) seperti “dan”, “di”, “untuk” dihapus dari teks. Ini membuat analisis lebih fokus pada kata kunci yang relevan.</p>
+</li>
+</ul>
+<p><strong>Untuk apa</strong>: Pembersihan teks adalah langkah penting dalam Natural Language Processing (NLP) untuk memastikan teks lebih konsisten, relevan, dan siap diproses lebih lanjut.</p>
+</section>
+<hr class="docutils" />
+<section id="stemming-mengubah-kata-menjadi-bentuk-dasar">
+<h3>6. <strong>Stemming (Mengubah Kata Menjadi Bentuk Dasar)</strong>:<a class="headerlink" href="#stemming-mengubah-kata-menjadi-bentuk-dasar" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">StemmerFactory</span><span class="p">()</span>
+<span class="n">stemmer</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_stemmer</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;stemmed_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tokens</span><span class="p">:</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;final_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stemmed_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Cara Kerja</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">StemmerFactory</span></code> digunakan untuk membuat objek stemmer yang akan mengubah kata menjadi bentuk dasarnya.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df['stemmed_text']</span></code> melakukan stemming pada setiap kata dalam teks yang sudah dihapus stopwords-nya.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df['final_text']</span></code> menggabungkan kata-kata hasil stemming kembali menjadi teks yang dapat dibaca.</p></li>
+</ul>
+<p><strong>Untuk apa</strong>: Stemming mengurangi variasi kata yang memiliki makna sama (misalnya “bermain”, “bermainan”, “dimainkan” semuanya menjadi “main”). Ini membantu algoritma memahami makna teks dengan lebih baik.</p>
+</section>
+<hr class="docutils" />
+<section id="tf-idf-term-frequency-inverse-document-frequency-vectorization">
+<h3>7. <strong>TF-IDF (Term Frequency-Inverse Document Frequency) Vectorization</strong>:<a class="headerlink" href="#tf-idf-term-frequency-inverse-document-frequency-vectorization" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vect</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">fitur_kata</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah fitur kata dari hasil TF-IDF:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fitur_kata</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Cara Kerja</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TfidfVectorizer()</span></code> mengubah teks menjadi representasi numerik berdasarkan frekuensi kemunculan kata. Kata yang muncul lebih sering dalam dokumen tertentu tapi jarang di korpus keseluruhan diberi bobot lebih tinggi.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vect.fit_transform()</span></code> menerapkan TF-IDF pada teks dalam kolom <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vect.get_feature_names_out()</span></code> mengembalikan daftar kata unik yang digunakan sebagai fitur.</p></li>
+</ul>
+<p>TF-IDF digunakan untuk mewakili teks dalam bentuk vektor numerik. Ini adalah langkah penting dalam analisis teks berbasis machine learning.</p>
+</section>
+<hr class="docutils" />
+<section id="cosine-similarity-mengukur-kesamaan-teks">
+<h3>8. <strong>Cosine Similarity (Mengukur Kesamaan Teks)</strong>:<a class="headerlink" href="#cosine-similarity-mengukur-kesamaan-teks" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cosine_sim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">cosine_sim_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cosine_sim</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cosine_sim_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Cara Kerja</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cosine_similarity(X)</span></code> menghitung kemiripan kosinus antara teks-teks dalam dataset. Nilai kesamaan kosinus berkisar antara 0 hingga 1, di mana 1 berarti dua teks sangat mirip.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cosine_sim_df</span></code> adalah DataFrame yang menyimpan hasil kesamaan kosinus antara kategori artikel.</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Cosine similarity digunakan untuk mengukur kesamaan antara dokumen teks berdasarkan representasi vektor TF-IDF. Ini berguna untuk menemukan artikel yang mirip atau mengelompokkan artikel berdasarkan kemiripannya.
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -579,8 +1616,32 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-case">Lower Case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cleansing-text">Cleansing Text</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenisasi">Tokenisasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">Stopword Removal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming">Stemming</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cossine-similiarity">Cossine Similiarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">1. <strong>Import Library</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-file-csv-dari-google-drive">2. <strong>Mengunduh File CSV dari Google Drive</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-csv-ke-dalam-dataframe">3. <strong>Membaca CSV ke dalam DataFrame</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-dan-menampilkan-jumlah-artikel-per-kategori">4. <strong>Menghitung dan Menampilkan Jumlah Artikel per Kategori</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembersihan-teks">5. <strong>Proses Pembersihan Teks</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming-mengubah-kata-menjadi-bentuk-dasar">6. <strong>Stemming (Mengubah Kata Menjadi Bentuk Dasar)</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency-vectorization">7. <strong>TF-IDF (Term Frequency-Inverse Document Frequency) Vectorization</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity-mengukur-kesamaan-teks">8. <strong>Cosine Similarity (Mengukur Kesamaan Teks)</strong>:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
