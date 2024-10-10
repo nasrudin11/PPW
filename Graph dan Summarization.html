@@ -1,0 +1,3586 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Graph dan Summarization &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Graph dan Summarization';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Klasifikasi Berita" href="Logistic%20Regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tugas%20Crawling.html">Konsep Crawling</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Model.html">Vector Space Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Klasifikasi Berita</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Graph dan Summarization</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FGraph dan Summarization.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Graph dan Summarization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Graph dan Summarization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Graph dan Summarization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-cosine-similarity">Konsep Dasar Cosine Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nilai-cosine-similarity">Nilai Cosine Similarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjacency">Matriks Adjacency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-matriks-adjacency">Konsep Dasar Matriks Adjacency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-matriks-adjacency">Contoh Matriks Adjacency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-utama-graf">Komponen Utama Graf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-tipe-graf">Tipe-Tipe Graf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representasi-graf">Representasi Graf</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closness-centrality">Closness Centrality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-closeness-centrality">Konsep Dasar Closeness Centrality</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summarization">Summarization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-tipe-summarization">Tipe-Tipe Summarization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-dalam-proses-summarization">Langkah-Langkah dalam Proses Summarization</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library">Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-case">Lower Case</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-text">Clean Text</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenisasi">Tokenisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">Stopword Removal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrik-adjensi">Matrik Adjensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">Closeness Centrality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-rangkuman-dokumen">Hasil Rangkuman Dokumen</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Nama : Ahmad Nasrudin Jamil</p>
+<p>NIM : 210411100098</p>
+<section id="graph-dan-summarization">
+<h1>Graph dan Summarization<a class="headerlink" href="#graph-dan-summarization" title="Link to this heading">#</a></h1>
+<section id="cosine-similarity">
+<h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Link to this heading">#</a></h2>
+<p>Cosine similarity adalah ukuran yang digunakan untuk menentukan seberapa mirip dua vektor dalam ruang multidimensi berdasarkan sudut di antara keduanya. Dalam konteks pemrosesan bahasa alami, cosine similarity sering digunakan untuk mengukur kesamaan antara teks yang direpresentasikan sebagai vektor, biasanya menggunakan teknik seperti TF-IDF atau word embeddings.</p>
+<section id="konsep-dasar-cosine-similarity">
+<h3>Konsep Dasar Cosine Similarity<a class="headerlink" href="#konsep-dasar-cosine-similarity" title="Link to this heading">#</a></h3>
+<p>Cosine similarity dihitung dengan menggunakan rumus berikut:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Cosine Similarity} = \frac{A \cdot B}{\|A\| \|B\|}
+\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((A)\)</span> dan <span class="math notranslate nohighlight">\((B)\)</span> adalah dua vektor yang akan dibandingkan.</p></li>
+<li><p><span class="math notranslate nohighlight">\((A \cdot B)\)</span> adalah hasil kali dot (dot product) dari kedua vektor, yang mengukur seberapa besar dua vektor tersebut saling berhubungan.</p></li>
+<li><p><span class="math notranslate nohighlight">\((|A|)\)</span> dan <span class="math notranslate nohighlight">\((|B|)\)</span> adalah norma (magnitude) dari vektor <span class="math notranslate nohighlight">\((A)\)</span> dan <span class="math notranslate nohighlight">\((B)\)</span>, yang menunjukkan panjang masing-masing vektor.</p></li>
+</ul>
+</section>
+<section id="nilai-cosine-similarity">
+<h3>Nilai Cosine Similarity<a class="headerlink" href="#nilai-cosine-similarity" title="Link to this heading">#</a></h3>
+<p>Nilai cosine similarity berkisar antara -1 hingga 1:</p>
+<ul class="simple">
+<li><p><strong>1</strong>: Menunjukkan bahwa kedua vektor identik (mendapatkan sudut 0 derajat).</p></li>
+<li><p><strong>0</strong>: Menunjukkan bahwa kedua vektor ortogonal atau tidak memiliki kesamaan (sudut 90 derajat).</p></li>
+<li><p><strong>-1</strong>: Menunjukkan bahwa kedua vektor berlawanan (sudut 180 derajat).</p></li>
+</ul>
+<p>Namun, dalam konteks teks, nilai cosine similarity biasanya berkisar antara 0 hingga 1, karena kita umumnya tidak membahas vektor yang negatif dalam analisis teks.</p>
+</section>
+</section>
+<section id="matriks-adjacency">
+<h2>Matriks Adjacency<a class="headerlink" href="#matriks-adjacency" title="Link to this heading">#</a></h2>
+<p>Matriks adjacency adalah representasi matematis dari graf yang menunjukkan hubungan antara node (simpul) dalam graf tersebut. Dalam konteks pemrosesan bahasa alami dan analisis graph, matriks adjacency sering digunakan untuk merepresentasikan hubungan antar elemen, seperti kalimat dalam sebuah dokumen, berdasarkan kriteria tertentu.</p>
+<section id="konsep-dasar-matriks-adjacency">
+<h3>Konsep Dasar Matriks Adjacency<a class="headerlink" href="#konsep-dasar-matriks-adjacency" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Definisi</strong>:
+Matriks adjacency adalah matriks persegi yang digunakan untuk merepresentasikan graf. Setiap elemen dalam matriks menunjukkan ada tidaknya hubungan antara dua node. Dalam matriks adjacency, elemen pada baris ke-<span class="math notranslate nohighlight">\((i)\)</span> dan kolom ke-<span class="math notranslate nohighlight">\((j)\)</span> akan bernilai:</p>
+<ul class="simple">
+<li><p><strong>1</strong> (atau nilai positif) jika ada edge (hubungan) antara node <span class="math notranslate nohighlight">\((i)\)</span> dan node <span class="math notranslate nohighlight">\((j)\)</span>.</p></li>
+<li><p><strong>0</strong> jika tidak ada edge antara keduanya.</p></li>
+</ul>
+</li>
+<li><p><strong>Ukuran Matriks</strong>:
+Matriks adjacency untuk graf dengan <span class="math notranslate nohighlight">\((n)\)</span> node memiliki ukuran <span class="math notranslate nohighlight">\((n \times n)\)</span>, di mana <span class="math notranslate nohighlight">\((n)\)</span> adalah jumlah total node dalam graf. Baris dan kolom pada matriks mewakili node yang ada dalam graf.</p></li>
+</ol>
+</section>
+<section id="contoh-matriks-adjacency">
+<h3>Contoh Matriks Adjacency<a class="headerlink" href="#contoh-matriks-adjacency" title="Link to this heading">#</a></h3>
+<p>Misalkan kita memiliki graf sederhana dengan 4 node (A, B, C, dan D) dan hubungan sebagai berikut:</p>
+<ul class="simple">
+<li><p>A terhubung ke B dan C.</p></li>
+<li><p>B terhubung ke C.</p></li>
+<li><p>C terhubung ke D.</p></li>
+</ul>
+<p>Matriks adjacency untuk graf ini dapat dituliskan sebagai berikut:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+  &amp; A &amp; B &amp; C &amp; D \\
+A &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+B &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+C &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+D &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{matrix}
+\end{split}\]</div>
+<p>Dalam matriks di atas:</p>
+<ul class="simple">
+<li><p>Baris A menunjukkan bahwa A terhubung dengan B dan C.</p></li>
+<li><p>Baris B menunjukkan bahwa B terhubung dengan C.</p></li>
+<li><p>Baris C menunjukkan bahwa C terhubung dengan D.</p></li>
+<li><p>Baris D menunjukkan bahwa D tidak terhubung dengan node manapun.</p></li>
+</ul>
+</section>
+</section>
+<section id="graph">
+<h2>Graph<a class="headerlink" href="#graph" title="Link to this heading">#</a></h2>
+<p>Graph (graf) adalah struktur data yang digunakan untuk merepresentasikan hubungan antara objek. Dalam istilah sederhana, graf adalah kumpulan simpul (nodes) dan sisi (edges) yang menghubungkan pasangan simpul. Struktur ini sangat berguna dalam berbagai bidang, termasuk ilmu komputer, matematika, dan pemrosesan bahasa alami.</p>
+<section id="komponen-utama-graf">
+<h3>Komponen Utama Graf<a class="headerlink" href="#komponen-utama-graf" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Simpul (Node)</strong>:
+Simpul, juga dikenal sebagai vertex, adalah elemen dasar dalam graf. Setiap simpul mewakili entitas atau objek tertentu. Dalam konteks pemrosesan bahasa alami, simpul bisa mewakili kalimat, kata, atau dokumen.</p></li>
+<li><p><strong>Sisi (Edge)</strong>:
+Sisi adalah hubungan antara dua simpul. Sisi dapat bersifat:</p>
+<ul class="simple">
+<li><p><strong>Arah (Directed)</strong>: Menunjukkan bahwa hubungan dari satu simpul ke simpul lainnya memiliki arah tertentu. Misalnya, dalam graf yang menggambarkan hubungan antara kalimat, jika kalimat A mengarah ke kalimat B, ini menunjukkan bahwa A memberikan informasi yang relevan untuk B.</p></li>
+<li><p><strong>Tidak Arah (Undirected)</strong>: Menunjukkan bahwa hubungan antara dua simpul tidak memiliki arah tertentu. Contohnya, jika dua kalimat saling berhubungan, kita dapat menggambarkannya dengan sisi yang tidak terarah.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="tipe-tipe-graf">
+<h3>Tipe-Tipe Graf<a class="headerlink" href="#tipe-tipe-graf" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Graf Berarah (Directed Graph)</strong>:
+Dalam graf berarah, setiap sisi memiliki arah, mengindikasikan hubungan satu arah antara dua simpul. Contohnya, graf yang menunjukkan hubungan antar situs web, di mana satu situs mengarah ke situs lainnya.</p></li>
+<li><p><strong>Graf Tidak Berarah (Undirected Graph)</strong>:
+Dalam graf tidak berarah, hubungan antara simpul bersifat dua arah. Contohnya, graf sosial di mana simpul mewakili orang dan sisi mewakili pertemanan antara mereka.</p></li>
+<li><p><strong>Graf Berat (Weighted Graph)</strong>:
+Dalam graf berat, setiap sisi memiliki bobot yang menunjukkan kekuatan atau jarak dari hubungan tersebut. Misalnya, dalam graf rute perjalanan, bobot bisa mewakili jarak atau waktu tempuh antara dua titik.</p></li>
+<li><p><strong>Graf Tidak Berat (Unweighted Graph)</strong>:
+Dalam graf tidak berat, semua sisi dianggap setara dan tidak memiliki bobot.</p></li>
+</ol>
+</section>
+<section id="representasi-graf">
+<h3>Representasi Graf<a class="headerlink" href="#representasi-graf" title="Link to this heading">#</a></h3>
+<p>Graf dapat direpresentasikan dalam beberapa cara, di antaranya:</p>
+<ol class="arabic simple">
+<li><p><strong>Matriks Adjacency</strong>:
+Matriks persegi di mana elemen di baris dan kolom merepresentasikan simpul, dan nilai dalam matriks menunjukkan ada tidaknya hubungan antara simpul-simpul tersebut. Misalnya, jika ada sisi antara simpul A dan B, maka elemen matriks pada posisi (A, B) akan diisi dengan 1 (atau bobot) dan 0 jika tidak ada sisi.</p></li>
+<li><p><strong>Daftar Ketetanggaan (Adjacency List)</strong>:
+Dalam representasi ini, setiap simpul memiliki daftar yang berisi semua simpul yang terhubung langsung dengan simpul tersebut. Ini lebih efisien dalam penggunaan memori, terutama untuk graf yang jarang terhubung (sparse).</p></li>
+</ol>
+</section>
+</section>
+<section id="closness-centrality">
+<h2>Closness Centrality<a class="headerlink" href="#closness-centrality" title="Link to this heading">#</a></h2>
+<p><strong>Closeness centrality</strong> adalah salah satu ukuran yang digunakan dalam teori graf untuk menentukan seberapa dekat sebuah node (simpul) dengan node lainnya dalam sebuah graf. Konsep ini berguna untuk mengidentifikasi simpul yang memiliki posisi strategis dalam hal keterhubungan dan pengaruh dalam jaringan. Dalam konteks pemrosesan bahasa alami, closeness centrality dapat digunakan untuk menentukan kalimat atau kata yang paling relevan atau penting dalam sebuah dokumen.</p>
+<section id="konsep-dasar-closeness-centrality">
+<h3>Konsep Dasar Closeness Centrality<a class="headerlink" href="#konsep-dasar-closeness-centrality" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Definisi</strong>:
+Closeness centrality mengukur seberapa cepat sebuah simpul dapat menjangkau simpul lainnya dalam graf. Semakin dekat sebuah simpul dengan semua simpul lainnya, semakin tinggi nilai closeness centrality-nya.</p></li>
+<li><p><strong>Rumus</strong>:
+Nilai closeness centrality untuk simpul <span class="math notranslate nohighlight">\(v\)</span> dalam graf dapat dihitung dengan rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+   C(v) = \frac{1}{\sum_{u \in V} d(v, u)}
+   \]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C(v)\)</span> adalah nilai closeness centrality untuk simpul <span class="math notranslate nohighlight">\(v\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(V\)</span> adalah himpunan semua simpul dalam graf.</p></li>
+<li><p><span class="math notranslate nohighlight">\(d(v, u)\)</span> adalah jarak terpendek antara simpul <span class="math notranslate nohighlight">\(v\)</span> dan simpul <span class="math notranslate nohighlight">\(u\)</span>.</p></li>
+</ul>
+<p>Dalam beberapa konteks, rumus ini dapat dimodifikasi untuk mengalikan dengan <span class="math notranslate nohighlight">\((|V| - 1)\)</span> sehingga nilai centrality berkisar antara 0 dan 1, di mana <span class="math notranslate nohighlight">\( |V| \)</span> adalah jumlah total simpul dalam graf.</p>
+</li>
+<li><p><strong>Interpretasi</strong>:</p>
+<ul class="simple">
+<li><p><strong>Nilai Tinggi</strong>: Simpul dengan nilai closeness centrality tinggi dapat menjangkau semua simpul lain dengan cepat, menunjukkan bahwa simpul tersebut memiliki posisi strategis dalam jaringan.</p></li>
+<li><p><strong>Nilai Rendah</strong>: Sebaliknya, simpul dengan nilai rendah menunjukkan bahwa simpul tersebut lebih terisolasi dan membutuhkan lebih banyak langkah untuk menjangkau simpul lain.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="summarization">
+<h1>Summarization<a class="headerlink" href="#summarization" title="Link to this heading">#</a></h1>
+<p><strong>Summarization</strong> (penyusunan ringkasan) adalah proses dalam pemrosesan bahasa alami (Natural Language Processing, NLP) yang bertujuan untuk menghasilkan versi ringkas dari sebuah dokumen atau teks yang mempertahankan informasi penting dan inti dari teks aslinya. Summarization dapat digunakan dalam berbagai konteks, seperti menyederhanakan dokumen panjang, membantu pembaca mendapatkan gambaran umum tentang konten, dan meningkatkan efisiensi dalam pengolahan informasi.</p>
+<section id="tipe-tipe-summarization">
+<h2>Tipe-Tipe Summarization<a class="headerlink" href="#tipe-tipe-summarization" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Extractive Summarization</strong>:</p>
+<ul class="simple">
+<li><p>Pada metode ini, ringkasan dibuat dengan memilih dan menggabungkan kalimat-kalimat penting langsung dari teks asli.</p></li>
+<li><p>Proses ini melibatkan teknik untuk menilai relevansi kalimat, seperti menggunakan nilai frekuensi kata, model berbasis graf (misalnya, PageRank), dan teknik pembelajaran mesin.</p></li>
+<li><p>Kelebihan dari metode ini adalah kesederhanaan dan kemudahan pemahaman, karena kalimat yang dipilih adalah bagian asli dari teks.</p></li>
+<li><p>Contoh: Menggunakan algoritma TF-IDF untuk menilai pentingnya kalimat dalam teks dan kemudian memilih kalimat dengan nilai tertinggi untuk dimasukkan ke dalam ringkasan.</p></li>
+</ul>
+</li>
+<li><p><strong>Abstractive Summarization</strong>:</p>
+<ul class="simple">
+<li><p>Dalam pendekatan ini, ringkasan dihasilkan dengan menghasilkan kalimat baru yang mungkin tidak ada dalam teks asli. Proses ini lebih mirip dengan cara manusia merangkum informasi.</p></li>
+<li><p>Teknik ini biasanya melibatkan model pembelajaran mendalam (deep learning), seperti jaringan saraf berulang (Recurrent Neural Networks, RNN) dan Transformer.</p></li>
+<li><p>Kelebihan dari metode ini adalah fleksibilitasnya untuk menghasilkan ringkasan yang lebih alami dan terfokus, meskipun tantangannya adalah menjaga keakuratan dan kesesuaian informasi.</p></li>
+<li><p>Contoh: Menggunakan model seperti GPT (Generative Pre-trained Transformer) untuk menghasilkan ringkasan dari teks panjang.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="langkah-langkah-dalam-proses-summarization">
+<h2>Langkah-Langkah dalam Proses Summarization<a class="headerlink" href="#langkah-langkah-dalam-proses-summarization" title="Link to this heading">#</a></h2>
+<p>Berikut adalah penjelasan rinci untuk setiap langkah dalam proses summarization menggunakan graph:</p>
+<ol class="arabic simple">
+<li><p><strong>Pengolahan Dokumen</strong>
+Pengolahan dokumen adalah langkah awal yang krusial dalam proses pemrosesan bahasa alami. Dalam tahap ini, teks dokumen yang akan dianalisis mengalami beberapa transformasi untuk meningkatkan kualitas analisis selanjutnya. Pertama, seluruh teks diubah menjadi huruf kecil (lowercase) agar tidak ada perbedaan dalam penulisan yang memengaruhi hasil analisis. Selanjutnya, tanda baca dihapus dari teks untuk menghindari gangguan dalam pengolahan. Setelah itu, kata-kata yang dianggap tidak penting atau umum, yang dikenal sebagai stopwords, dibuang dari teks. Akhirnya, dokumen dipecah menjadi kalimat-kalimat terpisah (tokenisasi per kalimat), yang akan menjadi unit dasar dalam analisis. Pendekatan ini memastikan bahwa fokus analisis berada pada kalimat, yang memiliki makna lebih dalam konteks keseluruhan dokumen.</p></li>
+<li><p><strong>Ekstraksi Fitur Menggunakan TF-IDF</strong>
+Setelah pengolahan dokumen selesai, langkah berikutnya adalah ekstraksi fitur menggunakan metode TF-IDF (Term Frequency-Inverse Document Frequency). TF-IDF adalah teknik yang digunakan untuk menghitung bobot atau kepentingan dari setiap kalimat dalam dokumen berdasarkan frekuensi kemunculan kata dalam kalimat tersebut dan seberapa umum kata tersebut di seluruh dokumen. Dengan menggunakan TF-IDF, kalimat-kalimat yang memiliki kata-kata unik dan informatif akan mendapatkan nilai yang lebih tinggi, sementara kalimat dengan kata-kata yang umum akan memiliki bobot yang lebih rendah. Proses ini sangat penting karena nilai TF-IDF yang dihasilkan akan digunakan untuk menentukan relevansi kalimat-kalimat dalam dokumen.</p></li>
+<li><p><strong>Menghitung Cosine Similarity</strong>
+Setelah mendapatkan matriks TF-IDF, langkah selanjutnya adalah menghitung cosine similarity antar kalimat. Cosine similarity adalah ukuran yang digunakan untuk mengukur seberapa mirip dua vektor (dalam hal ini, kalimat yang direpresentasikan sebagai vektor TF-IDF) berdasarkan sudut di antara mereka dalam ruang vektor. Hasil dari perhitungan ini adalah matriks cosine similarity, di mana setiap elemen mencerminkan tingkat kesamaan antara dua kalimat. Matriks ini sangat berguna untuk memahami hubungan antar kalimat dan menentukan kalimat mana yang memiliki konten yang mirip atau berhubungan erat.</p></li>
+<li><p><strong>Matriks Adjacency</strong>
+Setelah menghitung cosine similarity, langkah berikutnya adalah mengonversi matriks cosine similarity menjadi matriks adjacency. Matriks adjacency adalah representasi grafis dari hubungan antar kalimat, di mana setiap elemen menunjukkan apakah ada hubungan yang cukup kuat antara dua kalimat. Untuk menentukan hubungan yang cukup kuat, diterapkan threshold tertentu, misalnya 0.5. Jika nilai cosine similarity antara dua kalimat di atas threshold tersebut, maka hubungan antar kalimat tersebut dianggap ada (dinyatakan dengan nilai 1) dan sebaliknya (dinyatakan dengan nilai 0). Dengan cara ini, matriks adjacency menyederhanakan hubungan yang relevan antara kalimat-kalimat dalam dokumen.</p></li>
+<li><p><strong>Membangun Graph</strong>
+Dari matriks adjacency yang telah dibentuk, langkah selanjutnya adalah membangun graph yang merepresentasikan hubungan antar kalimat. Dalam graph ini, setiap node mewakili kalimat, sedangkan setiap edge menggambarkan hubungan antar kalimat berdasarkan nilai dari matriks adjacency. Graph ini memberikan cara visual untuk memahami struktur hubungan dalam dokumen dan membantu dalam analisis lebih lanjut. Penggunaan graph dalam NLP memungkinkan pemodelan hubungan kompleks antar kalimat dengan cara yang lebih intuitif dan terstruktur.</p></li>
+<li><p><strong>Menghitung Closeness Centrality</strong>
+Setelah graph dibangun, langkah selanjutnya adalah menghitung closeness centrality untuk setiap node dalam graph. Closeness centrality adalah ukuran yang menunjukkan seberapa dekat sebuah node dengan semua node lain di dalam graph. Semakin tinggi nilai closeness centrality dari sebuah kalimat, semakin penting posisi kalimat tersebut dalam konteks keseluruhan dokumen. Dengan menghitung closeness centrality, kita dapat mengidentifikasi kalimat-kalimat yang paling representatif dan berkontribusi besar terhadap pemahaman dokumen secara keseluruhan.</p></li>
+<li><p><strong>Ranking Node</strong>
+Setelah menghitung nilai closeness centrality, langkah berikutnya adalah meranking kalimat berdasarkan nilai tersebut. Dalam proses ini, kalimat-kalimat diurutkan berdasarkan nilai centrality mereka, dan disni diambil contoh tiga kalimat dengan nilai tertinggi dipilih sebagai hasil ringkasan. Kalimat-kalimat ini dianggap paling informatif dan relevan, mewakili inti dari isi dokumen. Proses ranking ini membantu dalam mengidentifikasi konten penting yang perlu disertakan dalam ringkasan.</p></li>
+<li><p><strong>Summarization</strong>
+Langkah terakhir dalam proses ini adalah menghasilkan ringkasan dari dokumen menggunakan kalimat-kalimat teratas yang telah dipilih. Kalimat-kalimat ini disusun kembali untuk membentuk ringkasan yang koheren dan informatif. Dengan pendekatan ini, ringkasan yang dihasilkan diharapkan dapat mencerminkan inti dari dokumen secara akurat, memberikan pemahaman yang lebih cepat dan efisien bagi pembaca. Proses summarization ini sangat bermanfaat dalam berbagai aplikasi, seperti menyajikan informasi penting dari laporan, artikel, atau dokumen panjang lainnya dengan cara yang ringkas dan jelas.</p></li>
+</ol>
+</section>
+</section>
+<section id="implementasi">
+<h1>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h1>
+<section id="library">
+<h2>Library<a class="headerlink" href="#library" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdown</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">sent_tokenize</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span><span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-dataset">
+<h2>Load Dataset<a class="headerlink" href="#load-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://drive.google.com/uc?id=</span><span class="si">{</span><span class="n">file_id</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;crawling_2_kategori.csv&#39;</span>
+
+<span class="c1"># Unduh file dari Google Drive</span>
+<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading...
+From: https://drive.google.com/uc?id=1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR
+To: /content/drive/MyDrive/MATERI KULIAH (JAMIL)/SEMESTER 7/PPW/report/crawling_2_kategori.csv
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0.00/259k [00:00&lt;?, ?B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 259k/259k [00:00&lt;00:00, 45.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;crawling_2_kategori.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membaca file CSV ke DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-d64a1964-54c7-467e-bb43-49fbf3c8e67a" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>content</th>
+      <th>date</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apa yang Harus Dilakukan jika Obesitas? Ini Re...</td>
+      <td>KOMPAS.com - Orang dengan obesitas lebih mungk...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Apakah Baik Makan Buah untuk Sarapan? Ini Penj...</td>
+      <td>KOMPAS.com - Buah bisa menjadi pilihan menu ya...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Tanda Malanutrisi pada Anak dan Dewasa</td>
+      <td>KOMPAS.com - Malanutrisi merupakan masalah kes...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Anak Sering Berkeringat Saat Tidur, Tanda Peny...</td>
+      <td>KOMPAS.com - Berkeringat merupakan cara alami ...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Kenali Perkembangan Motorik Normal pada Bayi, ...</td>
+      <td>KOMPAS.com - Ikatan Dokter Anak Indonesia (IDA...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>9 Tips ke Jak-Japan Matsuri 2024, Bisa Beli Ti...</td>
+      <td>JAKARTA, KOMPAS.com - Ribuan orang nampak berg...</td>
+      <td>15/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Waktu Terbaik Lihat Hiu Paus di Botubarani Gor...</td>
+      <td>KOMPAS.com - Provinsi Gorontalo di Pulau Sulaw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>14 orang Ditangkap Akibat Pendakian Ilegal di ...</td>
+      <td>KOMPAS.com - Jalur pendakian yang indah di Haw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Harga Paket Outbound Pondok Zidane, Banyak Pil...</td>
+      <td>KOMPAS.com - Menikmati waktu berkualitas bersa...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Kursi Kelas Satu Jadi Beban, Maskapai di Swiss...</td>
+      <td>KOMPAS.com – Karena memiliki model kursi kelas...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4 columns</p>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d64a1964-54c7-467e-bb43-49fbf3c8e67a')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-d64a1964-54c7-467e-bb43-49fbf3c8e67a button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-d64a1964-54c7-467e-bb43-49fbf3c8e67a');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berita</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
+<section id="lower-case">
+<h3>Lower Case<a class="headerlink" href="#lower-case" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ubah teks menjadi lowercase</span>
+<span class="n">berita_lower</span> <span class="o">=</span> <span class="n">berita</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">berita_lower</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;kompas.com - berkeringat merupakan cara alami tubuh untuk mendinginkan dirinya. bukan cuma orang dewasa, anak-anak bahkan bayi juga akan berkeringat sebagai respon terhadap panas.\nmeski begitu, berkeringat di malam hari bisa terjadi di ruangan yang sebenarnya tidak hangat.\nberkeringat saat tidur sebenarnya hal yang normal pada anak atau orang dewasa dan tidak selalu ada penyebab langsungnya. tetapi, jika berkeringat di malam hari disertai gejala lain itu bisa jadi ada gangguan kesehatan yang belum terdeteksi.\nbeberapa kondisi yang bisa dialami anak dan menyebabkannya berkeringat di malam hari antara lain:\n- mimpi burukmimpi buruk yang sangat intens bisa menjadi teror yang membuat anak ketakutan. walau rasa ngeri yang dialaminya terasa nyata, anak biasanya tidak mengingat isi mimpinya saat bangun.\nanak yang mengalami mimpi buruk terkadang berkeringat sampai bajunya basah. tanda lain adalah terbangun dan bernapas berat.\nbaca juga: mengapa tangan sering berkeringat? kenali 6 penyebabnya\n- sindrom sleep apneaanak yang berkeringat saat tidur, dibarengi dengan mengorok, bernapas dari mulut, dan gelisah saat tidur, kemungkinan besar mengalami sindrom obstruktif sleep apnea atau henti napas sejenak saat tidur.\nanak yang mengalami sleep apnea akan merasa tidak bisa tidur nyenyak dan merasa lemas saat terbangun. mereka juga biasanya mengalami sakit kepala.\nsleep apnea juga bisa membuat anak mengalami kegemukan dan tumbuh dengan lambat dibanding teman seusianya. karena mereka tidak bisa tidur dengan nyenyak, prestasi akademiknya juga cenderung buruk.\n- hiperhidrosis idiopatikhiperhidrosis idiopatik merupakan kondisi berkeringat di malam hari tanpa penyebab yang jelas. pada umumnya hiperhidrosis membuat keringat lebih banyak di area wajah, kaki, dan tangan.\nhiperhidrosis idiopatik biasanya tidak berdampak serius pada gangguan kesehatan anak atau pun orang dewasa. namun, keringat berlebih bisa membuat seseorang merasa cemas, terutama saat bersama orang lain.\nbaca juga: 6 pantangan biang keringat dan perawatannya yang tepat\n- kankerpenyebab serius sering berkeringat di malam hari adalah leukemia atau tipe kanker lainnya. dalam sebuah survei, 30 persen pasien yang didiagnosis leukemia memiliki gejala berkeringat saat tidur. yang membedakannya adalah keringat mengucur deras sampai membuat baju dan sprei basah.\nkapan perlu ke dokter\nmeskipun keringat di malam hari biasanya tidak perlu dikhawatirkan, kita mungkin perlu berkonsultasi dengan dokter anak jika keringat malam sering terjadi atau melihat tanda-tanda lainnya.\npenelitian menunjukkan bahwa anak-anak yang berkeringat malam lebih mungkin mengalami penyakit pernapasan atau masalah terkait tidur lainnya. anak-anak ini juga lebih mungkin mengalami ledakan amarah atau menjadi hiperaktif.\nyang perlu diingat, berkeringat di malam hari adalah normal dan sebagian besar tidak ada penyebab khusus.\nbaca juga: idai sebut 3 penyakit autoimun ini sering menyerang anak-anak\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clean-text">
+<h3>Clean Text<a class="headerlink" href="#clean-text" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bersihkan teks dengan menghapus tanda baca dan karakter khusus, kecuali titik</span>
+<span class="n">berita_cleaned</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s.]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">berita_lower</span><span class="p">)</span>
+<span class="n">berita_cleaned</span> <span class="o">=</span> <span class="n">berita_cleaned</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">berita_cleaned</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;kompas.com  berkeringat merupakan cara alami tubuh untuk mendinginkan dirinya. bukan cuma orang dewasa anakanak bahkan bayi juga akan berkeringat sebagai respon terhadap panas. meski begitu berkeringat di malam hari bisa terjadi di ruangan yang sebenarnya tidak hangat. berkeringat saat tidur sebenarnya hal yang normal pada anak atau orang dewasa dan tidak selalu ada penyebab langsungnya. tetapi jika berkeringat di malam hari disertai gejala lain itu bisa jadi ada gangguan kesehatan yang belum terdeteksi. beberapa kondisi yang bisa dialami anak dan menyebabkannya berkeringat di malam hari antara lain  mimpi burukmimpi buruk yang sangat intens bisa menjadi teror yang membuat anak ketakutan. walau rasa ngeri yang dialaminya terasa nyata anak biasanya tidak mengingat isi mimpinya saat bangun. anak yang mengalami mimpi buruk terkadang berkeringat sampai bajunya basah. tanda lain adalah terbangun dan bernapas berat. baca juga mengapa tangan sering berkeringat kenali 6 penyebabnya  sindrom sleep apneaanak yang berkeringat saat tidur dibarengi dengan mengorok bernapas dari mulut dan gelisah saat tidur kemungkinan besar mengalami sindrom obstruktif sleep apnea atau henti napas sejenak saat tidur. anak yang mengalami sleep apnea akan merasa tidak bisa tidur nyenyak dan merasa lemas saat terbangun. mereka juga biasanya mengalami sakit kepala. sleep apnea juga bisa membuat anak mengalami kegemukan dan tumbuh dengan lambat dibanding teman seusianya. karena mereka tidak bisa tidur dengan nyenyak prestasi akademiknya juga cenderung buruk.  hiperhidrosis idiopatikhiperhidrosis idiopatik merupakan kondisi berkeringat di malam hari tanpa penyebab yang jelas. pada umumnya hiperhidrosis membuat keringat lebih banyak di area wajah kaki dan tangan. hiperhidrosis idiopatik biasanya tidak berdampak serius pada gangguan kesehatan anak atau pun orang dewasa. namun keringat berlebih bisa membuat seseorang merasa cemas terutama saat bersama orang lain. baca juga 6 pantangan biang keringat dan perawatannya yang tepat  kankerpenyebab serius sering berkeringat di malam hari adalah leukemia atau tipe kanker lainnya. dalam sebuah survei 30 persen pasien yang didiagnosis leukemia memiliki gejala berkeringat saat tidur. yang membedakannya adalah keringat mengucur deras sampai membuat baju dan sprei basah. kapan perlu ke dokter meskipun keringat di malam hari biasanya tidak perlu dikhawatirkan kita mungkin perlu berkonsultasi dengan dokter anak jika keringat malam sering terjadi atau melihat tandatanda lainnya. penelitian menunjukkan bahwa anakanak yang berkeringat malam lebih mungkin mengalami penyakit pernapasan atau masalah terkait tidur lainnya. anakanak ini juga lebih mungkin mengalami ledakan amarah atau menjadi hiperaktif. yang perlu diingat berkeringat di malam hari adalah normal dan sebagian besar tidak ada penyebab khusus. baca juga idai sebut 3 penyakit autoimun ini sering menyerang anakanak &#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tokenisasi">
+<h3>Tokenisasi<a class="headerlink" href="#tokenisasi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tokenisasi teks</span>
+<span class="n">berita_tokenized</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">berita_cleaned</span><span class="p">)</span>
+<span class="n">berita_tokenized</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-8-76cc7a9a83f8&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Tokenisasi teks</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">berita_tokenized</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">berita_cleaned</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">berita_tokenized</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">106</span><span class="s2">     tokenizer = load(f&quot;tokenizers/punkt/</span><span class="si">{language}</span><span class="s2">.pickle&quot;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2">     return tokenizer.tokenize(text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2"> </span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">748</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">749</span><span class="s2">     # Load the resource.</span>
+<span class="ne">--&gt; </span><span class="mi">750</span><span class="s2">     opened_resource = _open(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">751</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="s2">     if format == &quot;raw&quot;:</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span><span class="s2">     if protocol is None or protocol.lower() == &quot;nltk&quot;:</span>
+<span class="ne">--&gt; </span><span class="mi">876</span><span class="s2">         return find(path_, path + [&quot;&quot;]).open()</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span><span class="s2">     elif protocol.lower() == &quot;file&quot;:</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
+<span class="g g-Whitespace">    </span><span class="mi">581</span><span class="s2">     sep = &quot;*&quot; * 70</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span><span class="s2">     resource_not_found = f&quot;</span><span class="se">\n</span><span class="si">{sep}</span><span class="se">\n</span><span class="si">{msg}</span><span class="se">\n</span><span class="si">{sep}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">583</span><span class="s2">     raise LookupError(resource_not_found)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span><span class="s2"> </span>
+
+<span class="ne">LookupError</span>: 
+<span class="s2">**********************************************************************</span>
+<span class="s2">  Resource punkt not found.</span>
+<span class="s2">  Please use the NLTK Downloader to obtain the resource:</span>
+
+<span class="s2">  &gt;&gt;&gt; import nltk</span>
+<span class="s2">  &gt;&gt;&gt; nltk.download(&#39;punkt&#39;)</span>
+<span class="s2">  </span>
+<span class="s2">  For more information see: https://www.nltk.org/data.html</span>
+
+<span class="s2">  Attempted to load tokenizers/punkt/PY3/english.pickle</span>
+
+<span class="s2">  Searched in:</span>
+<span class="s2">    - &#39;/root/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/local/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;&#39;</span>
+<span class="s2">**********************************************************************</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stopword-removal">
+<h3>Stopword Removal<a class="headerlink" href="#stopword-removal" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hapus stopwords</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+
+<span class="n">custom_stopwords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kompas.com&#39;</span><span class="p">}</span>
+<span class="n">stop_words</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">custom_stopwords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;itulah&#39;, &#39;ataupun&#39;, &#39;kamilah&#39;, &#39;siapapun&#39;, &#39;tambahnya&#39;, &#39;semampunya&#39;, &#39;diibaratkan&#39;, &#39;semata-mata&#39;, &#39;sebabnya&#39;, &#39;oleh&#39;, &#39;berjumlah&#39;, &#39;bersiap-siap&#39;, &#39;besar&#39;, &#39;lainnya&#39;, &#39;enggak&#39;, &#39;mengibaratkan&#39;, &#39;menyeluruh&#39;, &#39;nanti&#39;, &#39;menghendaki&#39;, &#39;pertanyakan&#39;, &#39;memperlihatkan&#39;, &#39;pantas&#39;, &#39;disebutkan&#39;, &#39;sebaiknya&#39;, &#39;perlukah&#39;, &#39;kasus&#39;, &#39;tentunya&#39;, &#39;agaknya&#39;, &#39;jauh&#39;, &#39;kurang&#39;, &#39;sebutnya&#39;, &#39;segala&#39;, &#39;semisalnya&#39;, &#39;dipergunakan&#39;, &#39;baru&#39;, &#39;sampai&#39;, &#39;ibu&#39;, &#39;di&#39;, &#39;umumnya&#39;, &#39;dua&#39;, &#39;kamulah&#39;, &#39;sedang&#39;, &#39;seketika&#39;, &#39;saya&#39;, &#39;selama&#39;, &#39;bersama&#39;, &#39;berujar&#39;, &#39;lagian&#39;, &#39;menyangkut&#39;, &#39;bahwasanya&#39;, &#39;bahwa&#39;, &#39;bung&#39;, &#39;persoalan&#39;, &#39;tepat&#39;, &#39;tiba-tiba&#39;, &#39;dikerjakan&#39;, &#39;berada&#39;, &#39;bahkan&#39;, &#39;boleh&#39;, &#39;seluruh&#39;, &#39;berkeinginan&#39;, &#39;karenanya&#39;, &#39;manakala&#39;, &#39;saja&#39;, &#39;kedua&#39;, &#39;selain&#39;, &#39;menginginkan&#39;, &#39;antaranya&#39;, &#39;seusai&#39;, &#39;antar&#39;, &#39;menunjuki&#39;, &#39;ibarat&#39;, &#39;inginkah&#39;, &#39;sinilah&#39;, &#39;tapi&#39;, &#39;terlebih&#39;, &#39;hendaklah&#39;, &#39;mengucapkannya&#39;, &#39;dulu&#39;, &#39;lebih&#39;, &#39;beginilah&#39;, &#39;hanya&#39;, &#39;malah&#39;, &#39;sampai-sampai&#39;, &#39;sebanyak&#39;, &#39;waduh&#39;, &#39;ditunjukkannya&#39;, &#39;kami&#39;, &#39;jelaskan&#39;, &#39;mengenai&#39;, &#39;pula&#39;, &#39;diinginkan&#39;, &#39;berikutnya&#39;, &#39;itukah&#39;, &#39;mengungkapkan&#39;, &#39;bekerja&#39;, &#39;tinggi&#39;, &#39;berawal&#39;, &#39;dimisalkan&#39;, &#39;kalian&#39;, &#39;ikut&#39;, &#39;menyebutkan&#39;, &#39;sesegera&#39;, &#39;keseluruhannya&#39;, &#39;terus&#39;, &#39;selalu&#39;, &#39;tiga&#39;, &#39;masalahnya&#39;, &#39;semuanya&#39;, &#39;bolehkah&#39;, &#39;dimaksudkan&#39;, &#39;sama-sama&#39;, &#39;serta&#39;, &#39;tak&#39;, &#39;kira-kira&#39;, &#39;diperbuat&#39;, &#39;bukannya&#39;, &#39;tengah&#39;, &#39;dengan&#39;, &#39;tampaknya&#39;, &#39;walau&#39;, &#39;seperti&#39;, &#39;mengira&#39;, &#39;segalanya&#39;, &#39;berkata&#39;, &#39;dikatakan&#39;, &#39;sela&#39;, &#39;demikian&#39;, &#39;kenapa&#39;, &#39;usah&#39;, &#39;khususnya&#39;, &#39;mendapat&#39;, &#39;diperlihatkan&#39;, &#39;nyaris&#39;, &#39;aku&#39;, &#39;berakhirlah&#39;, &#39;ia&#39;, &#39;seolah&#39;, &#39;mengapa&#39;, &#39;tunjuk&#39;, &#39;kita&#39;, &#39;lama&#39;, &#39;benarkah&#39;, &#39;disebut&#39;, &#39;sepanjang&#39;, &#39;semasa&#39;, &#39;sesudahnya&#39;, &#39;teringat&#39;, &#39;bagaimanapun&#39;, &#39;hanyalah&#39;, &#39;itu&#39;, &#39;memintakan&#39;, &#39;mendapatkan&#39;, &#39;sebagai&#39;, &#39;kompas.com&#39;, &#39;dimulailah&#39;, &#39;kepada&#39;, &#39;adalah&#39;, &#39;memperkirakan&#39;, &#39;rata&#39;, &#39;ditunjuki&#39;, &#39;dalam&#39;, &#39;sebab&#39;, &#39;caranya&#39;, &#39;jangan&#39;, &#39;begitupun&#39;, &#39;bertanya&#39;, &#39;keluar&#39;, &#39;lain&#39;, &#39;ingat-ingat&#39;, &#39;dekat&#39;, &#39;diakhiri&#39;, &#39;dipastikan&#39;, &#39;semula&#39;, &#39;ditandaskan&#39;, &#39;mulai&#39;, &#39;kapanpun&#39;, &#39;kan&#39;, &#39;bilakah&#39;, &#39;depan&#39;, &#39;disinilah&#39;, &#39;sepihak&#39;, &#39;mengucapkan&#39;, &#39;dong&#39;, &#39;awal&#39;, &#39;yakin&#39;, &#39;setibanya&#39;, &#39;memberi&#39;, &#39;pasti&#39;, &#39;sesekali&#39;, &#39;mempunyai&#39;, &#39;perlunya&#39;, &#39;tersebut&#39;, &#39;dapat&#39;, &#39;menyampaikan&#39;, &#39;sebelum&#39;, &#39;sementara&#39;, &#39;dijelaskan&#39;, &#39;naik&#39;, &#39;menanyakan&#39;, &#39;setengah&#39;, &#39;perlu&#39;, &#39;tegas&#39;, &#39;mempertanyakan&#39;, &#39;masihkah&#39;, &#39;sebaik-baiknya&#39;, &#39;belakang&#39;, &#39;diberikan&#39;, &#39;merupakan&#39;, &#39;ketika&#39;, &#39;sayalah&#39;, &#39;jadinya&#39;, &#39;bisakah&#39;, &#39;begitu&#39;, &#39;mendatangi&#39;, &#39;tegasnya&#39;, &#39;menambahkan&#39;, &#39;berdatangan&#39;, &#39;sebutlah&#39;, &#39;tahun&#39;, &#39;tanyanya&#39;, &#39;hari&#39;, &#39;menggunakan&#39;, &#39;sebisanya&#39;, &#39;ini&#39;, &#39;diperlukan&#39;, &#39;hampir&#39;, &#39;setempat&#39;, &#39;tambah&#39;, &#39;amat&#39;, &#39;maka&#39;, &#39;sesuatunya&#39;, &#39;ingat&#39;, &#39;secukupnya&#39;, &#39;sebut&#39;, &#39;atau&#39;, &#39;semampu&#39;, &#39;sewaktu&#39;, &#39;mampukah&#39;, &#39;tanpa&#39;, &#39;sepantasnyalah&#39;, &#39;sangat&#39;, &#39;asal&#39;, &#39;sekarang&#39;, &#39;meski&#39;, &#39;sekadar&#39;, &#39;kapan&#39;, &#39;minta&#39;, &#39;tempat&#39;, &#39;memang&#39;, &#39;membuat&#39;, &#39;tentulah&#39;, &#39;diketahui&#39;, &#39;sering&#39;, &#39;mana&#39;, &#39;setiap&#39;, &#39;mampu&#39;, &#39;disampaikan&#39;, &#39;mempersiapkan&#39;, &#39;ibaratnya&#39;, &#39;sekalipun&#39;, &#39;memulai&#39;, &#39;melainkan&#39;, &#39;tetap&#39;, &#39;hingga&#39;, &#39;bersama-sama&#39;, &#39;berikut&#39;, &#39;bakalan&#39;, &#39;seterusnya&#39;, &#39;inilah&#39;, &#39;dikarenakan&#39;, &#39;sangatlah&#39;, &#39;luar&#39;, &#39;berakhir&#39;, &#39;walaupun&#39;, &#39;mendatangkan&#39;, &#39;mau&#39;, &#39;dimulai&#39;, &#39;enggaknya&#39;, &#39;ditunjukkan&#39;, &#39;padanya&#39;, &#39;ditanya&#39;, &#39;berlainan&#39;, &#39;cukup&#39;, &#39;diingatkan&#39;, &#39;semasih&#39;, &#39;ditunjuk&#39;, &#39;menyatakan&#39;, &#39;jawab&#39;, &#39;justru&#39;, &#39;bertanya-tanya&#39;, &#39;meskipun&#39;, &#39;tentang&#39;, &#39;memungkinkan&#39;, &#39;kelima&#39;, &#39;pun&#39;, &#39;kinilah&#39;, &#39;rasa&#39;, &#39;nyatanya&#39;, &#39;harus&#39;, &#39;beberapa&#39;, &#39;memastikan&#39;, &#39;kebetulan&#39;, &#39;betul&#39;, &#39;ataukah&#39;, &#39;kalau&#39;, &#39;apabila&#39;, &#39;dilakukan&#39;, &#39;selanjutnya&#39;, &#39;meyakini&#39;, &#39;agak&#39;, &#39;semacam&#39;, &#39;sesampai&#39;, &#39;malahan&#39;, &#39;mengibaratkannya&#39;, &#39;gunakan&#39;, &#39;misalnya&#39;, &#39;sejak&#39;, &#39;bagaikan&#39;, &#39;diperbuatnya&#39;, &#39;sebagainya&#39;, &#39;beginikah&#39;, &#39;bila&#39;, &#39;bulan&#39;, &#39;sebegitu&#39;, &#39;terdiri&#39;, &#39;amatlah&#39;, &#39;katakan&#39;, &#39;tiba&#39;, &#39;terhadapnya&#39;, &#39;saling&#39;, &#39;sekalian&#39;, &#39;menjawab&#39;, &#39;nantinya&#39;, &#39;bertutur&#39;, &#39;terhadap&#39;, &#39;kapankah&#39;, &#39;seringnya&#39;, &#39;dahulu&#39;, &#39;meminta&#39;, &#39;wah&#39;, &#39;didatangkan&#39;, &#39;jawabnya&#39;, &#39;memerlukan&#39;, &#39;diantara&#39;, &#39;seenaknya&#39;, &#39;bersiap&#39;, &#39;dijawab&#39;, &#39;berupa&#39;, &#39;macam&#39;, &#39;mulanya&#39;, &#39;apaan&#39;, &#39;dijelaskannya&#39;, &#39;kalaupun&#39;, &#39;terlalu&#39;, &#39;daripada&#39;, &#39;jawaban&#39;, &#39;tuturnya&#39;, &#39;umum&#39;, &#39;masih&#39;, &#39;dipunyai&#39;, &#39;mulailah&#39;, &#39;seingat&#39;, &#39;sesuatu&#39;, &#39;awalnya&#39;, &#39;mengingat&#39;, &#39;sesudah&#39;, &#39;tidakkah&#39;, &#39;semua&#39;, &#39;diingat&#39;, &#39;lanjut&#39;, &#39;biasa&#39;, &#39;sendirian&#39;, &#39;andalah&#39;, &#39;ada&#39;, &#39;diucapkan&#39;, &#39;jumlahnya&#39;, &#39;kepadanya&#39;, &#39;saat&#39;, &#39;pertanyaan&#39;, &#39;semisal&#39;, &#39;semata&#39;, &#39;sebegini&#39;, &#39;termasuk&#39;, &#39;lamanya&#39;, &#39;mengerjakan&#39;, &#39;memberikan&#39;, &#39;begini&#39;, &#39;diungkapkan&#39;, &#39;menjelaskan&#39;, &#39;sajalah&#39;, &#39;semaunya&#39;, &#39;sebaik&#39;, &#39;bawah&#39;, &#39;berbagai&#39;, &#39;sebetulnya&#39;, &#39;sudahkah&#39;, &#39;jadi&#39;, &#39;yaitu&#39;, &#39;memisalkan&#39;, &#39;belum&#39;, &#39;jika&#39;, &#39;hendaknya&#39;, &#39;misalkan&#39;, &#39;selama-lamanya&#39;, &#39;untuk&#39;, &#39;suatu&#39;, &#39;mungkinkah&#39;, &#39;sekurang-kurangnya&#39;, &#39;sempat&#39;, &#39;diperkirakan&#39;, &#39;ialah&#39;, &#39;olehnya&#39;, &#39;sekiranya&#39;, &#39;menanyai&#39;, &#39;sesaat&#39;, &#39;akhir&#39;, &#39;beri&#39;, &#39;biasanya&#39;, &#39;dialah&#39;, &#39;diibaratkannya&#39;, &#39;menuju&#39;, &#39;sedangkan&#39;, &#39;berarti&#39;, &#39;artinya&#39;, &#39;lewat&#39;, &#39;begitulah&#39;, &#39;berapakah&#39;, &#39;bermula&#39;, &#39;akulah&#39;, &#39;mengingatkan&#39;, &#39;sambil&#39;, &#39;sekitar&#39;, &#39;diberi&#39;, &#39;cukuplah&#39;, &#39;sebesar&#39;, &#39;tidaklah&#39;, &#39;siap&#39;, &#39;makanya&#39;, &#39;menunjukkan&#39;, &#39;terjadinya&#39;, &#39;apa&#39;, &#39;dibuat&#39;, &#39;dituturkannya&#39;, &#39;bermaksud&#39;, &#39;menanya&#39;, &#39;menjadi&#39;, &#39;harusnya&#39;, &#39;pukul&#39;, &#39;bagi&#39;, &#39;sepantasnya&#39;, &#39;diantaranya&#39;, &#39;berkenaan&#39;, &#39;sejenak&#39;, &#39;dipersoalkan&#39;, &#39;diperlukannya&#39;, &#39;sepertinya&#39;, &#39;balik&#39;, &#39;yakni&#39;, &#39;bukankah&#39;, &#39;memperbuat&#39;, &#39;memihak&#39;, &#39;agar&#39;, &#39;empat&#39;, &#39;tersebutlah&#39;, &#39;tiap&#39;, &#39;pertama-tama&#39;, &#39;sedikit&#39;, &#39;tertuju&#39;, &#39;asalkan&#39;, &#39;jumlah&#39;, &#39;terdapat&#39;, &#39;satu&#39;, &#39;sejauh&#39;, &#39;dan&#39;, &#39;berakhirnya&#39;, &#39;berlalu&#39;, &#39;bukanlah&#39;, &#39;pentingnya&#39;, &#39;masing&#39;, &#39;panjang&#39;, &#39;berturut-turut&#39;, &#39;tandasnya&#39;, &#39;sebaliknya&#39;, &#39;sudah&#39;, &#39;ibaratkan&#39;, &#39;misal&#39;, &#39;akan&#39;, &#39;setelah&#39;, &#39;adapun&#39;, &#39;sana&#39;, &#39;merasa&#39;, &#39;kitalah&#39;, &#39;berapapun&#39;, &#39;sekurangnya&#39;, &#39;melihat&#39;, &#39;per&#39;, &#39;datang&#39;, &#39;kemudian&#39;, &#39;keduanya&#39;, &#39;lah&#39;, &#39;ucap&#39;, &#39;anda&#39;, &#39;seharusnya&#39;, &#39;pastilah&#39;, &#39;setidaknya&#39;, &#39;selamanya&#39;, &#39;katakanlah&#39;, &#39;inikah&#39;, &#39;kesampaian&#39;, &#39;siapakah&#39;, &#39;didapat&#39;, &#39;kini&#39;, &#39;ditanyakan&#39;, &#39;telah&#39;, &#39;berkali-kali&#39;, &#39;buat&#39;, &#39;haruslah&#39;, &#39;kalaulah&#39;, &#39;adanya&#39;, &#39;banyak&#39;, &#39;dilihat&#39;, &#39;kata&#39;, &#39;digunakan&#39;, &#39;menanti-nanti&#39;, &#39;sekadarnya&#39;, &#39;tentu&#39;, &#39;bisa&#39;, &#39;belumlah&#39;, &#39;mengetahui&#39;, &#39;entahlah&#39;, &#39;mendatang&#39;, &#39;jangankan&#39;, &#39;jadilah&#39;, &#39;keterlaluan&#39;, &#39;bapak&#39;, &#39;masing-masing&#39;, &#39;menegaskan&#39;, &#39;terjadi&#39;, &#39;ternyata&#39;, &#39;disebutkannya&#39;, &#39;lalu&#39;, &#39;dirinya&#39;, &#39;ingin&#39;, &#39;menaiki&#39;, &#39;se&#39;, &#39;ungkapnya&#39;, &#39;berapa&#39;, &#39;akankah&#39;, &#39;ditambahkan&#39;, &#39;wahai&#39;, &#39;sekali&#39;, &#39;nah&#39;, &#39;karena&#39;, &#39;rupanya&#39;, &#39;terkira&#39;, &#39;supaya&#39;, &#39;berlebihan&#39;, &#39;setinggi&#39;, &#39;menunjuk&#39;, &#39;seolah-olah&#39;, &#39;guna&#39;, &#39;betulkah&#39;, &#39;janganlah&#39;, &#39;dipertanyakan&#39;, &#39;terlihat&#39;, &#39;terutama&#39;, &#39;makin&#39;, &#39;tanyakan&#39;, &#39;diketahuinya&#39;, &#39;melakukan&#39;, &#39;dilalui&#39;, &#39;tidak&#39;, &#39;diakhirinya&#39;, &#39;terasa&#39;, &#39;seluruhnya&#39;, &#39;kira&#39;, &#39;jelas&#39;, &#39;juga&#39;, &#39;sebagian&#39;, &#39;saatnya&#39;, &#39;segera&#39;, &#39;bagian&#39;, &#39;manalagi&#39;, &#39;para&#39;, &#39;sebagaimana&#39;, &#39;sesama&#39;, &#39;terbanyak&#39;, &#39;tertentu&#39;, &#39;sedikitnya&#39;, &#39;sebuah&#39;, &#39;seseorang&#39;, &#39;siapa&#39;, &#39;menunjuknya&#39;, &#39;masalah&#39;, &#39;serupa&#39;, &#39;tadi&#39;, &#39;diminta&#39;, &#39;kelamaan&#39;, &#39;sendiri&#39;, &#39;soalnya&#39;, &#39;dimaksudnya&#39;, &#39;beginian&#39;, &#39;dimaksud&#39;, &#39;kala&#39;, &#39;merekalah&#39;, &#39;semakin&#39;, &#39;seperlunya&#39;, &#39;menuturkan&#39;, &#39;bagai&#39;, &#39;rasanya&#39;, &#39;kecil&#39;, &#39;pihak&#39;, &#39;melalui&#39;, &#39;dimaksudkannya&#39;, &#39;kembali&#39;, &#39;bukan&#39;, &#39;tahu&#39;, &#39;tersampaikan&#39;, &#39;waktu&#39;, &#39;punya&#39;, &#39;sini&#39;, &#39;keadaan&#39;, &#39;sekali-kali&#39;, &#39;dari&#39;, &#39;kemungkinan&#39;, &#39;sekitarnya&#39;, &#39;akhirnya&#39;, &#39;paling&#39;, &#39;pernah&#39;, &#39;terakhir&#39;, &#39;jelasnya&#39;, &#39;namun&#39;, &#39;apatah&#39;, &#39;penting&#39;, &#39;berkehendak&#39;, &#39;mengatakan&#39;, &#39;jikalau&#39;, &#39;sebelumnya&#39;, &#39;demikianlah&#39;, &#39;tanya&#39;, &#39;padahal&#39;, &#39;ditanyai&#39;, &#39;lanjutnya&#39;, &#39;ditujukan&#39;, &#39;setiba&#39;, &#39;sendirinya&#39;, &#39;seberapa&#39;, &#39;sebenarnya&#39;, &#39;ujar&#39;, &#39;pada&#39;, &#39;pertama&#39;, &#39;kelihatan&#39;, &#39;menurut&#39;, &#39;menanti&#39;, &#39;wong&#39;, &#39;dimungkinkan&#39;, &#39;dibuatnya&#39;, &#39;mengatakannya&#39;, &#39;apakah&#39;, &#39;ungkap&#39;, &#39;menandaskan&#39;, &#39;tetapi&#39;, &#39;benar&#39;, &#39;mirip&#39;, &#39;akhiri&#39;, &#39;atas&#39;, &#39;diberikannya&#39;, &#39;yang&#39;, &#39;sedemikian&#39;, &#39;keseluruhan&#39;, &#39;benarlah&#39;, &#39;mungkin&#39;, &#39;dimintai&#39;, &#39;kelihatannya&#39;, &#39;tutur&#39;, &#39;berturut&#39;, &#39;bakal&#39;, &#39;terjadilah&#39;, &#39;sehingga&#39;, &#39;kemungkinannya&#39;, &#39;bolehlah&#39;, &#39;sampaikan&#39;, &#39;bagaimana&#39;, &#39;percuma&#39;, &#39;mengakhiri&#39;, &#39;mula&#39;, &#39;sama&#39;, &#39;teringat-ingat&#39;, &#39;maupun&#39;, &#39;melihatnya&#39;, &#39;cukupkah&#39;, &#39;begitukah&#39;, &#39;entah&#39;, &#39;ditegaskan&#39;, &#39;antara&#39;, &#39;ditunjuknya&#39;, &#39;lagi&#39;, &#39;dimulainya&#39;, &#39;cara&#39;, &#39;hal&#39;, &#39;ke&#39;, &#39;lima&#39;, &#39;dia&#39;, &#39;dikatakannya&#39;, &#39;pak&#39;, &#39;setidak-tidaknya&#39;, &#39;turut&#39;, &#39;dini&#39;, &#39;bermacam-macam&#39;, &#39;seorang&#39;, &#39;usai&#39;, &#39;inginkan&#39;, &#39;diucapkannya&#39;, &#39;pihaknya&#39;, &#39;dituturkan&#39;, &#39;toh&#39;, &#39;meyakinkan&#39;, &#39;sekecil&#39;, &#39;berlangsung&#39;, &#39;kiranya&#39;, &#39;kamu&#39;, &#39;hendak&#39;, &#39;berikan&#39;, &#39;mempersoalkan&#39;, &#39;ucapnya&#39;, &#39;baik&#39;, &#39;disini&#39;, &#39;belakangan&#39;, &#39;menantikan&#39;, &#39;tadinya&#39;, &#39;berapalah&#39;, &#39;katanya&#39;, &#39;menyiapkan&#39;, &#39;selaku&#39;, &#39;keinginan&#39;, &#39;mempergunakan&#39;, &#39;jelaslah&#39;, &#39;mereka&#39;, &#39;tandas&#39;, &#39;sekaligus&#39;, &#39;demi&#39;, &#39;ujarnya&#39;, &#39;diri&#39;, &#39;tampak&#39;, &#39;dikira&#39;, &#39;soal&#39;, &#39;kok&#39;, &#39;apalagi&#39;, &#39;secara&#39;, &#39;cuma&#39;, &#39;sudahlah&#39;, &#39;bermacam&#39;, &#39;terdahulu&#39;, &#39;waktunya&#39;, &#39;sejumlah&#39;, &#39;masa&#39;, &#39;bagaimanakah&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proses setiap kalimat, menghapus stopwords</span>
+<span class="n">berita_no_stopwords</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">berita_tokenized</span><span class="p">:</span>
+    <span class="c1"># Tokenisasi kata di dalam setiap kalimat</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="c1"># Hapus stopwords</span>
+    <span class="n">words_no_stop</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+    <span class="c1"># Gabungkan kembali kata-kata tanpa stopwords menjadi kalimat</span>
+    <span class="n">cleaned_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words_no_stop</span><span class="p">)</span>
+    <span class="n">berita_no_stopwords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_sentence</span><span class="p">)</span>
+
+<span class="n">berita_no_stopwords</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;berkeringat alami tubuh mendinginkan dirinya.&#39;,
+ &#39;orang dewasa anakanak bayi berkeringat respon panas.&#39;,
+ &#39;berkeringat malam ruangan hangat.&#39;,
+ &#39;berkeringat tidur normal anak orang dewasa penyebab langsungnya.&#39;,
+ &#39;berkeringat malam disertai gejala gangguan kesehatan terdeteksi.&#39;,
+ &#39;kondisi dialami anak menyebabkannya berkeringat malam mimpi burukmimpi buruk intens teror anak ketakutan.&#39;,
+ &#39;ngeri dialaminya nyata anak isi mimpinya bangun.&#39;,
+ &#39;anak mengalami mimpi buruk terkadang berkeringat bajunya basah.&#39;,
+ &#39;tanda terbangun bernapas berat.&#39;,
+ &#39;baca tangan berkeringat kenali 6 penyebabnya sindrom sleep apneaanak berkeringat tidur dibarengi mengorok bernapas mulut gelisah tidur mengalami sindrom obstruktif sleep apnea henti napas tidur.&#39;,
+ &#39;anak mengalami sleep apnea tidur nyenyak lemas terbangun.&#39;,
+ &#39;mengalami sakit kepala.&#39;,
+ &#39;sleep apnea anak mengalami kegemukan tumbuh lambat dibanding teman seusianya.&#39;,
+ &#39;tidur nyenyak prestasi akademiknya cenderung buruk.&#39;,
+ &#39;hiperhidrosis idiopatikhiperhidrosis idiopatik kondisi berkeringat malam penyebab jelas.&#39;,
+ &#39;hiperhidrosis keringat area wajah kaki tangan.&#39;,
+ &#39;hiperhidrosis idiopatik berdampak serius gangguan kesehatan anak orang dewasa.&#39;,
+ &#39;keringat berlebih cemas orang lain.&#39;,
+ &#39;baca 6 pantangan biang keringat perawatannya kankerpenyebab serius berkeringat malam leukemia tipe kanker lainnya.&#39;,
+ &#39;survei 30 persen pasien didiagnosis leukemia memiliki gejala berkeringat tidur.&#39;,
+ &#39;membedakannya keringat mengucur deras baju sprei basah.&#39;,
+ &#39;dokter keringat malam dikhawatirkan berkonsultasi dokter anak keringat malam tandatanda lainnya.&#39;,
+ &#39;penelitian anakanak berkeringat malam mengalami penyakit pernapasan terkait tidur lainnya.&#39;,
+ &#39;anakanak mengalami ledakan amarah hiperaktif.&#39;,
+ &#39;berkeringat malam normal penyebab khusus.&#39;,
+ &#39;baca idai 3 penyakit autoimun menyerang anakanak&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tf-idf">
+<h2>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vect</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">vect_matrix</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">berita_no_stopwords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terms</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">vect_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">terms</span><span class="p">)</span>
+<span class="n">tfidf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>30</th>
+      <th>akademiknya</th>
+      <th>alami</th>
+      <th>amarah</th>
+      <th>anak</th>
+      <th>anakanak</th>
+      <th>apnea</th>
+      <th>apneaanak</th>
+      <th>area</th>
+      <th>autoimun</th>
+      <th>...</th>
+      <th>terbangun</th>
+      <th>terdeteksi</th>
+      <th>terkadang</th>
+      <th>terkait</th>
+      <th>teror</th>
+      <th>tidur</th>
+      <th>tipe</th>
+      <th>tubuh</th>
+      <th>tumbuh</th>
+      <th>wajah</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.487284</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.487284</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.334283</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.270883</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.303322</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.451131</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.365943</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.314107</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.231358</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.256520</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.440368</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.469352</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.163021</td>
+      <td>0.201858</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.394997</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.259914</td>
+      <td>0.000000</td>
+      <td>0.360348</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.395978</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.291040</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.205664</td>
+      <td>0.000000</td>
+      <td>0.285135</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.353063</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.000000</td>
+      <td>0.453364</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.295716</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.450702</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.450702</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.231162</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.317604</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.348958</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.227615</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.173431</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.295895</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.396821</td>
+      <td>0.000000</td>
+      <td>0.258834</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.504145</td>
+      <td>0.000000</td>
+      <td>0.375923</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.333611</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.447401</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>26 rows × 122 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id1">
+<h2>Cosine Similarity<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung cosine similarity antara semua pasangan kalimat</span>
+<span class="n">cosine</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">vect_matrix</span><span class="p">,</span> <span class="n">vect_matrix</span><span class="p">)</span>
+
+<span class="c1"># Membuat DataFrame untuk cosine similarity</span>
+<span class="n">cosine_sim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cosine</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">berita_no_stopwords</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">berita_no_stopwords</span><span class="p">)))</span>
+
+<span class="c1"># Menampilkan matriks cosine similarity</span>
+<span class="n">cosine_sim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.000000</td>
+      <td>0.046199</td>
+      <td>0.064524</td>
+      <td>0.047922</td>
+      <td>0.046490</td>
+      <td>0.032370</td>
+      <td>0.000000</td>
+      <td>0.045381</td>
+      <td>0.000000</td>
+      <td>0.041604</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.032730</td>
+      <td>0.035961</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.040893</td>
+      <td>0.000000</td>
+      <td>0.059591</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.046199</td>
+      <td>1.000000</td>
+      <td>0.059362</td>
+      <td>0.295973</td>
+      <td>0.042771</td>
+      <td>0.029780</td>
+      <td>0.000000</td>
+      <td>0.041751</td>
+      <td>0.000000</td>
+      <td>0.038276</td>
+      <td>...</td>
+      <td>0.214948</td>
+      <td>0.124027</td>
+      <td>0.030112</td>
+      <td>0.033084</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.136535</td>
+      <td>0.125665</td>
+      <td>0.054824</td>
+      <td>0.111521</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.064524</td>
+      <td>0.059362</td>
+      <td>1.000000</td>
+      <td>0.061576</td>
+      <td>0.155583</td>
+      <td>0.108327</td>
+      <td>0.000000</td>
+      <td>0.058311</td>
+      <td>0.000000</td>
+      <td>0.053458</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.109533</td>
+      <td>0.046207</td>
+      <td>0.000000</td>
+      <td>0.126510</td>
+      <td>0.136853</td>
+      <td>0.000000</td>
+      <td>0.199425</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.047922</td>
+      <td>0.295973</td>
+      <td>0.061576</td>
+      <td>1.000000</td>
+      <td>0.044367</td>
+      <td>0.130019</td>
+      <td>0.062671</td>
+      <td>0.112795</td>
+      <td>0.000000</td>
+      <td>0.159515</td>
+      <td>...</td>
+      <td>0.285584</td>
+      <td>0.128653</td>
+      <td>0.031235</td>
+      <td>0.103359</td>
+      <td>0.000000</td>
+      <td>0.046980</td>
+      <td>0.117536</td>
+      <td>0.000000</td>
+      <td>0.444037</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.046490</td>
+      <td>0.042771</td>
+      <td>0.155583</td>
+      <td>0.044367</td>
+      <td>1.000000</td>
+      <td>0.078051</td>
+      <td>0.000000</td>
+      <td>0.042014</td>
+      <td>0.000000</td>
+      <td>0.038517</td>
+      <td>...</td>
+      <td>0.281991</td>
+      <td>0.000000</td>
+      <td>0.078920</td>
+      <td>0.157278</td>
+      <td>0.000000</td>
+      <td>0.091152</td>
+      <td>0.098604</td>
+      <td>0.000000</td>
+      <td>0.143688</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.032370</td>
+      <td>0.029780</td>
+      <td>0.108327</td>
+      <td>0.130019</td>
+      <td>0.078051</td>
+      <td>1.000000</td>
+      <td>0.084664</td>
+      <td>0.322282</td>
+      <td>0.000000</td>
+      <td>0.026818</td>
+      <td>...</td>
+      <td>0.084592</td>
+      <td>0.000000</td>
+      <td>0.054949</td>
+      <td>0.023181</td>
+      <td>0.000000</td>
+      <td>0.126932</td>
+      <td>0.068655</td>
+      <td>0.000000</td>
+      <td>0.100045</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.062671</td>
+      <td>0.000000</td>
+      <td>0.084664</td>
+      <td>1.000000</td>
+      <td>0.059348</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.053481</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.040125</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.045381</td>
+      <td>0.041751</td>
+      <td>0.058311</td>
+      <td>0.112795</td>
+      <td>0.042014</td>
+      <td>0.322282</td>
+      <td>0.059348</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.071242</td>
+      <td>...</td>
+      <td>0.059298</td>
+      <td>0.000000</td>
+      <td>0.029579</td>
+      <td>0.032499</td>
+      <td>0.138500</td>
+      <td>0.044489</td>
+      <td>0.103094</td>
+      <td>0.084026</td>
+      <td>0.053853</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.084080</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.041604</td>
+      <td>0.038276</td>
+      <td>0.053458</td>
+      <td>0.159515</td>
+      <td>0.038517</td>
+      <td>0.026818</td>
+      <td>0.000000</td>
+      <td>0.071242</td>
+      <td>0.084080</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.068931</td>
+      <td>0.119701</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.166435</td>
+      <td>0.038516</td>
+      <td>0.049371</td>
+      <td>0.058903</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.158685</td>
+      <td>0.000000</td>
+      <td>0.095114</td>
+      <td>0.060133</td>
+      <td>0.141040</td>
+      <td>0.185853</td>
+      <td>0.325281</td>
+      <td>...</td>
+      <td>0.060082</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.066245</td>
+      <td>0.000000</td>
+      <td>0.045077</td>
+      <td>0.142344</td>
+      <td>0.085138</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.108070</td>
+      <td>0.000000</td>
+      <td>0.049538</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.097384</td>
+      <td>0.123722</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.055711</td>
+      <td>0.000000</td>
+      <td>0.075261</td>
+      <td>0.047582</td>
+      <td>0.111602</td>
+      <td>0.000000</td>
+      <td>0.166422</td>
+      <td>...</td>
+      <td>0.047542</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.035668</td>
+      <td>0.053026</td>
+      <td>0.067367</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.089697</td>
+      <td>0.000000</td>
+      <td>0.092880</td>
+      <td>0.000000</td>
+      <td>0.130214</td>
+      <td>0.000000</td>
+      <td>0.116807</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.067309</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.076541</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.044222</td>
+      <td>0.040685</td>
+      <td>0.147994</td>
+      <td>0.172356</td>
+      <td>0.106631</td>
+      <td>0.180402</td>
+      <td>0.000000</td>
+      <td>0.039965</td>
+      <td>0.000000</td>
+      <td>0.036638</td>
+      <td>...</td>
+      <td>0.245186</td>
+      <td>0.000000</td>
+      <td>0.075070</td>
+      <td>0.031669</td>
+      <td>0.000000</td>
+      <td>0.086705</td>
+      <td>0.093794</td>
+      <td>0.000000</td>
+      <td>0.298524</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.071652</td>
+      <td>...</td>
+      <td>0.116653</td>
+      <td>0.108340</td>
+      <td>0.069154</td>
+      <td>0.000000</td>
+      <td>0.086951</td>
+      <td>0.129653</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.000000</td>
+      <td>0.214948</td>
+      <td>0.000000</td>
+      <td>0.285584</td>
+      <td>0.281991</td>
+      <td>0.084592</td>
+      <td>0.053481</td>
+      <td>0.059298</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>0.109788</td>
+      <td>0.099263</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.040091</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.000000</td>
+      <td>0.124027</td>
+      <td>0.000000</td>
+      <td>0.128653</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.109788</td>
+      <td>1.000000</td>
+      <td>0.076346</td>
+      <td>0.000000</td>
+      <td>0.095993</td>
+      <td>0.143136</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.032730</td>
+      <td>0.030112</td>
+      <td>0.109533</td>
+      <td>0.031235</td>
+      <td>0.078920</td>
+      <td>0.054949</td>
+      <td>0.000000</td>
+      <td>0.029579</td>
+      <td>0.000000</td>
+      <td>0.068931</td>
+      <td>...</td>
+      <td>0.099263</td>
+      <td>0.076346</td>
+      <td>1.000000</td>
+      <td>0.110726</td>
+      <td>0.061273</td>
+      <td>0.217212</td>
+      <td>0.151620</td>
+      <td>0.000000</td>
+      <td>0.101159</td>
+      <td>0.092678</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.035961</td>
+      <td>0.033084</td>
+      <td>0.046207</td>
+      <td>0.103359</td>
+      <td>0.157278</td>
+      <td>0.023181</td>
+      <td>0.000000</td>
+      <td>0.032499</td>
+      <td>0.000000</td>
+      <td>0.119701</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.110726</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.088199</td>
+      <td>0.000000</td>
+      <td>0.042675</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.138500</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.095993</td>
+      <td>0.061273</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.114878</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.126510</td>
+      <td>0.046980</td>
+      <td>0.091152</td>
+      <td>0.126932</td>
+      <td>0.040125</td>
+      <td>0.044489</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.040091</td>
+      <td>0.143136</td>
+      <td>0.217212</td>
+      <td>0.000000</td>
+      <td>0.114878</td>
+      <td>1.000000</td>
+      <td>0.157235</td>
+      <td>0.000000</td>
+      <td>0.116838</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.040893</td>
+      <td>0.136535</td>
+      <td>0.136853</td>
+      <td>0.117536</td>
+      <td>0.098604</td>
+      <td>0.068655</td>
+      <td>0.000000</td>
+      <td>0.103094</td>
+      <td>0.000000</td>
+      <td>0.166435</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.151620</td>
+      <td>0.088199</td>
+      <td>0.000000</td>
+      <td>0.157235</td>
+      <td>1.000000</td>
+      <td>0.186950</td>
+      <td>0.126390</td>
+      <td>0.238539</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.000000</td>
+      <td>0.125665</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.084026</td>
+      <td>0.000000</td>
+      <td>0.038516</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.186950</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.125412</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.059591</td>
+      <td>0.054824</td>
+      <td>0.199425</td>
+      <td>0.444037</td>
+      <td>0.143688</td>
+      <td>0.100045</td>
+      <td>0.000000</td>
+      <td>0.053853</td>
+      <td>0.000000</td>
+      <td>0.049371</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.101159</td>
+      <td>0.042675</td>
+      <td>0.000000</td>
+      <td>0.116838</td>
+      <td>0.126390</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.000000</td>
+      <td>0.111521</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.058903</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.092678</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.238539</td>
+      <td>0.125412</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>26 rows × 26 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="matrik-adjensi">
+<h2>Matrik Adjensi<a class="headerlink" href="#matrik-adjensi" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengatur threshold untuk membangun matriks adjensi</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="c1"># Menangani nilai NaN pada cosine_sim</span>
+<span class="n">cosine_sim_filled</span> <span class="o">=</span> <span class="n">cosine_sim</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Membuat matriks adjensi berdasarkan cosine similarity</span>
+<span class="n">adjacency</span> <span class="o">=</span> <span class="p">(</span><span class="n">cosine_sim_filled</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">adjacency_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span>
+                             <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">berita_no_stopwords</span><span class="p">))],</span>
+                             <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">berita_no_stopwords</span><span class="p">))])</span>
+
+<span class="n">adjacency_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>26 rows × 26 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id2">
+<h2>Graph<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat graf</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># Tambahkan node (kalimat)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan edge (hubungan) antara kalimat berdasarkan matriks adjensi</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
+        <span class="n">similarity</span> <span class="o">=</span> <span class="n">adjacency_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">similarity</span><span class="p">)</span>
+
+<span class="c1"># Visualisasikan grafik dengan tata letak &quot;circular&quot;</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Membuat label node yang hanya menggunakan nomor indeks</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;K </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()}</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Graf Hubungan Kalimat Berdasarkan Matriks Adjacency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/56b058b31353cf920cd69d4a0b4b9c8e530e4cc918ad4972e8a0aecf22ab84a7.png" src="_images/56b058b31353cf920cd69d4a0b4b9c8e530e4cc918ad4972e8a0aecf22ab84a7.png" />
+</div>
+</div>
+</section>
+<section id="closeness-centrality">
+<h2>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung Closeness Centrality</span>
+<span class="n">closeness_centrality</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Mengonversi hasil Closeness Centrality menjadi DataFrame untuk kemudahan pembacaan</span>
+<span class="n">closeness_centrality_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">closeness_centrality</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">,</span> <span class="s1">&#39;Closeness Centrality&#39;</span><span class="p">])</span>
+
+<span class="c1"># Mengurutkan DataFrame berdasarkan Closeness Centrality dalam urutan menurun</span>
+<span class="n">closeness_centrality_df</span> <span class="o">=</span> <span class="n">closeness_centrality_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Closeness Centrality&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan hasil</span>
+<span class="n">closeness_centrality_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Node</th>
+      <th>Closeness Centrality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16</th>
+      <td>16</td>
+      <td>0.166667</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>0.142857</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0.125000</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>14</td>
+      <td>0.125000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>0.120000</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>24</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>0.100000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13</td>
+      <td>0.072000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>0.072000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>0.072000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>22</td>
+      <td>0.040000</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>21</td>
+      <td>0.040000</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>18</td>
+      <td>0.040000</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>25</td>
+      <td>0.040000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.040000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>0.040000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>15</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>17</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>19</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>20</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>23</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="hasil-rangkuman-dokumen">
+<h2>Hasil Rangkuman Dokumen<a class="headerlink" href="#hasil-rangkuman-dokumen" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengambil tiga baris teratas dari DataFrame yang sudah diurutkan</span>
+<span class="n">top_three_closeness</span> <span class="o">=</span> <span class="n">closeness_centrality_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Mendapatkan indeks node dari tiga baris teratas</span>
+<span class="n">top_node_closeness</span> <span class="o">=</span> <span class="n">top_three_closeness</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">]</span>
+
+<span class="c1"># Membuat daftar kalimat berdasarkan indeks node</span>
+<span class="n">extracted_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">berita_tokenized</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span> <span class="k">for</span> <span class="n">node_index</span> <span class="ow">in</span> <span class="n">top_node_closeness</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">node_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">berita_tokenized</span><span class="p">)]</span>
+
+<span class="c1"># Menampilkan kalimat yang sesuai dengan node-node teratas</span>
+<span class="k">for</span> <span class="n">node_index</span> <span class="ow">in</span> <span class="n">top_node_closeness</span><span class="p">:</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">node_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">berita_tokenized</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K</span><span class="si">{</span><span class="n">node_index</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">berita_tokenized</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>K16: hiperhidrosis idiopatik biasanya tidak berdampak serius pada gangguan kesehatan anak atau pun orang dewasa.
+K3: berkeringat saat tidur sebenarnya hal yang normal pada anak atau orang dewasa dan tidak selalu ada penyebab langsungnya.
+K1: bukan cuma orang dewasa anakanak bahkan bayi juga akan berkeringat sebagai respon terhadap panas.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Logistic%20Regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Klasifikasi Berita</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Graph dan Summarization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-cosine-similarity">Konsep Dasar Cosine Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nilai-cosine-similarity">Nilai Cosine Similarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjacency">Matriks Adjacency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-matriks-adjacency">Konsep Dasar Matriks Adjacency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-matriks-adjacency">Contoh Matriks Adjacency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-utama-graf">Komponen Utama Graf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-tipe-graf">Tipe-Tipe Graf</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representasi-graf">Representasi Graf</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closness-centrality">Closness Centrality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-closeness-centrality">Konsep Dasar Closeness Centrality</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summarization">Summarization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-tipe-summarization">Tipe-Tipe Summarization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-dalam-proses-summarization">Langkah-Langkah dalam Proses Summarization</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library">Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-case">Lower Case</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-text">Clean Text</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenisasi">Tokenisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">Stopword Removal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrik-adjensi">Matrik Adjensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">Closeness Centrality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-rangkuman-dokumen">Hasil Rangkuman Dokumen</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
