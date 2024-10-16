@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Konsep Crawling &#8212; My sample book</title>
+    <title>Crawling Berita &#8212; My sample book</title>
   
   
   
@@ -180,13 +180,9 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Konsep Crawling</a></li>
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Crawling Berita</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Model.html">Vector Space Model</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Klasifikasi Berita</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Graph%20dan%20Summarization.html">Summarization</a></li>
@@ -377,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Konsep Crawling</h1>
+    <h1>Crawling Berita</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -387,27 +383,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Konsep Crawling</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis">Jenis-Jenis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-web-crawling">Contoh Web Crawling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Crawling Berita</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-crawling">Konsep Crawling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teknik-dan-cara-crawling-menggunakan-python">Teknik dan Cara Crawling Menggunakan Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-dan-library-yang-digunakan">Tool dan Library Yang Digunakan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penggunaan">Contoh Penggunaan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting">Tips Penting:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#teknik-dan-cara-crawling-menggunakan-python">Teknik dan Cara Crawling Menggunakan Python</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-dan-library-yang-digunakan">Tool dan Library Yang Digunakan</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penggunaan">Contoh Penggunaan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting">Tips Penting:</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling">Proses Crawling</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementasi">Code Implementasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-crawling">Output Crawling</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-crawling">Output Crawling</a></li>
 </ul>
 
             </nav>
@@ -423,16 +415,15 @@ document.write(`
   <p>Nama : Ahmad Nasrudin Jamil</p>
 <p>Nim  : 210411100098</p>
 <p>Kelas : Pencarian dan Penambangan Web B</p>
-<section class="tex2jax_ignore mathjax_ignore" id="konsep-crawling">
-<h1>Konsep Crawling<a class="headerlink" href="#konsep-crawling" title="Link to this heading">#</a></h1>
-<section id="pengertian">
-<h2>Pengertian<a class="headerlink" href="#pengertian" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="crawling-berita">
+<h1>Crawling Berita<a class="headerlink" href="#crawling-berita" title="Link to this heading">#</a></h1>
+<section id="konsep-crawling">
+<h2>Konsep Crawling<a class="headerlink" href="#konsep-crawling" title="Link to this heading">#</a></h2>
+<p><strong>Pengertian</strong></p>
 <p>Crawling adalah proses otomatis yang dilakukan oleh perangkat lunak, yang biasa disebut <strong>web crawler</strong> atau <strong>spider</strong>, untuk menelusuri dan mengumpulkan informasi dari halaman-halaman web di internet. Web crawler secara sistematis mengikuti tautan dari satu halaman ke halaman lainnya, mengindeks konten yang ditemukan, dan menyimpannya dalam basis data atau sistem pengindeksan. Proses ini memungkinkan mesin pencari, seperti Google, untuk membangun indeks besar dari halaman web sehingga pengguna dapat mencari informasi secara efisien.</p>
 <p>Dalam crawling, web crawler dimulai dari satu atau lebih URL yang disebut <strong>seed</strong>, kemudian mengakses halaman tersebut, dan memproses informasi yang tersedia, termasuk tautan ke halaman lain. Crawler kemudian mengikuti tautan tersebut untuk menemukan halaman web lainnya. Informasi yang diambil oleh crawler biasanya mencakup teks, metadata, dan struktur halaman web.</p>
 <p>Crawler diatur dengan kebijakan tertentu, seperti <strong>robots.txt</strong> yang ditetapkan oleh pemilik situs web untuk membatasi bagian situs mana yang boleh atau tidak boleh diakses oleh crawler. Tujuan dari crawling adalah untuk memastikan bahwa mesin pencari atau aplikasi lain yang memerlukan data web memiliki akses ke konten yang relevan dan up-to-date.</p>
-</section>
-<section id="tujuan">
-<h2>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<p><strong>Tujuan</strong></p>
 <p>Tujuan dari crawling adalah untuk mengumpulkan, mengindeks, dan memperbarui informasi dari halaman-halaman web di internet. Secara lebih rinci, tujuan-tujuan crawling meliputi:</p>
 <ol class="arabic simple">
 <li><p><strong>Membangun Indeks Mesin Pencari:</strong> Web crawler digunakan oleh mesin pencari seperti Google untuk mengumpulkan data dari halaman web. Informasi ini kemudian diindeks, sehingga ketika pengguna melakukan pencarian, mesin pencari dapat menemukan dan menampilkan hasil yang relevan dengan cepat.</p></li>
@@ -442,9 +433,7 @@ document.write(`
 <li><p><strong>Mengoptimalkan Pengalaman Pengguna:</strong> Dengan memastikan bahwa konten yang diindeks relevan dan berkualitas, crawling membantu mesin pencari memberikan pengalaman pencarian yang lebih baik bagi pengguna.</p></li>
 <li><p><strong>Pemantauan Situs Web:</strong> Crawling juga digunakan untuk memantau situs web, seperti untuk mengidentifikasi masalah teknis, memastikan kepatuhan terhadap standar SEO, atau melacak perubahan konten.</p></li>
 </ol>
-</section>
-<section id="jenis-jenis">
-<h2>Jenis-Jenis<a class="headerlink" href="#jenis-jenis" title="Link to this heading">#</a></h2>
+<p><strong>Jenis-Jenis</strong></p>
 <ol class="arabic simple">
 <li><p><strong>News Crawling</strong> adalah proses pengumpulan data dari situs berita dan portal berita online. Tujuannya adalah untuk memastikan bahwa mesin pencari memiliki informasi terkini dan relevan dari berbagai sumber berita sehingga pengguna dapat menemukan berita terbaru dengan cepat.</p></li>
 <li><p><strong>Social Media Crawling</strong> adalah proses pengumpulan data dari platform media sosial seperti Twitter, Facebook, dan Instagram. Tujuannya adalah untuk mengumpulkan data yang dapat digunakan untuk analisis tren, pemantauan merek, atau riset pemasaran, serta memahami opini publik atau reaksi terhadap peristiwa tertentu.</p></li>
@@ -452,9 +441,7 @@ document.write(`
 <li><p><strong>Image Crawling</strong> adalah proses pengumpulan gambar dari web. Tujuannya adalah untuk mengindeks gambar untuk mesin pencari gambar, melatih model pengenalan gambar, atau untuk riset yang memerlukan pengumpulan data visual.</p></li>
 <li><p><strong>Email Crawling</strong> adalah proses pengumpulan alamat email dari berbagai situs web. Tujuannya adalah untuk mengumpulkan alamat email untuk keperluan pemasaran, membangun daftar pelanggan, atau dalam beberapa kasus, untuk aktivitas spam.</p></li>
 </ol>
-</section>
-<section id="contoh-web-crawling">
-<h2>Contoh Web Crawling<a class="headerlink" href="#contoh-web-crawling" title="Link to this heading">#</a></h2>
+<p><strong>Contoh Web Crawling</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Duckduc Bot</strong> adalah bot web yang digunakan oleh mesin pencari DuckDuckGo. Tujuannya adalah untuk mengindeks halaman web sehingga informasi tersebut dapat muncul dalam hasil pencarian DuckDuckGo, yang menonjolkan privasi pengguna sebagai keunggulan utamanya.</p></li>
 <li><p><strong>Baiduspider</strong> adalah bot web yang dimiliki oleh Baidu, mesin pencari terbesar di Tiongkok. Tujuannya adalah untuk mengindeks halaman-halaman web, terutama untuk pasar Tiongkok, agar konten tersebut dapat diakses melalui hasil pencarian Baidu.</p></li>
@@ -464,9 +451,7 @@ document.write(`
 <li><p><strong>Bingbot</strong> adalah bot web milik Microsoft yang digunakan oleh mesin pencari Bing. Tujuannya adalah untuk mengindeks konten dari halaman web di seluruh dunia sehingga informasi tersebut dapat ditemukan dalam hasil pencarian Bing.</p></li>
 <li><p><strong>Facebook External Hit</strong> Hit adalah bot yang digunakan oleh Facebook untuk merayapi halaman web ketika pengguna membagikan tautan di platform tersebut. Tujuannya adalah untuk mengumpulkan metadata dan gambar dari halaman web guna membuat pratinjau (preview) yang menarik saat tautan dibagikan di Facebook.</p></li>
 </ol>
-</section>
-<section id="cara-kerja">
-<h2>Cara Kerja<a class="headerlink" href="#cara-kerja" title="Link to this heading">#</a></h2>
+<p><strong>Cara Kerja</strong></p>
 <p>Cara kerja crawling melibatkan beberapa langkah utama yang dilakukan oleh program komputer yang disebut crawler atau spider. Berikut adalah penjelasan langkah demi langkah mengenai cara kerja crawling:</p>
 <ol class="arabic simple">
 <li><p><strong>Inisialisasi URL</strong>: Crawling dimulai dengan daftar URL awal yang disebut sebagai “seed URLs.” URL ini biasanya diambil dari halaman-halaman web yang sudah diketahui penting atau populer, seperti halaman beranda situs terkenal.</p></li>
@@ -482,13 +467,12 @@ document.write(`
 </ol>
 <p>Dengan mengikuti langkah-langkah ini, crawler dapat menjelajahi web secara efisien, mengumpulkan data yang dibutuhkan, dan memastikan mesin pencari memiliki indeks yang up-to-date dan relevan untuk digunakan dalam menampilkan hasil pencarian kepada pengguna.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="teknik-dan-cara-crawling-menggunakan-python">
-<h1>Teknik dan Cara Crawling Menggunakan Python<a class="headerlink" href="#teknik-dan-cara-crawling-menggunakan-python" title="Link to this heading">#</a></h1>
+<section id="teknik-dan-cara-crawling-menggunakan-python">
+<h2>Teknik dan Cara Crawling Menggunakan Python<a class="headerlink" href="#teknik-dan-cara-crawling-menggunakan-python" title="Link to this heading">#</a></h2>
 <p>Crawling menggunakan Python melibatkan beberapa teknik yang memungkinkan pengumpulan data dari situs web secara otomatis. Teknik dasar termasuk penggunaan pustaka <code class="docutils literal notranslate"><span class="pre">requests</span></code> untuk mengunduh halaman web, di mana kontennya dapat diambil dan diproses. Setelah halaman diunduh, pustaka <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> sering digunakan untuk memparsing dokumen HTML atau XML, memungkinkan ekstraksi elemen spesifik seperti tautan atau teks. Untuk tugas crawling yang lebih kompleks dan terstruktur, <code class="docutils literal notranslate"><span class="pre">Scrapy</span></code> adalah framework populer yang menawarkan kemampuan untuk membangun spider yang dapat menjelajahi dan mengumpulkan data dari banyak halaman web secara efisien. Untuk situs web dinamis yang mengandalkan JavaScript, <code class="docutils literal notranslate"><span class="pre">Selenium</span></code> digunakan untuk mengotomatisasi browser dan mengambil konten yang di-render, memastikan data dari situs dinamis dapat diakses. Selain itu, teknik tambahan seperti menambahkan <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> dan jeda antar permintaan dengan <code class="docutils literal notranslate"><span class="pre">time.sleep</span></code> digunakan untuk menghindari pemblokiran oleh situs web, menjaga agar proses crawling terlihat lebih alami dan menghindari deteksi.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="tool-dan-library-yang-digunakan">
-<h1>Tool dan Library Yang Digunakan<a class="headerlink" href="#tool-dan-library-yang-digunakan" title="Link to this heading">#</a></h1>
+<section id="tool-dan-library-yang-digunakan">
+<h2>Tool dan Library Yang Digunakan<a class="headerlink" href="#tool-dan-library-yang-digunakan" title="Link to this heading">#</a></h2>
 <p>Sebgai contoh disini menggunakan Beautiful Soup untuk crawling website berita, maka harus mempersiapkan beberapa tools dan library. Berikut langkah-langkahnya:</p>
 <ol class="arabic">
 <li><p><strong>Install Python</strong>:
@@ -515,7 +499,7 @@ pip<span class="w"> </span>install<span class="w"> </span>html5lib
 Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan Notepad++ untuk menulis skrip Python.</p></li>
 </ol>
 <section id="contoh-penggunaan">
-<h2>Contoh Penggunaan<a class="headerlink" href="#contoh-penggunaan" title="Link to this heading">#</a></h2>
+<h3>Contoh Penggunaan<a class="headerlink" href="#contoh-penggunaan" title="Link to this heading">#</a></h3>
 <p>Berikut adalah contoh sederhana menggunakan Requests dan Beautiful Soup untuk melakukan crawling:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
@@ -540,12 +524,13 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </div>
 </section>
 <section id="tips-penting">
-<h2>Tips Penting:<a class="headerlink" href="#tips-penting" title="Link to this heading">#</a></h2>
+<h3>Tips Penting:<a class="headerlink" href="#tips-penting" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Patuhilah Robots.txt</strong>: Sebelum melakukan crawling, pastikan untuk memeriksa file <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> situs web tersebut untuk melihat aturan yang harus dipatuhi.</p></li>
 <li><p><strong>Rate Limiting</strong>: Untuk menghindari pembatasan atau pemblokiran, tambahkan jeda waktu antara permintaan.</p></li>
 <li><p><strong>Menggunakan User-Agent</strong>: Kadang-kadang perlu untuk menyetel <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> header dalam permintaan HTTP untuk menghindari deteksi sebagai bot.</p></li>
 </ul>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="proses-crawling">
@@ -671,9 +656,8 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </li>
 </ol>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="output-crawling">
-<h1>Output Crawling<a class="headerlink" href="#output-crawling" title="Link to this heading">#</a></h1>
+<section id="output-crawling">
+<h2>Output Crawling<a class="headerlink" href="#output-crawling" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
@@ -682,7 +666,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-b53b6b4a-f26b-494f-94e1-9f57502c41d4" class="colab-df-container">
+  <div id="df-9015a7aa-1fe5-408a-a107-3562af1e9008" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -710,211 +694,211 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
   <tbody>
     <tr>
       <th>0</th>
+      <td>Roberto Mancini: Arab Saudi Seharusnya Menang ...</td>
+      <td>KOMPAS.com - Pelatih timnas Arab Saudi Roberto...</td>
+      <td>16/10/2024</td>
+      <td>BOLA</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Jenguk Bebingah Sang Tansahayu, Jokowi Akui Be...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo men...</td>
+      <td>16/10/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Kapan Kondom Digunakan? Berikut Penjelasannya…</td>
+      <td>KOMPAS.com - Kondom adalah jenis kontrasepsi y...</td>
+      <td>16/10/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Rano Karno Ingin Silat Betawi Masuk ke Estraku...</td>
+      <td>JAKARTA, KOMPAS.com - Calon wakil gubernur nom...</td>
+      <td>16/10/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angkat Hilirisasi Nikel, Bahlil Lahadalia Dapa...</td>
+      <td>DEPOK, KOMPAS.com - Bahlil Lahadalia, Menteri ...</td>
+      <td>16/10/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Anggota DPR Pertanyakan Pemecatan Ipda Rudy So...</td>
+      <td>JAKARTA, KOMPAS.com - Anggota Fraksi Gerindra ...</td>
+      <td>16/10/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Bawaslu Ingatkan Paslon Dilarang Beri Uang ata...</td>
+      <td>JAKARTA, KOMPAS.com - Badan Pengawasan Pemilih...</td>
+      <td>16/10/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>7</th>
       <td>Jadi Produser di Rumah Produksi, Ria Ricis Eng...</td>
       <td>JAKARTA, KOMPAS.com - YouTuber yang kini menja...</td>
       <td>16/10/2024</td>
       <td>HYPE</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>8</th>
       <td>Sosok Wanita Calo Akpol Tipu "Crazy Rich" Maka...</td>
       <td>KOMPAS.com - Seorang wanita berinisial AFR mel...</td>
       <td>16/10/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>9</th>
       <td>Ridwan Kamil Nilai Semua Cagub Harus Bersinerg...</td>
       <td>JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>10</th>
       <td>MK Tolak Provisi Penundaan Penyidikan Dirut Ta...</td>
       <td>JAKARTA, KOMPAS.com - Mahkamah Konstitusi (MK)...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>11</th>
       <td>Dito Ariotedjo Sebut Menteri dan Wamen Kabinet...</td>
       <td>JAKARTA, KOMPAS.com - Menteri Pemuda dan Olahr...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>12</th>
       <td>Ridwan Kamil Sambut Baik Rencana Pertemuan Pra...</td>
       <td>JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>13</th>
       <td>Debat Kandidat Pilkada Sultra 2024 Digelar di ...</td>
       <td>\nKENDARI, KOMPAS.com - Komisi Pemilihan Umum ...</td>
       <td>16/10/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>14</th>
       <td>Labfor Polda Jatim Diturunkan untuk Ungkap Pem...</td>
       <td>NGAWI, KOMPAS.com - Satuan Reserse dan Krimina...</td>
       <td>16/10/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>15</th>
       <td>Ungkap Jaringan Narkoba Jambi, Polisi Kejar Te...</td>
       <td>JAKARTA, KOMPAS.com – Kepolisian berhasil meng...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>16</th>
       <td>Sorakan Pendukung Menggema Saat Dimyati Soroti...</td>
       <td>JAKARTA, KOMPAS.com - Pendukung pasangan guber...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>17</th>
       <td>Rasio Dana Murah Bank Mega Syariah Capai 35 Pe...</td>
       <td>JAKARTA, KOMPAS.com – PT Bank Mega Syariah mel...</td>
       <td>16/10/2024</td>
       <td>MONEY</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>18</th>
       <td>Bapanas Sebut Daerah Rawan Pangan Turun Jadi 6...</td>
       <td>JAKARTA, KOMPAS.com - Badan Pangan Nasional (B...</td>
       <td>16/10/2024</td>
       <td>MONEY</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>19</th>
       <td>UI Sebut Bahlil Lulus Program Doktor Sesuai Pr...</td>
       <td>JAKARTA, KOMPAS.com - Pihak Universitas Indone...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>20</th>
       <td>Jelang Pelantikan Prabowo-Gibran, Sejumlah Jal...</td>
       <td>JAKARTA, KOMPAS.com - Penjabat (Pj) Gubernur J...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>21</th>
       <td>Pemkot Jakbar Bakal Gelar Simulasi Penanganan ...</td>
       <td>JAKARTA, KOMPAS.com - Pemerintah Kota Jakarta ...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>22</th>
       <td>Mahasiswa Demo DPRD NTB Minta Laporan terhadap...</td>
       <td>MATARAM, KOMPAS.com - Polisi menetapkan enam o...</td>
       <td>16/10/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>23</th>
       <td>Mengintip Proyek Pelabuhan Pendaratan Ikan Ges...</td>
       <td>YOGYAKARTA, KOMPAS.com - Pemerintah Daerah Ist...</td>
       <td>16/10/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>24</th>
       <td>Menguak Tabir Misteri 1089</td>
       <td>SEBAIKNYA Anda berhenti membaca naskah ini sam...</td>
       <td>16/10/2024</td>
       <td>TREN</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>25</th>
       <td>Persib Vs Persebaya, Alasan Atmosfer Laga Baka...</td>
       <td>KOMPAS.com – Laga pekan ke-8 Liga 1 2024-2025 ...</td>
       <td>16/10/2024</td>
       <td>BOLA</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>26</th>
       <td>Membersihkan Kamar Mandi Secara Harian, Minggu...</td>
       <td>JAKARTA, KOMPAS.com - Kamar mandi membutuhkan ...</td>
       <td>16/10/2024</td>
       <td>HOMEY</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>27</th>
       <td>9 Monyet Mati Misterius di Kebun Binatang Hong...</td>
       <td>HONG KONG, KOMPAS.com - Kebun binatang tertua ...</td>
       <td>16/10/2024</td>
       <td>GLOBAL</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>28</th>
       <td>Lansia di Bekasi Diperkosa, Pelaku Masuk Rumah...</td>
       <td>\nJAKARTA, KOMPAS.com - Seorang lansia berinis...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>29</th>
       <td>Budi Arie Sebut Gibran Ikut Dengarkan Arahan P...</td>
       <td>BOGOR, KOMPAS.com - Menteri Komunikasi dan Inf...</td>
-      <td>16/10/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Potret Para Supermodel di Victoria’s Secret Fa...</td>
-      <td>KOMPAS.com - Victoria’s Secret Fashion Show 20...</td>
-      <td>16/10/2024</td>
-      <td>LIFESTYLE</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>4 Kendaraan Terlibat Kecelakaan Beruntun di Ci...</td>
-      <td>JAKARTA, KOMPAS.com - Kecelakaan beruntun yang...</td>
-      <td>16/10/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Dana Kelolaan Reksa Dana BRI Gamasteps Tembus ...</td>
-      <td>JAKARTA, KOMPAS.com - Reksa dana pasar uang BR...</td>
-      <td>16/10/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Jusuf Kalla Ingatkan Koordinasi Antar Kementer...</td>
-      <td>JAKARTA, KOMPAS.com - Wakil Presiden ke-10 dan...</td>
-      <td>16/10/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Pelanggaran Aturan Wajib SNI, Kemenperin: Sank...</td>
-      <td>JAKARTA, KOMPAS.com - Kepala Pusat Pengawasan ...</td>
-      <td>16/10/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Ketua MA Terpilih Sunarto Imbau Pengadilan Jag...</td>
-      <td>JAKARTA, KOMPAS.com - Ketua Mahkamah Agung Ter...</td>
-      <td>16/10/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Pendukung Airin-Ade dan Andra-Dimyati Saling A...</td>
-      <td>JAKARTA, KOMPAS.com - Pendukung calon gubernur...</td>
       <td>16/10/2024</td>
       <td>NEWS</td>
     </tr>
@@ -924,7 +908,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-b53b6b4a-f26b-494f-94e1-9f57502c41d4')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-9015a7aa-1fe5-408a-a107-3562af1e9008')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -976,12 +960,12 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 
     <script>
       const buttonEl =
-        document.querySelector('#df-b53b6b4a-f26b-494f-94e1-9f57502c41d4 button.colab-df-convert');
+        document.querySelector('#df-9015a7aa-1fe5-408a-a107-3562af1e9008 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-b53b6b4a-f26b-494f-94e1-9f57502c41d4');
+        const element = document.querySelector('#df-9015a7aa-1fe5-408a-a107-3562af1e9008');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1019,6 +1003,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1085,27 +1070,23 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Konsep Crawling</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis">Jenis-Jenis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-web-crawling">Contoh Web Crawling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Crawling Berita</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-crawling">Konsep Crawling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teknik-dan-cara-crawling-menggunakan-python">Teknik dan Cara Crawling Menggunakan Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-dan-library-yang-digunakan">Tool dan Library Yang Digunakan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penggunaan">Contoh Penggunaan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting">Tips Penting:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#teknik-dan-cara-crawling-menggunakan-python">Teknik dan Cara Crawling Menggunakan Python</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tool-dan-library-yang-digunakan">Tool dan Library Yang Digunakan</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penggunaan">Contoh Penggunaan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting">Tips Penting:</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-crawling">Proses Crawling</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementasi">Code Implementasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-code">Penjelasan Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-crawling">Output Crawling</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-crawling">Output Crawling</a></li>
 </ul>
 
   </nav></div>

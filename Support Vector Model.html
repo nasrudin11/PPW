@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Klasifikasi Berita" href="Logistic%20Regression.html" />
-    <link rel="prev" title="Konsep Crawling" href="Tugas%20Crawling.html" />
+    <link rel="prev" title="Crawling Berita" href="Tugas%20Crawling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,13 +182,9 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Tugas%20Crawling.html">Konsep Crawling</a></li>
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Tugas%20Crawling.html">Crawling Berita</a></li>
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Vector Space Model</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Klasifikasi Berita</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Graph%20dan%20Summarization.html">Summarization</a></li>
@@ -389,19 +385,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector Space Model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumen-dan-kueri-sebagai-vektor">1. <strong>Dokumen dan Kueri sebagai Vektor</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-kata-term-weighting">2. <strong>Pembobotan Kata (Term Weighting)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kesamaan-antar-dokumen">3. <strong>Menghitung Kesamaan Antar Dokumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengurutan-dokumen">4. <strong>Pengurutan Dokumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-keterbatasan-vsm">5. <strong>Keuntungan dan Keterbatasan VSM</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh Sederhana:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
@@ -428,9 +414,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -446,12 +429,15 @@ document.write(`
 <p>Kelas : Pencarian dan Penambangan Web B</p>
 <section class="tex2jax_ignore mathjax_ignore" id="vector-space-model">
 <h1>Vector Space Model<a class="headerlink" href="#vector-space-model" title="Link to this heading">#</a></h1>
+<section id="penjelasan">
+<h2>Penjelasan<a class="headerlink" href="#penjelasan" title="Link to this heading">#</a></h2>
 <p>Vector Space Model (VSM) adalah pendekatan yang menggunakan vektor untuk merepresentasikan setiap kata dalam suatu ruang dimensi. Dalam VSM, dokumen dilihat sebagai vektor yang memiliki panjang (magnitudo) dan arah. Setiap kata dalam dokumen diwakili oleh sebuah dimensi dalam ruang vektor. Relevansi dokumen terhadap kueri dihitung berdasarkan kesamaan antara vektor dokumen dan vektor kueri.</p>
 <p>VSM mendukung pencocokan parsial dengan menetapkan bobot non-biner pada kata-kata dalam dokumen dan kueri. Bobot tersebut digunakan untuk mengukur kesamaan antara dokumen yang tersimpan dan kueri pengguna. Dokumen yang ditemukan diurutkan berdasarkan tingkat kemiripannya, sehingga dokumen yang paling relevan ditampilkan lebih akurat sesuai dengan kebutuhan pengguna.</p>
 <p>Berikut secara rinci langkah-langkah dan konsep di balik VSM:</p>
-<section id="dokumen-dan-kueri-sebagai-vektor">
-<h2>1. <strong>Dokumen dan Kueri sebagai Vektor</strong><a class="headerlink" href="#dokumen-dan-kueri-sebagai-vektor" title="Link to this heading">#</a></h2>
-<p>Pada dasarnya, setiap dokumen atau kueri direpresentasikan sebagai sebuah vektor. Namun, vektor ini tidak seperti vektor geometris biasa, tetapi memiliki dimensi sebanyak jumlah kata unik (vocabulary) dalam koleksi dokumen. Setiap dimensi dalam vektor mewakili satu kata atau istilah dari koleksi.</p>
+<ol class="arabic simple">
+<li><p><strong>Dokumen dan Kueri sebagai Vektor</strong>
+Pada dasarnya, setiap dokumen atau kueri direpresentasikan sebagai sebuah vektor. Namun, vektor ini tidak seperti vektor geometris biasa, tetapi memiliki dimensi sebanyak jumlah kata unik (vocabulary) dalam koleksi dokumen. Setiap dimensi dalam vektor mewakili satu kata atau istilah dari koleksi.</p></li>
+</ol>
 <ul class="simple">
 <li><p><strong>Dimensi Vektor</strong>: Jika kita memiliki sebuah kumpulan dokumen yang terdiri dari 1.000 kata unik, maka setiap dokumen dan kueri akan direpresentasikan oleh vektor dengan 1.000 dimensi.</p></li>
 <li><p><strong>Isi Vektor</strong>: Setiap elemen dalam vektor merepresentasikan bobot dari sebuah kata dalam dokumen tertentu. Sebagai contoh, jika kata “AI” muncul dalam dokumen, maka elemen yang merepresentasikan kata “AI” akan memiliki nilai lebih besar dari nol, sedangkan kata-kata yang tidak muncul akan bernilai nol.</p></li>
@@ -464,10 +450,10 @@ document.write(`
 </ul>
 <p>Vektor untuk Dokumen 1 mungkin tampak seperti:
 <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">0)</span></code> untuk kata-kata <code class="docutils literal notranslate"><span class="pre">(&quot;Belajar&quot;,</span> <span class="pre">&quot;AI&quot;,</span> <span class="pre">&quot;adalah&quot;,</span> <span class="pre">&quot;masa&quot;,</span> <span class="pre">&quot;depan&quot;)</span></code>, di mana angka 1 menunjukkan bahwa kata tersebut muncul sekali.</p>
-</section>
-<section id="pembobotan-kata-term-weighting">
-<h2>2. <strong>Pembobotan Kata (Term Weighting)</strong><a class="headerlink" href="#pembobotan-kata-term-weighting" title="Link to this heading">#</a></h2>
-<p>Dalam VSM, tidak semua kata memiliki nilai yang sama. Untuk membuat model lebih efisien dalam menangkap kata-kata penting, VSM biasanya menggunakan teknik <strong>pembobotan</strong>. Teknik yang paling umum adalah <strong>TF-IDF (Term Frequency - Inverse Document Frequency)</strong>. TF-IDF membantu menghitung seberapa penting sebuah kata dalam sebuah dokumen dibandingkan dengan seluruh kumpulan dokumen.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Pembobotan Kata (Term Weighting)</strong>
+Dalam VSM, tidak semua kata memiliki nilai yang sama. Untuk membuat model lebih efisien dalam menangkap kata-kata penting, VSM biasanya menggunakan teknik <strong>pembobotan</strong>. Teknik yang paling umum adalah <strong>TF-IDF (Term Frequency - Inverse Document Frequency)</strong>. TF-IDF membantu menghitung seberapa penting sebuah kata dalam sebuah dokumen dibandingkan dengan seluruh kumpulan dokumen.</p></li>
+</ol>
 <ul class="simple">
 <li><p><strong>Term Frequency (TF)</strong>: Ini adalah jumlah kemunculan sebuah kata dalam dokumen. Semakin sering sebuah kata muncul, semakin besar bobot TF-nya. Namun, sering kali kita menggunakan versi termodifikasi seperti TF relatif (jumlah kemunculan kata dibagi total kata dalam dokumen).</p></li>
 <li><p><strong>Inverse Document Frequency (IDF)</strong>: Kata yang sering muncul di seluruh dokumen (misalnya “adalah” atau “dan”) biasanya kurang informatif, sehingga diberi bobot lebih rendah. IDF membantu mengurangi bobot kata-kata yang terlalu umum dengan menghitung kebalikan dari frekuensi dokumen yang mengandung kata tersebut.</p></li>
@@ -483,10 +469,10 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\((DF(t))\)</span> adalah jumlah dokumen yang mengandung kata (t)</p></li>
 </ul>
 <p>Dengan TF-IDF, kata yang unik untuk sebuah dokumen (misalnya istilah teknis atau nama produk) akan memiliki bobot lebih tinggi dibandingkan dengan kata-kata yang umum di seluruh dokumen.</p>
-</section>
-<section id="menghitung-kesamaan-antar-dokumen">
-<h2>3. <strong>Menghitung Kesamaan Antar Dokumen</strong><a class="headerlink" href="#menghitung-kesamaan-antar-dokumen" title="Link to this heading">#</a></h2>
-<p>Setelah setiap dokumen dan kueri direpresentasikan sebagai vektor, kita bisa menghitung <strong>kesamaan</strong> antar dua vektor (dokumen atau dokumen-kueri). Salah satu metode paling umum adalah <strong>Cosine Similarity</strong>.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Menghitung Kesamaan Antar Dokumen</strong>
+Setelah setiap dokumen dan kueri direpresentasikan sebagai vektor, kita bisa menghitung <strong>kesamaan</strong> antar dua vektor (dokumen atau dokumen-kueri). Salah satu metode paling umum adalah <strong>Cosine Similarity</strong>.</p></li>
+</ol>
 <ul class="simple">
 <li><p><strong>Cosine Similarity</strong>: Ini adalah ukuran yang menghitung sudut antara dua vektor dalam ruang multidimensi. Semakin kecil sudutnya, semakin dekat atau mirip dua vektor tersebut. Nilai cosine similarity berkisar dari 0 (tidak mirip sama sekali) hingga 1 (sangat mirip).</p></li>
 </ul>
@@ -499,14 +485,12 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\((||A||)\)</span> dan <span class="math notranslate nohighlight">\((||B||)\)</span> adalah norma (panjang) dari vektor A dan B</p></li>
 </ul>
 <p>Dengan menghitung cosine similarity, kita dapat mengetahui seberapa mirip dokumen dengan kueri. Jika nilai cosine similarity tinggi, berarti dokumen tersebut lebih relevan dengan kueri, sehingga dokumen tersebut dapat ditempatkan di urutan yang lebih tinggi dalam hasil pencarian.</p>
-</section>
-<section id="pengurutan-dokumen">
-<h2>4. <strong>Pengurutan Dokumen</strong><a class="headerlink" href="#pengurutan-dokumen" title="Link to this heading">#</a></h2>
-<p>Setelah kita menghitung cosine similarity antara kueri dan setiap dokumen dalam koleksi, dokumen-dokumen tersebut bisa diurutkan berdasarkan nilai similarity dari yang tertinggi ke yang terendah. Hasil ini bisa digunakan dalam <strong>sistem pencarian</strong> untuk menampilkan dokumen yang paling relevan di posisi teratas.</p>
-</section>
-<section id="keuntungan-dan-keterbatasan-vsm">
-<h2>5. <strong>Keuntungan dan Keterbatasan VSM</strong><a class="headerlink" href="#keuntungan-dan-keterbatasan-vsm" title="Link to this heading">#</a></h2>
-<p><strong>Keuntungan</strong>:</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Pengurutan Dokumen</strong>
+Setelah kita menghitung cosine similarity antara kueri dan setiap dokumen dalam koleksi, dokumen-dokumen tersebut bisa diurutkan berdasarkan nilai similarity dari yang tertinggi ke yang terendah. Hasil ini bisa digunakan dalam <strong>sistem pencarian</strong> untuk menampilkan dokumen yang paling relevan di posisi teratas.</p></li>
+<li><p><strong>Keuntungan dan Keterbatasan VSM</strong>
+<strong>Keuntungan</strong>:</p></li>
+</ol>
 <ul class="simple">
 <li><p><strong>Sederhana dan Efisien</strong>: VSM mudah diimplementasikan dan cukup efisien dalam menangani koleksi dokumen besar.</p></li>
 <li><p><strong>Penanganan Sinonim dan Polisemik Terbatas</strong>: Meski VSM sederhana, ia tidak menangani masalah sinonim (kata-kata berbeda dengan makna sama) dan polisemik (kata yang sama dengan makna berbeda) dengan baik.</p></li>
@@ -516,9 +500,7 @@ document.write(`
 <li><p><strong>Kata-Kata Independen</strong>: VSM mengasumsikan bahwa kata-kata dalam dokumen tidak memiliki hubungan satu sama lain, sehingga konteks sering kali hilang. Misalnya, frase “tidak setuju” akan diperlakukan sebagai dua kata terpisah, meskipun maknanya berubah ketika digabungkan.</p></li>
 <li><p><strong>Dimensi yang Tinggi</strong>: Ketika bekerja dengan kumpulan dokumen besar, jumlah kata yang unik bisa sangat banyak, menyebabkan vektor memiliki dimensi yang sangat tinggi, yang dapat menyebabkan masalah performa.</p></li>
 </ul>
-</section>
-<section id="contoh-sederhana">
-<h2>Contoh Sederhana:<a class="headerlink" href="#contoh-sederhana" title="Link to this heading">#</a></h2>
+<p><strong>Contoh Sederhana</strong>:</p>
 <p>Misalkan kita memiliki tiga dokumen:</p>
 <ol class="arabic simple">
 <li><p>“Belajar AI adalah masa depan”</p></li>
@@ -526,16 +508,13 @@ document.write(`
 <li><p>“Manusia belajar dari AI masa depan”</p></li>
 </ol>
 <p>Jika kuerinya adalah “belajar AI”, kita bisa menghitung cosine similarity antara kueri dan setiap dokumen. Dokumen dengan cosine similarity tertinggi adalah dokumen yang paling relevan dengan kueri.</p>
+<p><strong>Kesimpulan</strong>
+Vector Space Model (VSM) adalah pendekatan sederhana namun sangat efektif untuk merepresentasikan dokumen dan kueri dalam ruang vektor, memungkinkan pencarian dan pengurutan dokumen berdasarkan kesamaan konten. Meskipun ada beberapa keterbatasan, VSM masih digunakan secara luas dalam sistem pencarian informasi, terutama ketika dipadukan dengan teknik pembobotan seperti TF-IDF.</p>
 </section>
-<section id="kesimpulan">
-<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
-<p>Vector Space Model (VSM) adalah pendekatan sederhana namun sangat efektif untuk merepresentasikan dokumen dan kueri dalam ruang vektor, memungkinkan pencarian dan pengurutan dokumen berdasarkan kesamaan konten. Meskipun ada beberapa keterbatasan, VSM masih digunakan secara luas dalam sistem pencarian informasi, terutama ketika dipadukan dengan teknik pembobotan seperti TF-IDF.</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="implementasi">
-<h1>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h1>
+<section id="implementasi">
+<h2>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h2>
 <section id="library-yang-digunakan">
-<h2>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h2>
+<h3>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>gdown
@@ -646,8 +625,6 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
 </div>
 </div>
 </section>
-<section id="implementasi-code">
-<h2>Implementasi Code<a class="headerlink" href="#implementasi-code" title="Link to this heading">#</a></h2>
 <section id="dataset">
 <h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1591,7 +1568,7 @@ Edu       0.054086  0.039382
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Konsep Crawling</p>
+        <p class="prev-next-title">Crawling Berita</p>
       </div>
     </a>
     <a class="right-next"
@@ -1619,19 +1596,9 @@ Edu       0.054086  0.039382
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector Space Model</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumen-dan-kueri-sebagai-vektor">1. <strong>Dokumen dan Kueri sebagai Vektor</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-kata-term-weighting">2. <strong>Pembobotan Kata (Term Weighting)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kesamaan-antar-dokumen">3. <strong>Menghitung Kesamaan Antar Dokumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengurutan-dokumen">4. <strong>Pengurutan Dokumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-keterbatasan-vsm">5. <strong>Keuntungan dan Keterbatasan VSM</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh Sederhana:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
@@ -1658,9 +1625,6 @@ Edu       0.054086  0.039382
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
