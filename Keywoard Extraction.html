@@ -1,0 +1,2616 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Keyword Extraction &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Keywoard Extraction';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Tentang
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tugas%20Crawling.html">Crawling Berita</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Model.html">Vector Space Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Klasifikasi Berita</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Graph%20dan%20Summarization.html">Summarization</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FKeywoard Extraction.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Keywoard Extraction.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Keyword Extraction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Keyword Extraction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-konsep">Penjelasan Konsep</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency">TF-IDF (Term Frequency-Inverse Document Frequency)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjacency">Matriks Adjacency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library">Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrik-adjensi">Matrik Adjensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#page-rank">Page Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kata-kunci-berita">Kata Kunci Berita</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Nama : Ahmad Nasrudin Jamil</p>
+<p>NIM : 210411100098</p>
+<section class="tex2jax_ignore mathjax_ignore" id="keyword-extraction">
+<h1>Keyword Extraction<a class="headerlink" href="#keyword-extraction" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="penjelasan-konsep">
+<h1>Penjelasan Konsep<a class="headerlink" href="#penjelasan-konsep" title="Link to this heading">#</a></h1>
+<section id="tf-idf-term-frequency-inverse-document-frequency">
+<h2>TF-IDF (Term Frequency-Inverse Document Frequency)<a class="headerlink" href="#tf-idf-term-frequency-inverse-document-frequency" title="Link to this heading">#</a></h2>
+<p><strong>TF-IDF</strong> (Term Frequency-Inverse Document Frequency) adalah suatu metode yang digunakan dalam pemrosesan bahasa alami (NLP) dan informasi retrieval untuk menilai seberapa penting suatu kata dalam suatu dokumen relatif terhadap koleksi atau kumpulan dokumen (corpus). TF-IDF sering digunakan untuk analisis teks, pengambilan informasi, dan pembuatan sistem rekomendasi.</p>
+<p><strong>Komponen TF-IDF</strong></p>
+<p>TF-IDF terdiri dari dua komponen utama:</p>
+<ol class="arabic simple">
+<li><p><strong>Term Frequency (TF)</strong>:</p>
+<ul class="simple">
+<li><p>Mengukur seberapa sering suatu kata muncul dalam sebuah dokumen. Semakin sering kata muncul, semakin besar bobotnya.</p></li>
+<li><p>Rumus untuk menghitung TF dari suatu kata <span class="math notranslate nohighlight">\(( t )\)</span> dalam dokumen <span class="math notranslate nohighlight">\(( d )\)</span>:
+$<span class="math notranslate nohighlight">\(
+\text{TF}(t, d) = \frac{\text{Jumlah kemunculan kata } t \text{ dalam } d}{\text{Total jumlah kata dalam } d}
+\)</span>$</p></li>
+</ul>
+</li>
+<li><p><strong>Inverse Document Frequency (IDF)</strong>:</p>
+<ul class="simple">
+<li><p>Mengukur seberapa penting kata tersebut dalam seluruh koleksi dokumen. Kata yang muncul di banyak dokumen memiliki bobot rendah, sedangkan kata yang muncul di sedikit dokumen memiliki bobot lebih tinggi.</p></li>
+<li><p>Rumus untuk menghitung IDF dari suatu kata <span class="math notranslate nohighlight">\(( t )\)</span>:
+$<span class="math notranslate nohighlight">\(
+\text{IDF}(t) = \log\left(\frac{\text{Total jumlah dokumen}}{\text{Jumlah dokumen yang mengandung kata } t}\right)
+\)</span>$</p></li>
+<li><p>Dalam praktiknya, sering ditambahkan satu untuk menghindari pembagian dengan nol:
+$<span class="math notranslate nohighlight">\(
+\text{IDF}(t) = \log\left(\frac{N}{\text{df}(t)} + 1\right)
+\)</span>$</p></li>
+<li><p>Di mana ( N ) adalah jumlah total dokumen dan <span class="math notranslate nohighlight">\(( \text{df}(t) )\)</span> adalah jumlah dokumen yang mengandung kata <span class="math notranslate nohighlight">\(( t )\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Menghitung TF-IDF</strong></p>
+<p>Setelah menghitung TF dan IDF, nilai TF-IDF untuk suatu kata <span class="math notranslate nohighlight">\(( t )\)</span> dalam dokumen <span class="math notranslate nohighlight">\(( d )\)</span> dapat dihitung dengan rumus:
+$<span class="math notranslate nohighlight">\(
+\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \text{IDF}(t)
+\)</span>$</p>
+<p><strong>Interpretasi</strong></p>
+<ul class="simple">
+<li><p>Nilai Tinggi: Jika nilai TF-IDF tinggi, ini menunjukkan bahwa kata tersebut sering muncul dalam dokumen tertentu tetapi jarang muncul di seluruh koleksi dokumen. Kata ini dianggap penting untuk dokumen tersebut.</p></li>
+<li><p>Nilai Rendah: Jika nilai TF-IDF rendah, ini bisa berarti kata tersebut umum dan muncul di banyak dokumen, sehingga tidak memberikan banyak informasi khusus tentang dokumen tersebut.</p></li>
+</ul>
+</section>
+<section id="cosine-similarity">
+<h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Link to this heading">#</a></h2>
+<p>Cosine similarity adalah ukuran yang digunakan untuk menentukan seberapa mirip dua vektor dalam ruang multidimensi berdasarkan sudut di antara keduanya. Dalam konteks pemrosesan bahasa alami, cosine similarity sering digunakan untuk mengukur kesamaan antara teks yang direpresentasikan sebagai vektor, biasanya menggunakan teknik seperti TF-IDF atau word embeddings.</p>
+<p><strong>Konsep Dasar Cosine Similarity</strong></p>
+<p>Cosine similarity dihitung dengan menggunakan rumus berikut:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Cosine Similarity} = \frac{A \cdot B}{\|A\| \|B\|}
+\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((A)\)</span> dan <span class="math notranslate nohighlight">\((B)\)</span> adalah dua vektor yang akan dibandingkan.</p></li>
+<li><p><span class="math notranslate nohighlight">\((A \cdot B)\)</span> adalah hasil kali dot (dot product) dari kedua vektor, yang mengukur seberapa besar dua vektor tersebut saling berhubungan.</p></li>
+<li><p><span class="math notranslate nohighlight">\((|A|)\)</span> dan <span class="math notranslate nohighlight">\((|B|)\)</span> adalah norma (magnitude) dari vektor <span class="math notranslate nohighlight">\((A)\)</span> dan <span class="math notranslate nohighlight">\((B)\)</span>, yang menunjukkan panjang masing-masing vektor.</p></li>
+</ul>
+<p><strong>Nilai Cosine Similarity</strong></p>
+<p>Rentang Nilai:</p>
+<p>1: Menunjukkan dua dokumen sangat mirip (atau identik).
+0: Menunjukkan tidak ada kesamaan (dokumen tidak mirip).
+Dalam konteks pengolahan teks, nilai cosine similarity umumnya dianggap dalam rentang 0 hingga 1. Ini karena vektor representasi teks (seperti TF-IDF atau word embeddings) biasanya memiliki nilai positif.</p>
+<p>Interpretasi:</p>
+<p>Nilai 1: Dokumen A dan B identik dalam konteks konten.
+Nilai 0.5: Menunjukkan kesamaan moderat, artinya dokumen memiliki beberapa kata atau konsep yang sama.
+Nilai 0: Dokumen tidak memiliki kesamaan atau tidak berbagi kata kunci.</p>
+</section>
+<section id="matriks-adjacency">
+<h2>Matriks Adjacency<a class="headerlink" href="#matriks-adjacency" title="Link to this heading">#</a></h2>
+<p>Matriks adjacency adalah representasi matematis dari graf yang menunjukkan hubungan antara node (simpul) dalam graf tersebut. Dalam konteks pemrosesan bahasa alami dan analisis graph, matriks adjacency sering digunakan untuk merepresentasikan hubungan antar elemen, seperti kalimat dalam sebuah dokumen, berdasarkan kriteria tertentu.</p>
+<p><strong>Konsep Dasar Matriks Adjacency</strong></p>
+<ol class="arabic simple">
+<li><p>Definisi:
+Matriks adjacency adalah matriks persegi yang digunakan untuk merepresentasikan graf. Setiap elemen dalam matriks menunjukkan ada tidaknya hubungan antara dua node. Dalam matriks adjacency, elemen pada baris ke-<span class="math notranslate nohighlight">\((i)\)</span> dan kolom ke-<span class="math notranslate nohighlight">\((j)\)</span> akan bernilai:</p>
+<ul class="simple">
+<li><p><strong>1</strong> (atau nilai positif) jika ada edge (hubungan) antara node <span class="math notranslate nohighlight">\((i)\)</span> dan node <span class="math notranslate nohighlight">\((j)\)</span>.</p></li>
+<li><p><strong>0</strong> jika tidak ada edge antara keduanya.</p></li>
+</ul>
+</li>
+<li><p>Ukuran Matriks:
+Matriks adjacency untuk graf dengan <span class="math notranslate nohighlight">\((n)\)</span> node memiliki ukuran <span class="math notranslate nohighlight">\((n \times n)\)</span>, di mana <span class="math notranslate nohighlight">\((n)\)</span> adalah jumlah total node dalam graf. Baris dan kolom pada matriks mewakili node yang ada dalam graf.</p></li>
+</ol>
+<p><strong>Contoh Matriks Adjacency</strong></p>
+<p>Misalkan kita memiliki graf sederhana dengan 4 node (A, B, C, dan D) dan hubungan sebagai berikut:</p>
+<ul class="simple">
+<li><p>A terhubung ke B dan C.</p></li>
+<li><p>B terhubung ke C.</p></li>
+<li><p>C terhubung ke D.</p></li>
+</ul>
+<p>Matriks adjacency untuk graf ini dapat dituliskan sebagai berikut:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+  &amp; A &amp; B &amp; C &amp; D \\
+A &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+B &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+C &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+D &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{matrix}
+\end{split}\]</div>
+<p>Dalam matriks di atas:</p>
+<ul class="simple">
+<li><p>Baris A menunjukkan bahwa A terhubung dengan B dan C.</p></li>
+<li><p>Baris B menunjukkan bahwa B terhubung dengan C.</p></li>
+<li><p>Baris C menunjukkan bahwa C terhubung dengan D.</p></li>
+<li><p>Baris D menunjukkan bahwa D tidak terhubung dengan node manapun.</p></li>
+</ul>
+</section>
+<section id="graph">
+<h2>Graph<a class="headerlink" href="#graph" title="Link to this heading">#</a></h2>
+<p>Graph (graf) adalah struktur data yang digunakan untuk merepresentasikan hubungan antara objek. Dalam istilah sederhana, graf adalah kumpulan simpul (nodes) dan sisi (edges) yang menghubungkan pasangan simpul. Struktur ini sangat berguna dalam berbagai bidang, termasuk ilmu komputer, matematika, dan pemrosesan bahasa alami.</p>
+<p><strong>Komponen Utama Graf</strong></p>
+<ol class="arabic simple">
+<li><p>Simpul (Node):
+Simpul, juga dikenal sebagai vertex, adalah elemen dasar dalam graf. Setiap simpul mewakili entitas atau objek tertentu. Dalam konteks pemrosesan bahasa alami, simpul bisa mewakili kalimat, kata, atau dokumen.</p></li>
+<li><p>Sisi (Edge):
+Sisi adalah hubungan antara dua simpul. Sisi dapat bersifat:</p>
+<ul class="simple">
+<li><p>Arah (Directed): Menunjukkan bahwa hubungan dari satu simpul ke simpul lainnya memiliki arah tertentu. Misalnya, dalam graf yang menggambarkan hubungan antara kalimat, jika kalimat A mengarah ke kalimat B, ini menunjukkan bahwa A memberikan informasi yang relevan untuk B.</p></li>
+<li><p>Tidak Arah (Undirected): Menunjukkan bahwa hubungan antara dua simpul tidak memiliki arah tertentu. Contohnya, jika dua kalimat saling berhubungan, kita dapat menggambarkannya dengan sisi yang tidak terarah.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Tipe-Tipe Graf</strong></p>
+<ol class="arabic simple">
+<li><p>Graf Berarah (Directed Graph):
+Dalam graf berarah, setiap sisi memiliki arah, mengindikasikan hubungan satu arah antara dua simpul. Contohnya, graf yang menunjukkan hubungan antar situs web, di mana satu situs mengarah ke situs lainnya.</p></li>
+<li><p>Graf Tidak Berarah (Undirected Graph):
+Dalam graf tidak berarah, hubungan antara simpul bersifat dua arah. Contohnya, graf sosial di mana simpul mewakili orang dan sisi mewakili pertemanan antara mereka.</p></li>
+<li><p>Graf Berat (Weighted Graph):
+Dalam graf berat, setiap sisi memiliki bobot yang menunjukkan kekuatan atau jarak dari hubungan tersebut. Misalnya, dalam graf rute perjalanan, bobot bisa mewakili jarak atau waktu tempuh antara dua titik.</p></li>
+<li><p>Graf Tidak Berat (Unweighted Graph):
+Dalam graf tidak berat, semua sisi dianggap setara dan tidak memiliki bobot.</p></li>
+</ol>
+<p><strong>Representasi Graf</strong></p>
+<p>Graf dapat direpresentasikan dalam beberapa cara, di antaranya:</p>
+<ol class="arabic simple">
+<li><p>Matriks Adjacency:
+Matriks persegi di mana elemen di baris dan kolom merepresentasikan simpul, dan nilai dalam matriks menunjukkan ada tidaknya hubungan antara simpul-simpul tersebut. Misalnya, jika ada sisi antara simpul A dan B, maka elemen matriks pada posisi (A, B) akan diisi dengan 1 (atau bobot) dan 0 jika tidak ada sisi.</p></li>
+<li><p>Daftar Ketetanggaan (Adjacency List):
+Dalam representasi ini, setiap simpul memiliki daftar yang berisi semua simpul yang terhubung langsung dengan simpul tersebut. Ini lebih efisien dalam penggunaan memori, terutama untuk graf yang jarang terhubung (sparse).</p></li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi">
+<h1>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h1>
+<section id="library">
+<h2>Library<a class="headerlink" href="#library" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdown</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">sent_tokenize</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span><span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-1-262680e008b2&gt;</span> in <span class="ni">&lt;cell line: 8&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">re</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span><span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfTransformer</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;Sastrawi&#39;
+
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
+<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+
+<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
+<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to C:\Users\EBC
+[nltk_data]     KOMPUTER\AppData\Roaming\nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to C:\Users\EBC
+[nltk_data]     KOMPUTER\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-dataset">
+<h2>Load Dataset<a class="headerlink" href="#load-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://drive.google.com/uc?id=</span><span class="si">{</span><span class="n">file_id</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;crawling_2_kategori.csv&#39;</span>
+
+<span class="c1"># Unduh file dari Google Drive</span>
+<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading...
+From: https://drive.google.com/uc?id=1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR
+To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 5\crawling_2_kategori.csv
+100%|███████████████████████████████████████████████████████████████████████████████| 259k/259k [00:00&lt;00:00, 2.27MB/s]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;crawling_2_kategori.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membaca file CSV ke DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>content</th>
+      <th>date</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apa yang Harus Dilakukan jika Obesitas? Ini Re...</td>
+      <td>KOMPAS.com - Orang dengan obesitas lebih mungk...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Apakah Baik Makan Buah untuk Sarapan? Ini Penj...</td>
+      <td>KOMPAS.com - Buah bisa menjadi pilihan menu ya...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Tanda Malanutrisi pada Anak dan Dewasa</td>
+      <td>KOMPAS.com - Malanutrisi merupakan masalah kes...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Anak Sering Berkeringat Saat Tidur, Tanda Peny...</td>
+      <td>KOMPAS.com - Berkeringat merupakan cara alami ...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Kenali Perkembangan Motorik Normal pada Bayi, ...</td>
+      <td>KOMPAS.com - Ikatan Dokter Anak Indonesia (IDA...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>9 Tips ke Jak-Japan Matsuri 2024, Bisa Beli Ti...</td>
+      <td>JAKARTA, KOMPAS.com - Ribuan orang nampak berg...</td>
+      <td>15/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Waktu Terbaik Lihat Hiu Paus di Botubarani Gor...</td>
+      <td>KOMPAS.com - Provinsi Gorontalo di Pulau Sulaw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>14 orang Ditangkap Akibat Pendakian Ilegal di ...</td>
+      <td>KOMPAS.com - Jalur pendakian yang indah di Haw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Harga Paket Outbound Pondok Zidane, Banyak Pil...</td>
+      <td>KOMPAS.com - Menikmati waktu berkualitas bersa...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Kursi Kelas Satu Jadi Beban, Maskapai di Swiss...</td>
+      <td>KOMPAS.com – Karena memiliki model kursi kelas...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berita</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">berita</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KOMPAS.com - Berkeringat merupakan cara alami tubuh untuk mendinginkan dirinya. Bukan cuma orang dewasa, anak-anak bahkan bayi juga akan berkeringat sebagai respon terhadap panas.
+Meski begitu, berkeringat di malam hari bisa terjadi di ruangan yang sebenarnya tidak hangat.
+Berkeringat saat tidur sebenarnya hal yang normal pada anak atau orang dewasa dan tidak selalu ada penyebab langsungnya. Tetapi, jika berkeringat di malam hari disertai gejala lain itu bisa jadi ada gangguan kesehatan yang belum terdeteksi.
+Beberapa kondisi yang bisa dialami anak dan menyebabkannya berkeringat di malam hari antara lain:
+- Mimpi burukMimpi buruk yang sangat intens bisa menjadi teror yang membuat anak ketakutan. Walau rasa ngeri yang dialaminya terasa nyata, anak biasanya tidak mengingat isi mimpinya saat bangun.
+Anak yang mengalami mimpi buruk terkadang berkeringat sampai bajunya basah. Tanda lain adalah terbangun dan bernapas berat.
+Baca juga: Mengapa Tangan Sering Berkeringat? Kenali 6 Penyebabnya
+- Sindrom sleep apneaAnak yang berkeringat saat tidur, dibarengi dengan mengorok, bernapas dari mulut, dan gelisah saat tidur, kemungkinan besar mengalami sindrom obstruktif sleep apnea atau henti napas sejenak saat tidur.
+Anak yang mengalami sleep apnea akan merasa tidak bisa tidur nyenyak dan merasa lemas saat terbangun. Mereka juga biasanya mengalami sakit kepala.
+Sleep apnea juga bisa membuat anak mengalami kegemukan dan tumbuh dengan lambat dibanding teman seusianya. Karena mereka tidak bisa tidur dengan nyenyak, prestasi akademiknya juga cenderung buruk.
+- Hiperhidrosis idiopatikHiperhidrosis idiopatik merupakan kondisi berkeringat di malam hari tanpa penyebab yang jelas. Pada umumnya hiperhidrosis membuat keringat lebih banyak di area wajah, kaki, dan tangan.
+Hiperhidrosis idiopatik biasanya tidak berdampak serius pada gangguan kesehatan anak atau pun orang dewasa. Namun, keringat berlebih bisa membuat seseorang merasa cemas, terutama saat bersama orang lain.
+Baca juga: 6 Pantangan Biang Keringat dan Perawatannya yang Tepat
+- KankerPenyebab serius sering berkeringat di malam hari adalah leukemia atau tipe kanker lainnya. Dalam sebuah survei, 30 persen pasien yang didiagnosis leukemia memiliki gejala berkeringat saat tidur. Yang membedakannya adalah keringat mengucur deras sampai membuat baju dan sprei basah.
+Kapan perlu ke dokter
+Meskipun keringat di malam hari biasanya tidak perlu dikhawatirkan, kita mungkin perlu berkonsultasi dengan dokter anak jika keringat malam sering terjadi atau melihat tanda-tanda lainnya.
+Penelitian menunjukkan bahwa anak-anak yang berkeringat malam lebih mungkin mengalami penyakit pernapasan atau masalah terkait tidur lainnya. Anak-anak ini juga lebih mungkin mengalami ledakan amarah atau menjadi hiperaktif.
+Yang perlu diingat, berkeringat di malam hari adalah normal dan sebagian besar tidak ada penyebab khusus.
+Baca juga: IDAI Sebut 3 Penyakit Autoimun Ini Sering Menyerang Anak-anak
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">preprocess_text</span></code> bertujuan untuk mempersiapkan teks untuk analisis dalam pemrosesan bahasa alami. Proses dimulai dengan mengubah teks menjadi huruf kecil dan membersihkannya dari tanda baca serta karakter khusus, kecuali titik. Setelah teks dibersihkan, fungsi ini melakukan tokenisasi untuk memisahkan kata-kata. Selanjutnya, daftar stopwords bahasa Indonesia diambil dan ditambahkan dengan stopword khusus seperti ‘<a class="reference external" href="http://kompas.com">kompas.com</a>’. Kata-kata yang merupakan stopwords kemudian dihapus dari daftar. Akhirnya, kata-kata yang tersisa digabungkan kembali menjadi satu teks yang bersih, siap untuk analisis lebih lanjut. Fungsi ini mengembalikan teks yang telah diproses secara efektif.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># 1. Ubah teks menjadi lowercase</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    
+    <span class="c1"># 2. Bersihkan karakter yang bukan huruf atau angka (non-word characters)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s.]&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+    
+    <span class="c1"># 3. Tokenisasi teks menjadi kalimat</span>
+    <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># Memecah teks menjadi kalimat</span>
+    
+    <span class="c1"># 4. Ambil stopwords bahasa Indonesia</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+    
+    <span class="c1"># 5. Tambahkan stopwords khusus seperti &#39;kompas.com&#39;</span>
+    <span class="n">custom_stopwords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kompas&#39;</span><span class="p">,</span> <span class="s1">&#39;com&#39;</span><span class="p">}</span>
+    <span class="n">stop_words</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">custom_stopwords</span><span class="p">)</span>
+    
+    <span class="c1"># 6. Proses tiap kalimat: tokenisasi kata, hapus stopwords, lalu gabungkan kembali</span>
+    <span class="n">cleaned_sentences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+        <span class="c1"># Tokenisasi kata dalam kalimat</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+        
+        <span class="c1"># Hapus stopwords</span>
+        <span class="n">words_no_stop</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+        
+        <span class="c1"># Gabungkan kembali kata-kata yang sudah dibersihkan menjadi kalimat</span>
+        <span class="n">cleaned_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words_no_stop</span><span class="p">)</span>
+        
+        <span class="c1"># Tambahkan kalimat yang sudah dibersihkan ke daftar cleaned_sentences</span>
+        <span class="n">cleaned_sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_sentence</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">cleaned_sentences</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cleaned_berita</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">berita</span><span class="p">)</span>
+
+<span class="n">cleaned_berita</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;kompas.com berkeringat alami tubuh mendinginkan .&#39;,
+ &#39;orang dewasa anak anak bayi berkeringat respon panas .&#39;,
+ &#39;berkeringat malam ruangan hangat .&#39;,
+ &#39;berkeringat tidur normal anak orang dewasa penyebab langsungnya .&#39;,
+ &#39;berkeringat malam disertai gejala gangguan kesehatan terdeteksi .&#39;,
+ &#39;kondisi dialami anak menyebabkannya berkeringat malam mimpi burukmimpi buruk intens teror anak ketakutan .&#39;,
+ &#39;ngeri dialaminya nyata anak isi mimpinya bangun .&#39;,
+ &#39;anak mengalami mimpi buruk terkadang berkeringat bajunya basah .&#39;,
+ &#39;tanda terbangun bernapas berat .&#39;,
+ &#39;baca tangan berkeringat kenali 6 penyebabnya sindrom sleep apneaanak berkeringat tidur dibarengi mengorok bernapas mulut gelisah tidur mengalami sindrom obstruktif sleep apnea henti napas tidur .&#39;,
+ &#39;anak mengalami sleep apnea tidur nyenyak lemas terbangun .&#39;,
+ &#39;mengalami sakit kepala .&#39;,
+ &#39;sleep apnea anak mengalami kegemukan tumbuh lambat dibanding teman seusianya .&#39;,
+ &#39;tidur nyenyak prestasi akademiknya cenderung buruk .&#39;,
+ &#39;hiperhidrosis idiopatikhiperhidrosis idiopatik kondisi berkeringat malam penyebab .&#39;,
+ &#39;hiperhidrosis keringat area wajah kaki tangan .&#39;,
+ &#39;hiperhidrosis idiopatik berdampak serius gangguan kesehatan anak orang dewasa .&#39;,
+ &#39;keringat berlebih cemas orang .&#39;,
+ &#39;baca 6 pantangan biang keringat perawatannya kankerpenyebab serius berkeringat malam leukemia tipe kanker .&#39;,
+ &#39;survei 30 persen pasien didiagnosis leukemia memiliki gejala berkeringat tidur .&#39;,
+ &#39;membedakannya keringat mengucur deras baju sprei basah .&#39;,
+ &#39;dokter keringat malam dikhawatirkan berkonsultasi dokter anak keringat malam tanda tanda .&#39;,
+ &#39;penelitian anak anak berkeringat malam mengalami penyakit pernapasan terkait tidur .&#39;,
+ &#39;anak anak mengalami ledakan amarah hiperaktif .&#39;,
+ &#39;berkeringat malam normal penyebab khusus .&#39;,
+ &#39;baca idai 3 penyakit autoimun menyerang anak anak&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tf-idf">
+<h2>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h2>
+<p>Selanjutnya enghitung TF-IDF dari teks berita yang telah dibersihkan. Pertama, objek <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code> diinisialisasi dan digunakan untuk mengubah teks menjadi matriks TF-IDF. Fungsi <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> menghasilkan matriks yang menyimpan nilai TF-IDF untuk setiap kata dalam dokumen. Kemudian, <code class="docutils literal notranslate"><span class="pre">get_feature_names_out</span></code> digunakan untuk mengambil nama kata, dan hasilnya disajikan dalam bentuk DataFrame pandas (<code class="docutils literal notranslate"><span class="pre">tfidf_df</span></code>), di mana kolom mewakili kata dan baris mewakili dokumen, sehingga memudahkan analisis lebih lanjut.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung TF-IDF</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cleaned_berita</span><span class="p">)</span>
+
+<span class="c1"># Mengambil nama fitur (kata-kata)</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+
+<span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">terms</span><span class="p">)</span>
+<span class="n">tfidf_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>30</th>
+      <th>akademiknya</th>
+      <th>alami</th>
+      <th>amarah</th>
+      <th>anak</th>
+      <th>apnea</th>
+      <th>apneaanak</th>
+      <th>area</th>
+      <th>autoimun</th>
+      <th>baca</th>
+      <th>...</th>
+      <th>terbangun</th>
+      <th>terdeteksi</th>
+      <th>terkadang</th>
+      <th>terkait</th>
+      <th>teror</th>
+      <th>tidur</th>
+      <th>tipe</th>
+      <th>tubuh</th>
+      <th>tumbuh</th>
+      <th>wajah</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.438046</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.438046</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.415698</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.226086</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.306945</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.451131</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.308498</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.321056</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.192473</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.213833</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.445075</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.483950</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.163021</td>
+      <td>0.201858</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.163021</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.394997</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.216725</td>
+      <td>0.364304</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.400325</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.294235</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.170785</td>
+      <td>0.287083</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.355475</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.000000</td>
+      <td>0.453364</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.295716</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.450702</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.450702</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.192307</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.265376</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.328598</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.348958</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.227615</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.134971</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.390153</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.406034</td>
+      <td>0.000000</td>
+      <td>0.264844</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.482143</td>
+      <td>0.463285</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.414920</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.431809</td>
+      <td>0.348730</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>26 rows × 118 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id1">
+<h2>Cosine Similarity<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Setalah mendapatkan bobot dari TF-IDF, kemudian menghitung cosine similarity antara semua pasangan kata yang terdapat dalam teks berita yang telah diproses sebelumnya. Pertama, fungsi <code class="docutils literal notranslate"><span class="pre">cosine_similarity</span></code> diterapkan pada transpos matriks TF-IDF (<code class="docutils literal notranslate"><span class="pre">tfidf_matrix.T</span></code>), yang menghasilkan matriks cosine similarity yang menunjukkan sejauh mana setiap pasangan kata saling mirip dalam konteks penggunaannya. Selanjutnya, hasil perhitungan tersebut disajikan dalam bentuk DataFrame pandas (<code class="docutils literal notranslate"><span class="pre">cosine_sim</span></code>), di mana indeks dan kolomnya mewakili kata-kata, sehingga memudahkan analisis kesamaan antar kata berdasarkan konteks mereka dalam dokumen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung cosine similarity antara semua pasangan kata</span>
+<span class="n">cosine</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># Membuat DataFrame untuk cosine similarity</span>
+<span class="n">cosine_sim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cosine</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">terms</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">terms</span><span class="p">)</span>
+
+<span class="n">cosine_sim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>30</th>
+      <th>akademiknya</th>
+      <th>alami</th>
+      <th>amarah</th>
+      <th>anak</th>
+      <th>apnea</th>
+      <th>apneaanak</th>
+      <th>area</th>
+      <th>autoimun</th>
+      <th>baca</th>
+      <th>...</th>
+      <th>terbangun</th>
+      <th>terdeteksi</th>
+      <th>terkadang</th>
+      <th>terkait</th>
+      <th>teror</th>
+      <th>tidur</th>
+      <th>tipe</th>
+      <th>tubuh</th>
+      <th>tumbuh</th>
+      <th>wajah</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.307979</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>akademiknya</th>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.400124</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>alami</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>amarah</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>0.447413</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>anak</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.447413</td>
+      <td>1.000000</td>
+      <td>0.251401</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.400705</td>
+      <td>0.298866</td>
+      <td>...</td>
+      <td>0.133406</td>
+      <td>0.0</td>
+      <td>0.206507</td>
+      <td>0.376786</td>
+      <td>0.297929</td>
+      <td>0.309029</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.164934</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>tidur</th>
+      <td>0.307979</td>
+      <td>0.400124</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.309029</td>
+      <td>0.472225</td>
+      <td>0.534458</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.186345</td>
+      <td>...</td>
+      <td>0.253759</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.358352</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>tipe</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.567576</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>tubuh</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>tumbuh</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.164934</td>
+      <td>0.583928</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>wajah</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>118 rows × 118 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="matrik-adjensi">
+<h2>Matrik Adjensi<a class="headerlink" href="#matrik-adjensi" title="Link to this heading">#</a></h2>
+<p>Kemudian membangun matriks adjensi berdasarkan cosine similarity antara kata-kata dalam teks berita yang telah diproses. Pertama, sebuah threshold (batas) ditetapkan sebesar 0,5. Kemudian, nilai NaN pada DataFrame cosine similarity diisi dengan nol menggunakan fungsi fillna(0). Selanjutnya, matriks adjensi dibuat dengan membandingkan nilai cosine similarity yang telah diisi dengan threshold; jika nilai similarity lebih besar dari threshold, maka akan diubah menjadi 1, sebaliknya menjadi 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengatur threshold untuk membangun matriks adjensi</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># Menangani nilai NaN pada cosine_sim</span>
+<span class="n">cosine_sim_filled</span> <span class="o">=</span> <span class="n">cosine_sim</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Membuat matriks adjensi berdasarkan cosine similarity</span>
+<span class="n">adjacency</span> <span class="o">=</span> <span class="p">(</span><span class="n">cosine_sim_filled</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">adjacency_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">terms</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">terms</span><span class="p">)</span>
+
+<span class="n">adjacency_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>30</th>
+      <th>akademiknya</th>
+      <th>alami</th>
+      <th>amarah</th>
+      <th>anak</th>
+      <th>apnea</th>
+      <th>apneaanak</th>
+      <th>area</th>
+      <th>autoimun</th>
+      <th>baca</th>
+      <th>...</th>
+      <th>terbangun</th>
+      <th>terdeteksi</th>
+      <th>terkadang</th>
+      <th>terkait</th>
+      <th>teror</th>
+      <th>tidur</th>
+      <th>tipe</th>
+      <th>tubuh</th>
+      <th>tumbuh</th>
+      <th>wajah</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>akademiknya</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>alami</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>amarah</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>anak</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>tidur</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>tipe</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>tubuh</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>tumbuh</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>wajah</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>118 rows × 118 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id2">
+<h2>Graph<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat graf</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># Tambahkan node (kata)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan edge (hubungan) antara Kata berdasarkan matriks adjensi</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
+        <span class="n">similarity</span> <span class="o">=</span> <span class="n">adjacency_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>  
+        <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>  
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">similarity</span><span class="p">)</span>
+
+<span class="c1"># Visualisasikan grafik</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Membuat label node yang hanya menggunakan nomor indeks</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;K </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()}</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Graf Hubungan Antar Kata Berdasarkan Matriks Adjacency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/128f66675ef4e4708c9e82e448284427b80010cf271f113c3481e12d1d5435c4.png" src="_images/128f66675ef4e4708c9e82e448284427b80010cf271f113c3481e12d1d5435c4.png" />
+</div>
+</div>
+</section>
+<section id="page-rank">
+<h2>Page Rank<a class="headerlink" href="#page-rank" title="Link to this heading">#</a></h2>
+<p>kode dibawah ini digunakan untuk menghitung dan mencetak nilai PageRank dari node dalam sebuah graf. Kegunaan PageRank adalah untuk mengukur pentingnya atau pengaruh suatu node (atau kata, dalam konteks analisis teks) berdasarkan struktur graf</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="n">sorted_pagerank</span><span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pagerank</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Page Rank :&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Page Rank :
+Node 102: 0.0168
+Node 89: 0.0141
+Node 65: 0.0131
+Node 75: 0.0130
+Node 9: 0.0129
+Node 43: 0.0129
+Node 28: 0.0127
+Node 90: 0.0126
+Node 60: 0.0122
+Node 38: 0.0121
+Node 5: 0.0119
+Node 105: 0.0118
+Node 13: 0.0117
+Node 99: 0.0108
+Node 55: 0.0105
+Node 113: 0.0103
+Node 16: 0.0092
+Node 86: 0.0092
+Node 92: 0.0092
+Node 114: 0.0092
+Node 21: 0.0092
+Node 50: 0.0092
+Node 51: 0.0092
+Node 22: 0.0092
+Node 6: 0.0091
+Node 32: 0.0091
+Node 39: 0.0091
+Node 41: 0.0091
+Node 53: 0.0091
+Node 71: 0.0091
+Node 77: 0.0091
+Node 78: 0.0091
+Node 83: 0.0091
+Node 91: 0.0091
+Node 101: 0.0091
+Node 23: 0.0090
+Node 29: 0.0090
+Node 47: 0.0090
+Node 57: 0.0090
+Node 73: 0.0090
+Node 112: 0.0090
+Node 70: 0.0090
+Node 12: 0.0085
+Node 30: 0.0085
+Node 48: 0.0085
+Node 76: 0.0085
+Node 79: 0.0085
+Node 81: 0.0085
+Node 2: 0.0085
+Node 3: 0.0085
+Node 26: 0.0085
+Node 40: 0.0085
+Node 42: 0.0085
+Node 59: 0.0085
+Node 63: 0.0085
+Node 69: 0.0085
+Node 97: 0.0085
+Node 115: 0.0085
+Node 82: 0.0084
+Node 37: 0.0083
+Node 56: 0.0083
+Node 18: 0.0082
+Node 34: 0.0082
+Node 36: 0.0082
+Node 68: 0.0082
+Node 87: 0.0082
+Node 94: 0.0082
+Node 104: 0.0082
+Node 0: 0.0082
+Node 33: 0.0082
+Node 80: 0.0079
+Node 10: 0.0079
+Node 27: 0.0079
+Node 67: 0.0079
+Node 72: 0.0079
+Node 103: 0.0079
+Node 108: 0.0078
+Node 31: 0.0076
+Node 52: 0.0076
+Node 61: 0.0076
+Node 100: 0.0076
+Node 107: 0.0076
+Node 116: 0.0076
+Node 62: 0.0075
+Node 46: 0.0073
+Node 7: 0.0073
+Node 49: 0.0073
+Node 106: 0.0073
+Node 117: 0.0073
+Node 14: 0.0071
+Node 85: 0.0071
+Node 96: 0.0071
+Node 84: 0.0071
+Node 19: 0.0071
+Node 24: 0.0071
+Node 17: 0.0070
+Node 8: 0.0067
+Node 44: 0.0067
+Node 74: 0.0067
+Node 45: 0.0067
+Node 1: 0.0065
+Node 25: 0.0065
+Node 95: 0.0065
+Node 15: 0.0064
+Node 20: 0.0064
+Node 88: 0.0064
+Node 93: 0.0064
+Node 111: 0.0064
+Node 11: 0.0063
+Node 110: 0.0063
+Node 35: 0.0059
+Node 109: 0.0059
+Node 64: 0.0058
+Node 58: 0.0057
+Node 54: 0.0055
+Node 98: 0.0055
+Node 4: 0.0047
+Node 66: 0.0043
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiga Node Tertinggi Page Rank :&quot;</span><span class="p">)</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+  <span class="n">top_sentence</span> <span class="o">=</span> <span class="n">terms</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+  <span class="n">sentence</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Page Rank = </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiga Node Tertinggi Page Rank :
+Node 102: Page Rank = 0.0168
+Kalimat: sleep
+Node 89: Page Rank = 0.0141
+Kalimat: penyakit
+Node 65: Page Rank = 0.0131
+Kalimat: leukemia
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kata-kunci-berita">
+<h2>Kata Kunci Berita<a class="headerlink" href="#kata-kunci-berita" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">news</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Berita yang digunakan : &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Berita yang digunakan : 
+KOMPAS.com - Berkeringat merupakan cara alami tubuh untuk mendinginkan dirinya. Bukan cuma orang dewasa, anak-anak bahkan bayi juga akan berkeringat sebagai respon terhadap panas.
+Meski begitu, berkeringat di malam hari bisa terjadi di ruangan yang sebenarnya tidak hangat.
+Berkeringat saat tidur sebenarnya hal yang normal pada anak atau orang dewasa dan tidak selalu ada penyebab langsungnya. Tetapi, jika berkeringat di malam hari disertai gejala lain itu bisa jadi ada gangguan kesehatan yang belum terdeteksi.
+Beberapa kondisi yang bisa dialami anak dan menyebabkannya berkeringat di malam hari antara lain:
+- Mimpi burukMimpi buruk yang sangat intens bisa menjadi teror yang membuat anak ketakutan. Walau rasa ngeri yang dialaminya terasa nyata, anak biasanya tidak mengingat isi mimpinya saat bangun.
+Anak yang mengalami mimpi buruk terkadang berkeringat sampai bajunya basah. Tanda lain adalah terbangun dan bernapas berat.
+Baca juga: Mengapa Tangan Sering Berkeringat? Kenali 6 Penyebabnya
+- Sindrom sleep apneaAnak yang berkeringat saat tidur, dibarengi dengan mengorok, bernapas dari mulut, dan gelisah saat tidur, kemungkinan besar mengalami sindrom obstruktif sleep apnea atau henti napas sejenak saat tidur.
+Anak yang mengalami sleep apnea akan merasa tidak bisa tidur nyenyak dan merasa lemas saat terbangun. Mereka juga biasanya mengalami sakit kepala.
+Sleep apnea juga bisa membuat anak mengalami kegemukan dan tumbuh dengan lambat dibanding teman seusianya. Karena mereka tidak bisa tidur dengan nyenyak, prestasi akademiknya juga cenderung buruk.
+- Hiperhidrosis idiopatikHiperhidrosis idiopatik merupakan kondisi berkeringat di malam hari tanpa penyebab yang jelas. Pada umumnya hiperhidrosis membuat keringat lebih banyak di area wajah, kaki, dan tangan.
+Hiperhidrosis idiopatik biasanya tidak berdampak serius pada gangguan kesehatan anak atau pun orang dewasa. Namun, keringat berlebih bisa membuat seseorang merasa cemas, terutama saat bersama orang lain.
+Baca juga: 6 Pantangan Biang Keringat dan Perawatannya yang Tepat
+- KankerPenyebab serius sering berkeringat di malam hari adalah leukemia atau tipe kanker lainnya. Dalam sebuah survei, 30 persen pasien yang didiagnosis leukemia memiliki gejala berkeringat saat tidur. Yang membedakannya adalah keringat mengucur deras sampai membuat baju dan sprei basah.
+Kapan perlu ke dokter
+Meskipun keringat di malam hari biasanya tidak perlu dikhawatirkan, kita mungkin perlu berkonsultasi dengan dokter anak jika keringat malam sering terjadi atau melihat tanda-tanda lainnya.
+Penelitian menunjukkan bahwa anak-anak yang berkeringat malam lebih mungkin mengalami penyakit pernapasan atau masalah terkait tidur lainnya. Anak-anak ini juga lebih mungkin mengalami ledakan amarah atau menjadi hiperaktif.
+Yang perlu diingat, berkeringat di malam hari adalah normal dan sebagian besar tidak ada penyebab khusus.
+Baca juga: IDAI Sebut 3 Penyakit Autoimun Ini Sering Menyerang Anak-anak
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Kata Kunci :&#39;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kata Kunci : sleep, penyakit, leukemia, 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Keyword Extraction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-konsep">Penjelasan Konsep</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency">TF-IDF (Term Frequency-Inverse Document Frequency)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-adjacency">Matriks Adjacency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library">Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrik-adjensi">Matrik Adjensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#page-rank">Page Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kata-kunci-berita">Kata Kunci Berita</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
