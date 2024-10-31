@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Tentang" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,21 +147,17 @@
     
     
     <img src="_static/logo.jpg" class="logo__image only-light" alt="My sample book - Home"/>
-    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+    <img src="_static/logo.jpg" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -190,6 +179,8 @@
 
 <li class="toctree-l1"><a class="reference internal" href="Keyword%20Extraction.html">Keyword Extraction</a></li>
 
+
+<li class="toctree-l1"><a class="reference internal" href="Singular-Value%20Decomposition%20%28SVD%29.html">Singular-Value Decomposition (SVD)</a></li>
 
 </ul>
 
@@ -345,24 +336,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -669,7 +652,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-4b9addc7-75f9-482f-ab13-5e975a6a5bfc" class="colab-df-container">
+  <div id="df-a1a9e1bf-83bd-43c9-82ea-7f2cc7a4b4e9" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -697,213 +680,213 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
   <tbody>
     <tr>
       <th>0</th>
-      <td>3 Penampilan Memukau Lisa di Victoria's Secret...</td>
-      <td>KOMPAS.com - Victoria's Secret Fashion Show ke...</td>
-      <td>17/10/2024</td>
-      <td>LIFESTYLE</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Bertahan 4 Hari karena Sakit di Gunung Gandang...</td>
-      <td>KOMPAS.com - Tim SAR gabungan akhirnya berhasi...</td>
-      <td>17/10/2024</td>
+      <td>Daftar Korban Meninggal Kecelakaan Rombongan J...</td>
+      <td>SEMARANG, KOMPAS.com - Tiga korban tewas dalam...</td>
+      <td>31/10/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
+      <th>1</th>
+      <td>Steak Hotel by Holycow! Luncurkan Menu Baru, S...</td>
+      <td>KOMPAS.com - Gerai steak (steik) lokal, Steak ...</td>
+      <td>31/10/2024</td>
+      <td>FOOD</td>
+    </tr>
+    <tr>
       <th>2</th>
-      <td>Dongkrak Elektabilitas Ridwan Kamil, Suswono H...</td>
-      <td>JAKARTA, KOMPAS.com - Pengamat politik Agung B...</td>
-      <td>17/10/2024</td>
+      <td>Teguh Setyabudi Kunjungi Kepulauan Seribu, Tin...</td>
+      <td>JAKARTA, KOMPAS.com - Penjabat (Pj) Gubernur J...</td>
+      <td>31/10/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Operasi Zebra Candi di Kebumen, Pengendara Ter...</td>
-      <td>KEBUMEN, KOMPAS.com - Polres Kebumen, Jawa Ten...</td>
-      <td>17/10/2024</td>
+      <td>Pilkada Kota Bandung, Arfi-Yena Ingin Tanam 2,...</td>
+      <td>BANDUNG, KOMPAS.com - Calon wali kota Bandung ...</td>
+      <td>31/10/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Mencicipi Menu Baru Upper Clift di Sentul Bogo...</td>
-      <td>KOMPAS.com - Bersantap di resto dengan pemanda...</td>
-      <td>17/10/2024</td>
-      <td>FOOD</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Meluncur di Makassar, Harga Tiggo 8 Masih di B...</td>
-      <td>JAKARTA, KOMPAS.com - Setelah harga resmi dium...</td>
-      <td>17/10/2024</td>
-      <td>OTOMOTIF</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Pembekalan Calon Menteri Prabowo Dilakukan 2 H...</td>
-      <td>KOMPAS.com - Presiden terpilih Prabowo Subiant...</td>
-      <td>17/10/2024</td>
-      <td>TREN</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Profil Rosan Roeslani, Menteri Investasi Era J...</td>
-      <td>JAKARTA, KOMPAS.com - Menteri Investasi/Kepala...</td>
-      <td>17/10/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Lutut Nyeri dan Sulit Digerakkan, Waspadai Ost...</td>
-      <td>KOMPAS.com - Rasa nyeri pada lutut, terutama s...</td>
-      <td>17/10/2024</td>
-      <td>HEALTH</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Ausilius You Calon Wakil Gubernur Papua Tengah...</td>
-      <td>KOMPAS.com - Ausilius You, Calon Wakil Gubernu...</td>
-      <td>17/10/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Bangun Proyek Rumah Tapak di Semarang, PP Prop...</td>
-      <td>KOMPAS.com - PT PP Properti Tbk (PPRO) akan be...</td>
-      <td>17/10/2024</td>
+      <td>[POPULER PROPERTI] 13 Juta Bidang Tanah Terbit...</td>
+      <td>JAKARTA, KOMPAS.com - Menteri Agraria dan Tata...</td>
+      <td>31/10/2024</td>
       <td>PROPERTI</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>Mental Terganggu karena Ketenaran, Liam Payne ...</td>
-      <td>KOMPAS.com - Eks personel One Direction, Liam ...</td>
-      <td>17/10/2024</td>
-      <td>HYPE</td>
+      <th>5</th>
+      <td>Begini Proses Headphone Merusak Pendengaran</td>
+      <td>KOMPAS.com - Infeksi, kecelakaan atau paparan ...</td>
+      <td>31/10/2024</td>
+      <td>HEALTH</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>Serap Panen di Banyuwangi, Wujud Konsistensi P...</td>
-      <td>KOMPAS.com - Perusahaan Umum (Perum) Badan Uru...</td>
-      <td>17/10/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Siswa SMP Korban Penyiraman Air Keras Dirujuk ...</td>
-      <td>KOMPAS.com - M (13) korban penyiraman air kera...</td>
-      <td>17/10/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Gunung Ibu Kembali Meletus, Bangunan di Halmah...</td>
-      <td>HALMAHERA BARAT, KOMPAS.com - Gunung Ibu di Ka...</td>
-      <td>17/10/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Prabowo Lantik Kabinetnya 21 Oktober, Menteri ...</td>
-      <td>JAKARTA, KOMPAS.com - Wakil Ketua Umum (Waketu...</td>
-      <td>17/10/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Helikopter Basarnas Evakuasi 71 Warga Terjebak...</td>
-      <td>SUKABUMI, KOMPAS.com - Kepala Kantor Pencarian...</td>
-      <td>17/10/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Mitos atau Fakta, Biaya Perbaikan Mobil Matik ...</td>
-      <td>JAKARTA, KOMPAS.com - Mobil matik dengan trans...</td>
-      <td>17/10/2024</td>
-      <td>OTOMOTIF</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Belasan Kades Demak Datang ke Madiun untuk Bel...</td>
-      <td>KOMPAS.com - Belasan kepala desa asal Kecamata...</td>
-      <td>17/10/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Kata Saksi Mata dan Polisi soal Kronologi Tewa...</td>
-      <td>KOMPAS.com - Mantan personel One Direction, Li...</td>
-      <td>17/10/2024</td>
-      <td>TREN</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Pemerkosa Lansia di Bekasi Dikenal Ramah, Warg...</td>
-      <td>BEKASI, KOMPAS.com - H (30), pria yang diduga ...</td>
-      <td>17/10/2024</td>
-      <td>NEWS</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>MGPA: 98,7 Persen Honor Relawan MotoGP Mandali...</td>
-      <td>KOMPAS.com - Direktur Utama Mandalika Grand Pr...</td>
-      <td>17/10/2024</td>
+      <th>6</th>
+      <td>Nesta Geram karena Keputusan Wasit, Sebut Mald...</td>
+      <td>KOMPAS.com - Pelatih Monza, Alessandro Nesta, ...</td>
+      <td>31/10/2024</td>
       <td>BOLA</td>
     </tr>
     <tr>
-      <th>22</th>
-      <td>Simak Daftar Kurs Rupiah Hari Ini di BCA hingg...</td>
-      <td>JAKARTA, KOMPAS.com - Nilai tukar rupiah terha...</td>
-      <td>17/10/2024</td>
-      <td>MONEY</td>
+      <th>7</th>
+      <td>Bocoran Agenda Prabowo Saat ke Luar Negeri Pek...</td>
+      <td>KOMPAS.com - Presiden Prabowo Subianto akan me...</td>
+      <td>31/10/2024</td>
+      <td>TREN</td>
     </tr>
     <tr>
-      <th>23</th>
-      <td>CPNS Kota Yogyakarta Hanya Dibuka 10 Formasi, ...</td>
-      <td>YOGYAKARTA, KOMPAS.com - Pendaftar formasi Cal...</td>
-      <td>17/10/2024</td>
-      <td>REGIONAL</td>
+      <th>8</th>
+      <td>Xiaomi Redmi Note 14 Pro 5G Siap Masuk Indones...</td>
+      <td>KOMPAS.com - Sub-merek Xiaomi, Redmi tampaknya...</td>
+      <td>31/10/2024</td>
+      <td>TEKNO</td>
     </tr>
     <tr>
-      <th>24</th>
-      <td>IHSG Naik Usai BI Tahan Suku Bunga, Rupiah Mel...</td>
-      <td>JAKARTA, KOMPAS.com - Indeks Harga Saham Gabun...</td>
-      <td>17/10/2024</td>
-      <td>MONEY</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Dukung Panen Padi Varietas Biosalin, Pemkot Se...</td>
-      <td>KOMPAS.com - Wali Kota Semarang Hevearita Guna...</td>
-      <td>17/10/2024</td>
-      <td>REGIONAL</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Kenali Penyebab Suara Kasar Pada Mesin Mobil</td>
-      <td>SOLO, KOMPAS.com - Suara kasar pada mesin mobi...</td>
-      <td>17/10/2024</td>
+      <th>9</th>
+      <td>Chery Mulai Kirim Jip Listrik ke Konsumen Akhi...</td>
+      <td>BOGOR, KOMPAS.com - Jip listrik bergaya boxy, ...</td>
+      <td>31/10/2024</td>
       <td>OTOMOTIF</td>
     </tr>
     <tr>
-      <th>27</th>
-      <td>Kabar Terbaru Perceraian Kimberly Ryder dan Ed...</td>
-      <td>JAKARTA, KOMPAS.com- Sidang perceraian Kimberl...</td>
-      <td>17/10/2024</td>
+      <th>10</th>
+      <td>Sering Main Judi Online, Guru Agama di Alor Di...</td>
+      <td>KOMPAS.com - MAW, seorang guru agama di Moepal...</td>
+      <td>31/10/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Gegernya Warga Saat Temukan Bagian Kepala Maya...</td>
+      <td>JAKARTA, KOMPAS.com - Warga Penjaringan, Jakar...</td>
+      <td>31/10/2024</td>
+      <td>NEWS</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Cara Blokir STNK agar Terhindar dari Pajak Pro...</td>
+      <td>JAKARTA, KOMPAS.com - Bagi pemilik kendaraan b...</td>
+      <td>31/10/2024</td>
+      <td>OTOMOTIF</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Apa Itu Trick or Treat pada Perayaan Halloween?</td>
+      <td>KOMPAS.com Halloween dirayakan setiap tanggal ...</td>
+      <td>31/10/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Simak Daftar Kurs Rupiah Hari Ini Kamis 31 Okt...</td>
+      <td>JAKARTA, KOMPAS.com - Nilai tukar rupiah terha...</td>
+      <td>31/10/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Tom Lembong yang Kerap Bersebrangan dengan Bahlil</td>
+      <td>KOMPAS.com - Kejaksaan Agung (Kejagung) meneta...</td>
+      <td>31/10/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>5 Fakta Rizky Febian dan Mahalini Ajukan Penge...</td>
+      <td>JAKARTA, KOMPAS.com - Pasangan Rizky Febian da...</td>
+      <td>31/10/2024</td>
       <td>HYPE</td>
     </tr>
     <tr>
+      <th>17</th>
+      <td>Debat Publik Pilkada Kota Bandung Dikeluhkan k...</td>
+      <td>BANDUNG, KOMPAS.com - Penyelenggaraan Debat Pu...</td>
+      <td>31/10/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Tips Pilih Celana untuk Pria Berbahu Lebar, Pe...</td>
+      <td>JAKARTA, KOMPAS.com - Sama seperti perempuan, ...</td>
+      <td>31/10/2024</td>
+      <td>LIFESTYLE</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Perbedaan Anggur Shine Muscat Jepang vs Korea,...</td>
+      <td>KOMPAS.com - Anggur Shine Muscat telah menjadi...</td>
+      <td>31/10/2024</td>
+      <td>FOOD</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Ditemukan 169 Kasus Penyakit Parotitis di Kota...</td>
+      <td>YOGYAKARTA, KOMPAS.com - Angka kasus penyebara...</td>
+      <td>31/10/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Spesifikasi Electrum H3i, Motor Listrik Baru H...</td>
+      <td>TANGERANG, KOMPAS.com - Electrum resmi menjual...</td>
+      <td>31/10/2024</td>
+      <td>OTOMOTIF</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>[HOAKS] PKS Mundur dari KIM Plus</td>
+      <td>Berdasarkan verifikasi Kompas.com sejauh ini, ...</td>
+      <td>31/10/2024</td>
+      <td>CEK FAKTA</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Apple Rilis Chip M4 Max, 2 Kali Lebih "Ngebut"...</td>
+      <td>KOMPAS.com - Setelah chip M4 "reguler" dan M4 ...</td>
+      <td>31/10/2024</td>
+      <td>TEKNO</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Mendikdasmen Kunjungi PBNU, PGI, dan Persis, M...</td>
+      <td>KOMPAS.com - Menteri Pendidikan Dasar dan Mene...</td>
+      <td>31/10/2024</td>
+      <td>EDUKASI</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Wajib Tahu, Ini 10 Kampus Politeknik Terbaik d...</td>
+      <td>KOMPAS.com - Mau kuliah yang langsung nyambung...</td>
+      <td>31/10/2024</td>
+      <td>EDUKASI</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Ultah Ke-31, Satria Muda Berbagi bersama Anak-...</td>
+      <td>KOMPAS.com - Perayaan ulang tahun ke-31 Satria...</td>
+      <td>31/10/2024</td>
+      <td>BOLA</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Hingga September 2024, Bank Danamon Catatkan L...</td>
+      <td>JAKARTA, KOMPAS.com - PT Bank Danamon Indonesi...</td>
+      <td>31/10/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
       <th>28</th>
-      <td>Total Perputaran Uang Jaringan Narkoba Jambi C...</td>
-      <td>JAKARTA, KOMPAS.com – Pusat Pelaporan dan Anal...</td>
-      <td>17/10/2024</td>
-      <td>NEWS</td>
+      <td>Apa Itu Beasiswa? Kenali Manfaat dan Macam-mac...</td>
+      <td>KOMPAS.com - Impian melanjutkan studi ke jenja...</td>
+      <td>31/10/2024</td>
+      <td>EDUKASI</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>Jokowi Terbitkan Aturan Jaminan Kesehatan untu...</td>
-      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo men...</td>
-      <td>17/10/2024</td>
-      <td>NEWS</td>
+      <td>Biji Pepaya Bisa untuk Obat Penyakit Apa? Mari...</td>
+      <td>KOMPAS.com - Biji pepaya biasanya dikenal seba...</td>
+      <td>31/10/2024</td>
+      <td>TREN</td>
     </tr>
   </tbody>
 </table>
@@ -911,7 +894,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-4b9addc7-75f9-482f-ab13-5e975a6a5bfc')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a1a9e1bf-83bd-43c9-82ea-7f2cc7a4b4e9')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -963,12 +946,12 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 
     <script>
       const buttonEl =
-        document.querySelector('#df-4b9addc7-75f9-482f-ab13-5e975a6a5bfc button.colab-df-convert');
+        document.querySelector('#df-a1a9e1bf-83bd-43c9-82ea-7f2cc7a4b4e9 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-4b9addc7-75f9-482f-ab13-5e975a6a5bfc');
+        const element = document.querySelector('#df-a1a9e1bf-83bd-43c9-82ea-7f2cc7a4b4e9');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1064,7 +1047,8 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1139,8 +1123,8 @@ By The Jupyter Book Community
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

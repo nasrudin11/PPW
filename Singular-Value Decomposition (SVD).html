@@ -1,0 +1,2290 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Singular-Value Decomposition (SVD) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Singular-Value Decomposition (SVD)';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Keyword Extraction" href="Keyword%20Extraction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.jpg" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Tentang
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tugas%20Crawling.html">Crawling Berita</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Model.html">Vector Space Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Klasifikasi Berita</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Graph%20dan%20Summarization.html">Summarization</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Keyword%20Extraction.html">Keyword Extraction</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Singular-Value Decomposition (SVD)</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FSingular-Value Decomposition (SVD).html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Singular-Value Decomposition (SVD).ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Singular-Value Decomposition (SVD)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Singular-Value Decomposition (SVD)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-svd">Definisi SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notasi-matematika">Notasi Matematika</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-svd">Komponen SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-svd">Aplikasi SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-svd">Proses SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-dekomposisi-matriks-dengan-svd">Contoh Dekomposisi Matriks dengan SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal">Matriks Awal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-menghitung-svd">Langkah 1: Menghitung SVD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-rekonstruksi-matriks">Langkah 2: Rekonstruksi Matriks</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana-implementasi-svd">Contoh Sederhana Implementasi SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-case">Lower Case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cleansing-text">Cleansing Text</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenisasi">Tokenisasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">Stopword Removal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming">Stemming</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svd">SVD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Nama: Ahmad Nasrudin Jamil</p>
+<p>NIM : 210411100098</p>
+<p>Kelas : Pencarian dan Penambangan Web B</p>
+<section class="tex2jax_ignore mathjax_ignore" id="singular-value-decomposition-svd">
+<h1>Singular-Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Link to this heading">#</a></h1>
+<section id="definisi-svd">
+<h2>Definisi SVD<a class="headerlink" href="#definisi-svd" title="Link to this heading">#</a></h2>
+<p>Singular Value Decomposition (SVD) adalah metode faktorisasi matriks yang digunakan dalam banyak bidang, termasuk statistik, pengolahan sinyal, dan pembelajaran mesin. SVD memungkinkan kita untuk memecah matriks menjadi tiga matriks yang lebih sederhana, yang menyimpan informasi penting tentang struktur data.</p>
+</section>
+<section id="notasi-matematika">
+<h2>Notasi Matematika<a class="headerlink" href="#notasi-matematika" title="Link to this heading">#</a></h2>
+<p>Jika <span class="math notranslate nohighlight">\( A \)</span> adalah matriks berukuran <span class="math notranslate nohighlight">\( m \times n \)</span>, maka SVD menyatakan bahwa <span class="math notranslate nohighlight">\( A \)</span> dapat dituliskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+A = U \Sigma V^T
+\]</div>
+<p>di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( U \)</span> adalah matriks ortogonal berukuran <span class="math notranslate nohighlight">\( m \times m \)</span> yang berisi vektor singular kiri.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \Sigma \)</span> adalah matriks diagonal berukuran <span class="math notranslate nohighlight">\( m \times n \)</span> yang berisi nilai singular dari <span class="math notranslate nohighlight">\( A \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( V^T \)</span> adalah transpose dari matriks ortogonal berukuran <span class="math notranslate nohighlight">\( n \times n \)</span> yang berisi vektor singular kanan.</p></li>
+</ul>
+</section>
+<section id="komponen-svd">
+<h2>Komponen SVD<a class="headerlink" href="#komponen-svd" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Matriks <span class="math notranslate nohighlight">\( U \)</span></strong>:</p>
+<ul class="simple">
+<li><p>Kolom-kolom dari matriks <span class="math notranslate nohighlight">\( U \)</span> adalah vektor singular kiri.</p></li>
+<li><p>Vektor-vektor ini menggambarkan arah dari data asli dalam ruang dimensi <span class="math notranslate nohighlight">\( m \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( U \)</span> memiliki sifat ortogonal, yang berarti bahwa <span class="math notranslate nohighlight">\( U^T U = I \)</span>, di mana <span class="math notranslate nohighlight">\( I \)</span> adalah matriks identitas.</p></li>
+</ul>
+</li>
+<li><p><strong>Matriks <span class="math notranslate nohighlight">\( \Sigma \)</span></strong>:</p>
+<ul class="simple">
+<li><p>Matriks diagonal <span class="math notranslate nohighlight">\( \Sigma \)</span> berisi nilai singular dari matriks <span class="math notranslate nohighlight">\( A \)</span>.</p></li>
+<li><p>Nilai singular adalah akar kuadrat dari nilai eigen dari <span class="math notranslate nohighlight">\( A^T A \)</span> dan <span class="math notranslate nohighlight">\( A A^T \)</span>.</p></li>
+<li><p>Nilai-nilai dalam <span class="math notranslate nohighlight">\( \Sigma \)</span> diurutkan dari yang terbesar ke yang terkecil. Nilai singular yang lebih besar menunjukkan arah yang memiliki lebih banyak variasi dalam data.</p></li>
+</ul>
+</li>
+<li><p><strong>Matriks <span class="math notranslate nohighlight">\( V^T \)</span></strong>:</p>
+<ul class="simple">
+<li><p>Kolom-kolom dari matriks <span class="math notranslate nohighlight">\( V^T \)</span> adalah vektor singular kanan.</p></li>
+<li><p>Vektor-vektor ini menunjukkan arah dari data dalam ruang dimensi <span class="math notranslate nohighlight">\( n \)</span>.</p></li>
+<li><p>Seperti <span class="math notranslate nohighlight">\( U \)</span>, matriks <span class="math notranslate nohighlight">\( V \)</span> juga ortogonal, yang berarti bahwa <span class="math notranslate nohighlight">\( V^T V = I \)</span>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="aplikasi-svd">
+<h2>Aplikasi SVD<a class="headerlink" href="#aplikasi-svd" title="Link to this heading">#</a></h2>
+<p>SVD memiliki banyak aplikasi dalam berbagai bidang, antara lain:</p>
+<ol class="arabic simple">
+<li><p><strong>Pengurangan Dimensi</strong>:</p>
+<ul class="simple">
+<li><p>SVD digunakan untuk mengurangi dimensi data dengan memilih sejumlah kecil nilai singular dan kolom dari matriks <span class="math notranslate nohighlight">\( U \)</span> dan <span class="math notranslate nohighlight">\( V^T \)</span>. Ini sering digunakan dalam analisis data dan pemodelan statistik untuk menghilangkan noise dan redundansi.</p></li>
+</ul>
+</li>
+<li><p><strong>Rekomendasi Sistem</strong>:</p>
+<ul class="simple">
+<li><p>Dalam sistem rekomendasi, SVD dapat digunakan untuk mendekomposisi matriks preferensi pengguna-item, membantu untuk memprediksi preferensi pengguna terhadap item yang belum mereka lihat.</p></li>
+</ul>
+</li>
+<li><p><strong>Pemrosesan Citra</strong>:</p>
+<ul class="simple">
+<li><p>SVD digunakan dalam pengolahan citra untuk kompresi citra dan pengenalan pola. Dengan menyimpan hanya nilai singular terbesar, kita dapat mengompresi citra sambil mempertahankan kualitas yang cukup baik.</p></li>
+</ul>
+</li>
+<li><p><strong>Pengenalan Suara dan Bahasa</strong>:</p>
+<ul class="simple">
+<li><p>SVD digunakan dalam pengenalan suara dan analisis teks untuk mengekstraksi fitur-fitur penting dari data suara dan teks.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="proses-svd">
+<h2>Proses SVD<a class="headerlink" href="#proses-svd" title="Link to this heading">#</a></h2>
+<p>Berikut adalah langkah-langkah umum dalam proses SVD:</p>
+<ol class="arabic">
+<li><p><strong>Menghitung SVD</strong>:</p>
+<ul class="simple">
+<li><p>Hitung SVD dari matriks <span class="math notranslate nohighlight">\( A \)</span> untuk mendapatkan matriks <span class="math notranslate nohighlight">\( U \)</span>, <span class="math notranslate nohighlight">\( \Sigma \)</span>, dan <span class="math notranslate nohighlight">\( V^T \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Mengurangi Dimensi</strong>:</p>
+<ul class="simple">
+<li><p>Pilih sejumlah nilai singular terbesar (misalnya, dua atau tiga) dan buat matriks baru <span class="math notranslate nohighlight">\( \Sigma' \)</span> yang hanya menyimpan nilai singular yang dipilih.</p></li>
+</ul>
+</li>
+<li><p><strong>Membentuk Matriks Baru</strong>:</p>
+<ul class="simple">
+<li><p>Gunakan matriks <span class="math notranslate nohighlight">\( U \)</span> dan <span class="math notranslate nohighlight">\( V^T \)</span> yang sesuai untuk membentuk matriks baru:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+   A' = U' \Sigma' V'^T
+   \]</div>
+<p>di mana <span class="math notranslate nohighlight">\( U' \)</span> dan <span class="math notranslate nohighlight">\( V' \)</span> adalah kolom yang sesuai dari <span class="math notranslate nohighlight">\( U \)</span> dan <span class="math notranslate nohighlight">\( V \)</span>.</p>
+</li>
+<li><p><strong>Rekonstruksi</strong>:</p>
+<ul class="simple">
+<li><p>Matriks baru <span class="math notranslate nohighlight">\( A' \)</span> adalah representasi terkompresi dari matriks asli <span class="math notranslate nohighlight">\( A \)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<section id="contoh-dekomposisi-matriks-dengan-svd">
+<h3>Contoh Dekomposisi Matriks dengan SVD<a class="headerlink" href="#contoh-dekomposisi-matriks-dengan-svd" title="Link to this heading">#</a></h3>
+<section id="matriks-awal">
+<h4>Matriks Awal<a class="headerlink" href="#matriks-awal" title="Link to this heading">#</a></h4>
+<p>Mari kita mulai dengan mendefinisikan matriks <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix}
+4 &amp; 0 &amp; 0 \\
+3 &amp; -5 &amp; 0 \\
+0 &amp; 0 &amp; 3
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+<section id="langkah-1-menghitung-svd">
+<h4>Langkah 1: Menghitung SVD<a class="headerlink" href="#langkah-1-menghitung-svd" title="Link to this heading">#</a></h4>
+<p>Ketika kita menerapkan SVD, kita akan mendapatkan tiga matriks:</p>
+<ol class="arabic">
+<li><p><strong>Matriks U</strong> (Matriks Singular Kiri):</p>
+<ul class="simple">
+<li><p>Merupakan matriks ortogonal yang kolom-kolomnya adalah vektor singular kiri.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+   U = \begin{bmatrix}
+   0.7071 &amp; 0 &amp; 0.7071 \\
+   0.7071 &amp; -0.7071 &amp; 0 \\
+   0 &amp; 0.7071 &amp; 0.7071
+   \end{bmatrix}
+   \end{split}\]</div>
+</li>
+<li><p><strong>Matriks <span class="math notranslate nohighlight">\(\Sigma\)</span></strong> (Matriks Diagonal):</p>
+<ul class="simple">
+<li><p>Merupakan matriks diagonal yang berisi nilai singular dari matriks <span class="math notranslate nohighlight">\(A\)</span>. Nilai-nilai ini adalah akar kuadrat dari nilai eigen dari <span class="math notranslate nohighlight">\(A^T A\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \Sigma = \begin{bmatrix}
+   5.831 &amp; 0 &amp; 0 \\
+   0 &amp; 4.000 &amp; 0 \\
+   0 &amp; 0 &amp; 3.000
+   \end{bmatrix}
+   \end{split}\]</div>
+</li>
+<li><p><strong>Matriks <span class="math notranslate nohighlight">\(V^T\)</span></strong> (Matriks Singular Kanan):</p>
+<ul class="simple">
+<li><p>Merupakan matriks ortogonal yang kolom-kolomnya adalah vektor singular kanan.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   V^T = \begin{bmatrix}
+   1 &amp; 0 &amp; 0 \\
+   0 &amp; 1 &amp; 0 \\
+   0 &amp; 0 &amp; 1
+   \end{bmatrix}
+   \end{split}\]</div>
+</li>
+</ol>
+</section>
+<section id="langkah-2-rekonstruksi-matriks">
+<h4>Langkah 2: Rekonstruksi Matriks<a class="headerlink" href="#langkah-2-rekonstruksi-matriks" title="Link to this heading">#</a></h4>
+<p>Kita dapat merekonstruksi matriks <span class="math notranslate nohighlight">\(A\)</span> dari hasil SVD:</p>
+<div class="math notranslate nohighlight">
+\[
+A' = U \Sigma V^T
+\]</div>
+<p>Dengan menggunakan <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(\Sigma\)</span>, dan <span class="math notranslate nohighlight">\(V^T\)</span>, kita akan mendapatkan kembali matriks asli <span class="math notranslate nohighlight">\(A\)</span> dengan ketelitian yang cukup tinggi.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A' \approx \begin{bmatrix}
+4 &amp; 0 &amp; 0 \\
+3 &amp; -5 &amp; 0 \\
+0 &amp; 0 &amp; 3
+\end{bmatrix}
+\end{split}\]</div>
+</section>
+</section>
+<section id="kesimpulan">
+<h3>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h3>
+<p>Singular Value Decomposition (SVD) adalah alat yang kuat untuk menganalisis dan memanipulasi data matriks. Dengan menguraikan matriks menjadi komponen-komponen yang lebih sederhana, SVD membantu dalam pengurangan dimensi, kompresi data, dan banyak aplikasi analisis data lainnya. Sifat ortogonal dari matriks <span class="math notranslate nohighlight">\( U \)</span> dan <span class="math notranslate nohighlight">\( V \)</span> serta informasi penting yang terkandung dalam matriks <span class="math notranslate nohighlight">\( \Sigma \)</span> menjadikan SVD sebagai metode yang fundamental dalam ilmu data dan statistika.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi">
+<h1>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h1>
+<section id="library-yang-digunakan">
+<h2>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdown</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">diag</span><span class="p">,</span> <span class="n">zeros</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">svd</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-1-6b14708259c3&gt;</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">re</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;Sastrawi&#39;
+
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
+<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+
+<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
+<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to C:\Users\EBC
+[nltk_data]     KOMPUTER\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://drive.google.com/uc?id=</span><span class="si">{</span><span class="n">file_id</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;crawling_2_kategori.csv&#39;</span>
+
+<span class="c1"># Unduh file dari Google Drive</span>
+<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading...
+From: https://drive.google.com/uc?id=1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR
+To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 7\crawling_2_kategori.csv
+100%|███████████████████████████████████████████████████████████████████████████████| 260k/260k [00:00&lt;00:00, 5.91MB/s]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;crawling_2_kategori.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membaca file CSV ke DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="contoh-sederhana-implementasi-svd">
+<h2>Contoh Sederhana Implementasi SVD<a class="headerlink" href="#contoh-sederhana-implementasi-svd" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original Matrix A:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Singular-value decomposition</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">VT</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Display U, s (singular values), and VT</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matrix U (Left Singular Vectors):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Singular Values (s):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matrix VT (Right Singular Vectors Transpose):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">VT</span><span class="p">)</span>
+
+<span class="c1"># Create m x n Sigma matrix</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">Sigma</span><span class="p">[:</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">:</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matrix Sigma (Diagonal Matrix with Singular Values):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">)</span>
+
+<span class="c1"># Select the number of components to keep</span>
+<span class="n">n_elements</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">Sigma_reduced</span> <span class="o">=</span> <span class="n">Sigma</span><span class="p">[:,</span> <span class="p">:</span><span class="n">n_elements</span><span class="p">]</span>
+<span class="n">VT_reduced</span> <span class="o">=</span> <span class="n">VT</span><span class="p">[:</span><span class="n">n_elements</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reduced Sigma Matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Sigma_reduced</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reduced VT Matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">VT_reduced</span><span class="p">)</span>
+
+<span class="c1"># Reconstruct A using reduced components</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Sigma_reduced</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">VT_reduced</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reconstructed Matrix B (Approximation of A):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># Transformations</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Sigma_reduced</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Transformation T1 (U * Reduced Sigma):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">T1</span><span class="p">)</span>
+
+<span class="n">T2</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">VT_reduced</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Transformation T2 (A * Reduced VT.T):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">T2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original Matrix A:
+ [[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+
+Matrix U (Left Singular Vectors):
+ [[ 0.20673589  0.88915331  0.40824829]
+ [ 0.51828874  0.25438183 -0.81649658]
+ [ 0.82984158 -0.38038964  0.40824829]]
+
+Singular Values (s):
+ [2.54368356e+01 1.72261225e+00 5.14037515e-16]
+
+Matrix VT (Right Singular Vectors Transpose):
+ [[ 0.40361757  0.46474413  0.52587069  0.58699725]
+ [-0.73286619 -0.28984978  0.15316664  0.59618305]
+ [ 0.44527162 -0.83143156  0.32704826  0.05911168]
+ [ 0.3189564  -0.09338934 -0.77009054  0.54452347]]
+
+Matrix Sigma (Diagonal Matrix with Singular Values):
+ [[2.54368356e+01 0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 1.72261225e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 5.14037515e-16 0.00000000e+00]]
+
+Reduced Sigma Matrix:
+ [[2.54368356e+01 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 1.72261225e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 5.14037515e-16]]
+
+Reduced VT Matrix:
+ [[ 0.40361757  0.46474413  0.52587069  0.58699725]
+ [-0.73286619 -0.28984978  0.15316664  0.59618305]
+ [ 0.44527162 -0.83143156  0.32704826  0.05911168]]
+
+Reconstructed Matrix B (Approximation of A):
+ [[ 1.  2.  3.  4.]
+ [ 5.  6.  7.  8.]
+ [ 9. 10. 11. 12.]]
+
+Transformation T1 (U * Reduced Sigma):
+ [[ 5.25870689e+00  1.53166638e+00  2.09854937e-16]
+ [ 1.31836254e+01  4.38201263e-01 -4.19709874e-16]
+ [ 2.11085440e+01 -6.55263852e-01  2.09854937e-16]]
+
+Transformation T2 (A * Reduced VT.T):
+ [[ 5.25870689e+00  1.53166638e+00 -4.44089210e-16]
+ [ 1.31836254e+01  4.38201263e-01  0.00000000e+00]
+ [ 2.11085440e+01 -6.55263852e-01  0.00000000e+00]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matrix A</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="c1"># svd</span>
+<span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">svd</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Hasil</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix A
+ [[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+
+Hasil
+ [[ 5.25870689e+00 -1.53166638e+00  0.00000000e+00]
+ [ 1.31836254e+01 -4.38201263e-01  8.88178420e-16]
+ [ 2.11085440e+01  6.55263852e-01  1.33226763e-15]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="implementasi-code">
+<h2>Implementasi Code<a class="headerlink" href="#implementasi-code" title="Link to this heading">#</a></h2>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>content</th>
+      <th>date</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Apa yang Harus Dilakukan jika Obesitas? Ini Re...</td>
+      <td>KOMPAS.com - Orang dengan obesitas lebih mungk...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Apakah Baik Makan Buah untuk Sarapan? Ini Penj...</td>
+      <td>KOMPAS.com - Buah bisa menjadi pilihan menu ya...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Tanda Malanutrisi pada Anak dan Dewasa</td>
+      <td>KOMPAS.com - Malanutrisi merupakan masalah kes...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Anak Sering Berkeringat Saat Tidur, Tanda Peny...</td>
+      <td>KOMPAS.com - Berkeringat merupakan cara alami ...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Kenali Perkembangan Motorik Normal pada Bayi, ...</td>
+      <td>KOMPAS.com - Ikatan Dokter Anak Indonesia (IDA...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>9 Tips ke Jak-Japan Matsuri 2024, Bisa Beli Ti...</td>
+      <td>JAKARTA, KOMPAS.com - Ribuan orang nampak berg...</td>
+      <td>15/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Waktu Terbaik Lihat Hiu Paus di Botubarani Gor...</td>
+      <td>KOMPAS.com - Provinsi Gorontalo di Pulau Sulaw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>14 orang Ditangkap Akibat Pendakian Ilegal di ...</td>
+      <td>KOMPAS.com - Jalur pendakian yang indah di Haw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Harga Paket Outbound Pondok Zidane, Banyak Pil...</td>
+      <td>KOMPAS.com - Menikmati waktu berkualitas bersa...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Kursi Kelas Satu Jadi Beban, Maskapai di Swiss...</td>
+      <td>KOMPAS.com – Karena memiliki model kursi kelas...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="jumlah-dataset-per-label">
+<h3>Jumlah Dataset Per Label<a class="headerlink" href="#jumlah-dataset-per-label" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung jumlah artikel per kategori</span>
+<span class="n">category_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="c1"># Tampilkan grafik batang</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">category_counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Jumlah Artikel per Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Artikel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7b672f2970ca7075e293f50414ba3a4878caf26d62d52ef2e89b2576c2372694.png" src="_images/7b672f2970ca7075e293f50414ba3a4878caf26d62d52ef2e89b2576c2372694.png" />
+</div>
+</div>
+</section>
+<section id="preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h3>
+<section id="lower-case">
+<h4>Lower Case<a class="headerlink" href="#lower-case" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="s1">&#39;lower_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>lower_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>KOMPAS.com - Orang dengan obesitas lebih mungk...</td>
+      <td>kompas.com - orang dengan obesitas lebih mungk...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>KOMPAS.com - Buah bisa menjadi pilihan menu ya...</td>
+      <td>kompas.com - buah bisa menjadi pilihan menu ya...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>KOMPAS.com - Malanutrisi merupakan masalah kes...</td>
+      <td>kompas.com - malanutrisi merupakan masalah kes...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>KOMPAS.com - Berkeringat merupakan cara alami ...</td>
+      <td>kompas.com - berkeringat merupakan cara alami ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>KOMPAS.com - Ikatan Dokter Anak Indonesia (IDA...</td>
+      <td>kompas.com - ikatan dokter anak indonesia (ida...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>JAKARTA, KOMPAS.com - Ribuan orang nampak berg...</td>
+      <td>jakarta, kompas.com - ribuan orang nampak berg...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>KOMPAS.com - Provinsi Gorontalo di Pulau Sulaw...</td>
+      <td>kompas.com - provinsi gorontalo di pulau sulaw...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>KOMPAS.com - Jalur pendakian yang indah di Haw...</td>
+      <td>kompas.com - jalur pendakian yang indah di haw...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>KOMPAS.com - Menikmati waktu berkualitas bersa...</td>
+      <td>kompas.com - menikmati waktu berkualitas bersa...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>KOMPAS.com – Karena memiliki model kursi kelas...</td>
+      <td>kompas.com – karena memiliki model kursi kelas...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="cleansing-text">
+<h4>Cleansing Text<a class="headerlink" href="#cleansing-text" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z]&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;lower_text&#39;</span><span class="p">,</span> <span class="s1">&#39;cleaned_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lower_text</th>
+      <th>cleaned_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kompas.com - orang dengan obesitas lebih mungk...</td>
+      <td>kompas com   orang dengan obesitas lebih mungk...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kompas.com - buah bisa menjadi pilihan menu ya...</td>
+      <td>kompas com   buah bisa menjadi pilihan menu ya...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kompas.com - malanutrisi merupakan masalah kes...</td>
+      <td>kompas com   malanutrisi merupakan masalah kes...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kompas.com - berkeringat merupakan cara alami ...</td>
+      <td>kompas com   berkeringat merupakan cara alami ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>kompas.com - ikatan dokter anak indonesia (ida...</td>
+      <td>kompas com   ikatan dokter anak indonesia  ida...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>jakarta, kompas.com - ribuan orang nampak berg...</td>
+      <td>jakarta  kompas com   ribuan orang nampak berg...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>kompas.com - provinsi gorontalo di pulau sulaw...</td>
+      <td>kompas com   provinsi gorontalo di pulau sulaw...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>kompas.com - jalur pendakian yang indah di haw...</td>
+      <td>kompas com   jalur pendakian yang indah di haw...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>kompas.com - menikmati waktu berkualitas bersa...</td>
+      <td>kompas com   menikmati waktu berkualitas bersa...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>kompas.com – karena memiliki model kursi kelas...</td>
+      <td>kompas com   karena memiliki model kursi kelas...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="tokenisasi">
+<h4>Tokenisasi<a class="headerlink" href="#tokenisasi" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">,</span> <span class="s1">&#39;tokenized_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cleaned_text</th>
+      <th>tokenized_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kompas com   orang dengan obesitas lebih mungk...</td>
+      <td>[kompas, com, orang, dengan, obesitas, lebih, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kompas com   buah bisa menjadi pilihan menu ya...</td>
+      <td>[kompas, com, buah, bisa, menjadi, pilihan, me...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kompas com   malanutrisi merupakan masalah kes...</td>
+      <td>[kompas, com, malanutrisi, merupakan, masalah,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kompas com   berkeringat merupakan cara alami ...</td>
+      <td>[kompas, com, berkeringat, merupakan, cara, al...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>kompas com   ikatan dokter anak indonesia  ida...</td>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>jakarta  kompas com   ribuan orang nampak berg...</td>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>kompas com   provinsi gorontalo di pulau sulaw...</td>
+      <td>[kompas, com, provinsi, gorontalo, di, pulau, ...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>kompas com   jalur pendakian yang indah di haw...</td>
+      <td>[kompas, com, jalur, pendakian, yang, indah, d...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>kompas com   menikmati waktu berkualitas bersa...</td>
+      <td>[kompas, com, menikmati, waktu, berkualitas, b...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>kompas com   karena memiliki model kursi kelas...</td>
+      <td>[kompas, com, karena, memiliki, model, kursi, ...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="stopword-removal">
+<h4>Stopword Removal<a class="headerlink" href="#stopword-removal" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+
+<span class="n">custom_stopwords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kompas&#39;</span><span class="p">,</span> <span class="s1">&#39;com&#39;</span><span class="p">}</span>
+<span class="n">stop_words</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">custom_stopwords</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tokens</span><span class="p">:</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">])</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;tokenized_text&#39;</span><span class="p">,</span> <span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tokenized_text</th>
+      <th>no_stopwords_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[kompas, com, orang, dengan, obesitas, lebih, ...</td>
+      <td>[kompas, com, orang, obesitas, mengalami, kese...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[kompas, com, buah, bisa, menjadi, pilihan, me...</td>
+      <td>[kompas, com, buah, pilihan, menu, ringan, bag...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[kompas, com, malanutrisi, merupakan, masalah,...</td>
+      <td>[kompas, com, malanutrisi, kesehatan, serius, ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[kompas, com, berkeringat, merupakan, cara, al...</td>
+      <td>[kompas, com, berkeringat, alami, tubuh, mendi...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>[kompas, com, provinsi, gorontalo, di, pulau, ...</td>
+      <td>[kompas, com, provinsi, gorontalo, pulau, sula...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>[kompas, com, jalur, pendakian, yang, indah, d...</td>
+      <td>[kompas, com, jalur, pendakian, indah, hawaii,...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>[kompas, com, menikmati, waktu, berkualitas, b...</td>
+      <td>[kompas, com, menikmati, berkualitas, keluarga...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>[kompas, com, karena, memiliki, model, kursi, ...</td>
+      <td>[kompas, com, memiliki, model, kursi, kelas, t...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="stemming">
+<h4>Stemming<a class="headerlink" href="#stemming" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat objek Stemmer dari Sastrawi</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">StemmerFactory</span><span class="p">()</span>
+<span class="n">stemmer</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_stemmer</span><span class="p">()</span>
+
+<span class="c1"># Menggunakan Sastrawi untuk stemming teks</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;stemmed_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tokens</span><span class="p">:</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;final_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stemmed_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;no_stopwords_text&#39;</span><span class="p">,</span> <span class="s1">&#39;final_text&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>no_stopwords_text</th>
+      <th>final_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[kompas, com, orang, obesitas, mengalami, kese...</td>
+      <td>kompas com orang obesitas alami sehat potensi ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[kompas, com, buah, pilihan, menu, ringan, bag...</td>
+      <td>kompas com buah pilih menu ringan bagus konsum...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[kompas, com, malanutrisi, kesehatan, serius, ...</td>
+      <td>kompas com malanutrisi sehat serius indonesia ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[kompas, com, berkeringat, alami, tubuh, mendi...</td>
+      <td>kompas com keringat alami tubuh dingin orang d...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
+      <td>kompas com ikat dokter anak indonesia ida gera...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
+      <td>jakarta kompas com ribu orang nampak ganti fes...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>[kompas, com, provinsi, gorontalo, pulau, sula...</td>
+      <td>kompas com provinsi gorontalo pulau sulawesi u...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>[kompas, com, jalur, pendakian, indah, hawaii,...</td>
+      <td>kompas com jalur daki indah hawaii nikmat unju...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>[kompas, com, menikmati, berkualitas, keluarga...</td>
+      <td>kompas com nikmat kualitas keluarga teman tema...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>[kompas, com, memiliki, model, kursi, kelas, t...</td>
+      <td>kompas com milik model kursi kelas baru swiss ...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="tf-idf">
+<h3>TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menghitung TF-IDF</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;final_text&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="c1"># Mengambil nama fitur (kata-kata)</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+
+<span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">terms</span><span class="p">)</span>
+<span class="n">tfidf_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abad</th>
+      <th>abadi</th>
+      <th>abai</th>
+      <th>abang</th>
+      <th>abar</th>
+      <th>abdi</th>
+      <th>abdullah</th>
+      <th>abu</th>
+      <th>abuan</th>
+      <th>ac</th>
+      <th>...</th>
+      <th>yudi</th>
+      <th>yunani</th>
+      <th>zaman</th>
+      <th>zat</th>
+      <th>zeus</th>
+      <th>zhongli</th>
+      <th>zidane</th>
+      <th>zona</th>
+      <th>zone</th>
+      <th>zumba</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.033878</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.381613</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 3472 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur_kata</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah fitur kata dari hasil TF-IDF:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fitur_kata</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur kata dari hasil TF-IDF: 3472
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="svd">
+<h3>SVD<a class="headerlink" href="#svd" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># jumlah komponen yang diinginkan</span>
+<span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">)</span>
+<span class="n">reduced_tfidf</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+
+<span class="c1"># Membuat DataFrame dari hasil reduksi</span>
+<span class="n">reduced_tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reduced_tfidf</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan hasil reduksi</span>
+<span class="n">reduced_tfidf_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>90</th>
+      <th>91</th>
+      <th>92</th>
+      <th>93</th>
+      <th>94</th>
+      <th>95</th>
+      <th>96</th>
+      <th>97</th>
+      <th>98</th>
+      <th>99</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.217990</td>
+      <td>0.136033</td>
+      <td>-0.001391</td>
+      <td>0.002188</td>
+      <td>-0.033528</td>
+      <td>0.038116</td>
+      <td>-0.073601</td>
+      <td>0.197000</td>
+      <td>-0.128447</td>
+      <td>-0.095020</td>
+      <td>...</td>
+      <td>-0.010497</td>
+      <td>0.003586</td>
+      <td>-0.006993</td>
+      <td>0.000121</td>
+      <td>0.003811</td>
+      <td>0.003199</td>
+      <td>0.002533</td>
+      <td>-0.002885</td>
+      <td>-0.001780</td>
+      <td>0.000652</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.358250</td>
+      <td>0.308268</td>
+      <td>-0.014864</td>
+      <td>-0.004325</td>
+      <td>-0.264466</td>
+      <td>-0.092259</td>
+      <td>0.075887</td>
+      <td>-0.112420</td>
+      <td>0.085034</td>
+      <td>-0.015646</td>
+      <td>...</td>
+      <td>-0.047437</td>
+      <td>0.006985</td>
+      <td>-0.004661</td>
+      <td>-0.009207</td>
+      <td>-0.035772</td>
+      <td>0.001981</td>
+      <td>0.000520</td>
+      <td>0.001690</td>
+      <td>0.001671</td>
+      <td>-0.001380</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.231985</td>
+      <td>0.056354</td>
+      <td>-0.000262</td>
+      <td>0.006411</td>
+      <td>-0.031770</td>
+      <td>0.087964</td>
+      <td>-0.100324</td>
+      <td>0.255619</td>
+      <td>-0.115016</td>
+      <td>-0.109924</td>
+      <td>...</td>
+      <td>-0.011292</td>
+      <td>-0.001982</td>
+      <td>0.003655</td>
+      <td>-0.005848</td>
+      <td>0.001717</td>
+      <td>0.003201</td>
+      <td>0.002602</td>
+      <td>-0.000789</td>
+      <td>0.002421</td>
+      <td>-0.001116</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.163475</td>
+      <td>0.005525</td>
+      <td>-0.030955</td>
+      <td>-0.039959</td>
+      <td>0.012560</td>
+      <td>0.031959</td>
+      <td>-0.058815</td>
+      <td>0.211082</td>
+      <td>-0.082342</td>
+      <td>-0.046756</td>
+      <td>...</td>
+      <td>-0.001170</td>
+      <td>0.000700</td>
+      <td>0.005585</td>
+      <td>-0.005519</td>
+      <td>0.002010</td>
+      <td>-0.005612</td>
+      <td>-0.000135</td>
+      <td>0.002919</td>
+      <td>-0.001080</td>
+      <td>-0.001126</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.118500</td>
+      <td>0.020645</td>
+      <td>-0.013977</td>
+      <td>-0.014774</td>
+      <td>0.083066</td>
+      <td>0.030866</td>
+      <td>-0.035519</td>
+      <td>0.103138</td>
+      <td>-0.041447</td>
+      <td>0.002913</td>
+      <td>...</td>
+      <td>-0.004981</td>
+      <td>-0.001793</td>
+      <td>-0.001673</td>
+      <td>-0.002539</td>
+      <td>0.001404</td>
+      <td>0.002800</td>
+      <td>0.001274</td>
+      <td>0.006337</td>
+      <td>-0.002294</td>
+      <td>-0.000690</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.261650</td>
+      <td>-0.296247</td>
+      <td>-0.000182</td>
+      <td>0.737347</td>
+      <td>0.055940</td>
+      <td>-0.244198</td>
+      <td>0.034099</td>
+      <td>0.003409</td>
+      <td>-0.010409</td>
+      <td>-0.006327</td>
+      <td>...</td>
+      <td>0.007338</td>
+      <td>-0.085574</td>
+      <td>0.051194</td>
+      <td>-0.260439</td>
+      <td>-0.012861</td>
+      <td>0.054752</td>
+      <td>0.056774</td>
+      <td>-0.071545</td>
+      <td>-0.074248</td>
+      <td>-0.008511</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.158577</td>
+      <td>-0.164694</td>
+      <td>0.868738</td>
+      <td>-0.171819</td>
+      <td>0.039222</td>
+      <td>-0.172989</td>
+      <td>0.133254</td>
+      <td>0.047343</td>
+      <td>0.003199</td>
+      <td>0.005112</td>
+      <td>...</td>
+      <td>-0.022351</td>
+      <td>-0.060822</td>
+      <td>-0.015440</td>
+      <td>-0.049471</td>
+      <td>0.048976</td>
+      <td>0.015338</td>
+      <td>-0.236087</td>
+      <td>-0.006932</td>
+      <td>0.043868</td>
+      <td>-0.189498</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.100998</td>
+      <td>-0.055707</td>
+      <td>0.034597</td>
+      <td>0.006666</td>
+      <td>-0.008858</td>
+      <td>0.048533</td>
+      <td>-0.068120</td>
+      <td>-0.021754</td>
+      <td>-0.027257</td>
+      <td>-0.002236</td>
+      <td>...</td>
+      <td>-0.000284</td>
+      <td>-0.001950</td>
+      <td>0.003500</td>
+      <td>-0.003891</td>
+      <td>-0.001191</td>
+      <td>0.000670</td>
+      <td>-0.001471</td>
+      <td>-0.000594</td>
+      <td>-0.000690</td>
+      <td>0.000352</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.202914</td>
+      <td>-0.154604</td>
+      <td>-0.054346</td>
+      <td>-0.063607</td>
+      <td>0.006926</td>
+      <td>-0.024041</td>
+      <td>-0.011389</td>
+      <td>0.080568</td>
+      <td>0.081669</td>
+      <td>-0.047625</td>
+      <td>...</td>
+      <td>0.001063</td>
+      <td>0.003574</td>
+      <td>0.006538</td>
+      <td>-0.000303</td>
+      <td>-0.000524</td>
+      <td>0.006477</td>
+      <td>0.007798</td>
+      <td>-0.003815</td>
+      <td>0.004281</td>
+      <td>-0.005270</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.098058</td>
+      <td>-0.040767</td>
+      <td>0.015940</td>
+      <td>0.020489</td>
+      <td>-0.024215</td>
+      <td>0.092570</td>
+      <td>0.004655</td>
+      <td>0.048918</td>
+      <td>0.015887</td>
+      <td>-0.065094</td>
+      <td>...</td>
+      <td>-0.003595</td>
+      <td>0.000945</td>
+      <td>0.000668</td>
+      <td>-0.004715</td>
+      <td>-0.001967</td>
+      <td>0.000321</td>
+      <td>-0.000801</td>
+      <td>0.001620</td>
+      <td>-0.001706</td>
+      <td>-0.000005</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 100 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Keyword%20Extraction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Keyword Extraction</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Singular-Value Decomposition (SVD)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-svd">Definisi SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notasi-matematika">Notasi Matematika</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-svd">Komponen SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-svd">Aplikasi SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-svd">Proses SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-dekomposisi-matriks-dengan-svd">Contoh Dekomposisi Matriks dengan SVD</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal">Matriks Awal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-menghitung-svd">Langkah 1: Menghitung SVD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-rekonstruksi-matriks">Langkah 2: Rekonstruksi Matriks</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana-implementasi-svd">Contoh Sederhana Implementasi SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-case">Lower Case</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cleansing-text">Cleansing Text</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenisasi">Tokenisasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">Stopword Removal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming">Stemming</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svd">SVD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
