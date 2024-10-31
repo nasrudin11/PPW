@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Singular-Value Decomposition (SVD) &#8212; My sample book</title>
+    <title>Singular Value Decomposition (SVD) &#8212; My sample book</title>
   
   
   
@@ -181,7 +181,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Keyword%20Extraction.html">Keyword Extraction</a></li>
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Singular-Value Decomposition (SVD)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Singular Value Decomposition (SVD)</a></li>
 
 </ul>
 
@@ -360,7 +360,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Singular-Value Decomposition (SVD)</h1>
+    <h1>Singular Value Decomposition (SVD)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -370,7 +370,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Singular-Value Decomposition (SVD)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Singular Value Decomposition (SVD)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-svd">Definisi SVD</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notasi-matematika">Notasi Matematika</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-svd">Komponen SVD</a></li>
@@ -423,7 +423,7 @@
 <p>NIM : 210411100098</p>
 <p>Kelas : Pencarian dan Penambangan Web B</p>
 <section class="tex2jax_ignore mathjax_ignore" id="singular-value-decomposition-svd">
-<h1>Singular-Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Link to this heading">#</a></h1>
+<h1>Singular Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Link to this heading">#</a></h1>
 <section id="definisi-svd">
 <h2>Definisi SVD<a class="headerlink" href="#definisi-svd" title="Link to this heading">#</a></h2>
 <p>Singular Value Decomposition (SVD) adalah metode faktorisasi matriks yang digunakan dalam banyak bidang, termasuk statistik, pengolahan sinyal, dan pembelajaran mesin. SVD memungkinkan kita untuk memecah matriks menjadi tiga matriks yang lebih sederhana, yang menyimpan informasi penting tentang struktur data.</p>
@@ -684,8 +684,8 @@ A' \approx \begin{bmatrix}
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading...
 From: https://drive.google.com/uc?id=1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR
-To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 7\crawling_2_kategori.csv
-100%|███████████████████████████████████████████████████████████████████████████████| 260k/260k [00:00&lt;00:00, 5.91MB/s]
+To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 6\crawling_2_kategori.csv
+100%|███████████████████████████████████████████████████████████████████████████████| 260k/260k [00:00&lt;00:00, 2.10MB/s]
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;crawling_2_kategori.csv&#39;
@@ -825,8 +825,8 @@ Transformation T2 (A * Reduced VT.T):
 
 Hasil
  [[ 5.25870689e+00 -1.53166638e+00  0.00000000e+00]
- [ 1.31836254e+01 -4.38201263e-01  8.88178420e-16]
- [ 2.11085440e+01  6.55263852e-01  1.33226763e-15]]
+ [ 1.31836254e+01 -4.38201263e-01 -8.88178420e-16]
+ [ 2.11085440e+01  6.55263852e-01 -1.77635684e-15]]
 </pre></div>
 </div>
 </div>
@@ -1304,27 +1304,27 @@ Hasil
     <tr>
       <th>0</th>
       <td>[kompas, com, orang, dengan, obesitas, lebih, ...</td>
-      <td>[kompas, com, orang, obesitas, mengalami, kese...</td>
+      <td>[orang, obesitas, mengalami, kesehatan, berpot...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>[kompas, com, buah, bisa, menjadi, pilihan, me...</td>
-      <td>[kompas, com, buah, pilihan, menu, ringan, bag...</td>
+      <td>[buah, pilihan, menu, ringan, bagus, dikonsums...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>[kompas, com, malanutrisi, merupakan, masalah,...</td>
-      <td>[kompas, com, malanutrisi, kesehatan, serius, ...</td>
+      <td>[malanutrisi, kesehatan, serius, indonesia, me...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>[kompas, com, berkeringat, merupakan, cara, al...</td>
-      <td>[kompas, com, berkeringat, alami, tubuh, mendi...</td>
+      <td>[berkeringat, alami, tubuh, mendinginkan, oran...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
-      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
+      <td>[ikatan, dokter, anak, indonesia, idai, geraka...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1334,27 +1334,27 @@ Hasil
     <tr>
       <th>95</th>
       <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
-      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
+      <td>[jakarta, ribuan, orang, nampak, bergantian, f...</td>
     </tr>
     <tr>
       <th>96</th>
       <td>[kompas, com, provinsi, gorontalo, di, pulau, ...</td>
-      <td>[kompas, com, provinsi, gorontalo, pulau, sula...</td>
+      <td>[provinsi, gorontalo, pulau, sulawesi, utara, ...</td>
     </tr>
     <tr>
       <th>97</th>
       <td>[kompas, com, jalur, pendakian, yang, indah, d...</td>
-      <td>[kompas, com, jalur, pendakian, indah, hawaii,...</td>
+      <td>[jalur, pendakian, indah, hawaii, dinikmati, p...</td>
     </tr>
     <tr>
       <th>98</th>
       <td>[kompas, com, menikmati, waktu, berkualitas, b...</td>
-      <td>[kompas, com, menikmati, berkualitas, keluarga...</td>
+      <td>[menikmati, berkualitas, keluarga, teman, tema...</td>
     </tr>
     <tr>
       <th>99</th>
       <td>[kompas, com, karena, memiliki, model, kursi, ...</td>
-      <td>[kompas, com, memiliki, model, kursi, kelas, t...</td>
+      <td>[memiliki, model, kursi, kelas, terbaru, swiss...</td>
     </tr>
   </tbody>
 </table>
@@ -1404,28 +1404,28 @@ Hasil
   <tbody>
     <tr>
       <th>0</th>
-      <td>[kompas, com, orang, obesitas, mengalami, kese...</td>
-      <td>kompas com orang obesitas alami sehat potensi ...</td>
+      <td>[orang, obesitas, mengalami, kesehatan, berpot...</td>
+      <td>orang obesitas alami sehat potensi serius atas...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>[kompas, com, buah, pilihan, menu, ringan, bag...</td>
-      <td>kompas com buah pilih menu ringan bagus konsum...</td>
+      <td>[buah, pilihan, menu, ringan, bagus, dikonsums...</td>
+      <td>buah pilih menu ringan bagus konsumsi sarap ku...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>[kompas, com, malanutrisi, kesehatan, serius, ...</td>
-      <td>kompas com malanutrisi sehat serius indonesia ...</td>
+      <td>[malanutrisi, kesehatan, serius, indonesia, me...</td>
+      <td>malanutrisi sehat serius indonesia duduk perin...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>[kompas, com, berkeringat, alami, tubuh, mendi...</td>
-      <td>kompas com keringat alami tubuh dingin orang d...</td>
+      <td>[berkeringat, alami, tubuh, mendinginkan, oran...</td>
+      <td>keringat alami tubuh dingin orang dewasa anak ...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
-      <td>kompas com ikat dokter anak indonesia ida gera...</td>
+      <td>[ikatan, dokter, anak, indonesia, idai, geraka...</td>
+      <td>ikat dokter anak indonesia ida gera motorik an...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1434,28 +1434,28 @@ Hasil
     </tr>
     <tr>
       <th>95</th>
-      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
-      <td>jakarta kompas com ribu orang nampak ganti fes...</td>
+      <td>[jakarta, ribuan, orang, nampak, bergantian, f...</td>
+      <td>jakarta ribu orang nampak ganti festival seni ...</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>[kompas, com, provinsi, gorontalo, pulau, sula...</td>
-      <td>kompas com provinsi gorontalo pulau sulawesi u...</td>
+      <td>[provinsi, gorontalo, pulau, sulawesi, utara, ...</td>
+      <td>provinsi gorontalo pulau sulawesi utara kenal ...</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>[kompas, com, jalur, pendakian, indah, hawaii,...</td>
-      <td>kompas com jalur daki indah hawaii nikmat unju...</td>
+      <td>[jalur, pendakian, indah, hawaii, dinikmati, p...</td>
+      <td>jalur daki indah hawaii nikmat unjung dunia go...</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>[kompas, com, menikmati, berkualitas, keluarga...</td>
-      <td>kompas com nikmat kualitas keluarga teman tema...</td>
+      <td>[menikmati, berkualitas, keluarga, teman, tema...</td>
+      <td>nikmat kualitas keluarga teman teman seru pili...</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>[kompas, com, memiliki, model, kursi, kelas, t...</td>
-      <td>kompas com milik model kursi kelas baru swiss ...</td>
+      <td>[memiliki, model, kursi, kelas, terbaru, swiss...</td>
+      <td>milik model kursi kelas baru swiss air les mas...</td>
     </tr>
   </tbody>
 </table>
@@ -1539,7 +1539,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1563,7 +1563,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1587,7 +1587,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.033878</td>
+      <td>0.03389</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1611,7 +1611,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1635,7 +1635,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1683,7 +1683,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1707,7 +1707,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1731,7 +1731,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1755,10 +1755,10 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.381613</td>
+      <td>0.381695</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1779,7 +1779,7 @@ Hasil
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
@@ -1789,7 +1789,7 @@ Hasil
     </tr>
   </tbody>
 </table>
-<p>100 rows × 3472 columns</p>
+<p>100 rows × 3470 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1801,7 +1801,7 @@ Hasil
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur kata dari hasil TF-IDF: 3472
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur kata dari hasil TF-IDF: 3470
 </pre></div>
 </div>
 </div>
@@ -1868,123 +1868,123 @@ Hasil
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.217990</td>
-      <td>0.136033</td>
-      <td>-0.001391</td>
-      <td>0.002188</td>
-      <td>-0.033528</td>
-      <td>0.038116</td>
-      <td>-0.073601</td>
-      <td>0.197000</td>
-      <td>-0.128447</td>
-      <td>-0.095020</td>
+      <td>0.221261</td>
+      <td>0.129352</td>
+      <td>-0.001476</td>
+      <td>0.002086</td>
+      <td>-0.032853</td>
+      <td>0.036355</td>
+      <td>-0.072935</td>
+      <td>0.196265</td>
+      <td>-0.130849</td>
+      <td>-0.095264</td>
       <td>...</td>
-      <td>-0.010497</td>
-      <td>0.003586</td>
-      <td>-0.006993</td>
-      <td>0.000121</td>
-      <td>0.003811</td>
-      <td>0.003199</td>
-      <td>0.002533</td>
-      <td>-0.002885</td>
-      <td>-0.001780</td>
-      <td>0.000652</td>
+      <td>-0.010455</td>
+      <td>0.003266</td>
+      <td>-0.007182</td>
+      <td>-0.000051</td>
+      <td>0.003700</td>
+      <td>0.003875</td>
+      <td>0.001513</td>
+      <td>-0.002886</td>
+      <td>-0.001831</td>
+      <td>0.000639</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.358250</td>
-      <td>0.308268</td>
-      <td>-0.014864</td>
-      <td>-0.004325</td>
-      <td>-0.264466</td>
-      <td>-0.092259</td>
-      <td>0.075887</td>
-      <td>-0.112420</td>
-      <td>0.085034</td>
-      <td>-0.015646</td>
+      <td>0.368457</td>
+      <td>0.295747</td>
+      <td>-0.013408</td>
+      <td>-0.004637</td>
+      <td>-0.266339</td>
+      <td>-0.083245</td>
+      <td>0.078176</td>
+      <td>-0.112362</td>
+      <td>0.086359</td>
+      <td>-0.016001</td>
       <td>...</td>
-      <td>-0.047437</td>
-      <td>0.006985</td>
-      <td>-0.004661</td>
-      <td>-0.009207</td>
-      <td>-0.035772</td>
-      <td>0.001981</td>
-      <td>0.000520</td>
-      <td>0.001690</td>
-      <td>0.001671</td>
-      <td>-0.001380</td>
+      <td>-0.047288</td>
+      <td>0.007008</td>
+      <td>-0.004758</td>
+      <td>-0.008551</td>
+      <td>-0.036038</td>
+      <td>0.001007</td>
+      <td>0.000377</td>
+      <td>0.001633</td>
+      <td>0.001608</td>
+      <td>-0.001376</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.231985</td>
-      <td>0.056354</td>
-      <td>-0.000262</td>
-      <td>0.006411</td>
-      <td>-0.031770</td>
-      <td>0.087964</td>
-      <td>-0.100324</td>
-      <td>0.255619</td>
-      <td>-0.115016</td>
-      <td>-0.109924</td>
+      <td>0.231478</td>
+      <td>0.049969</td>
+      <td>-0.000695</td>
+      <td>0.006299</td>
+      <td>-0.030270</td>
+      <td>0.085449</td>
+      <td>-0.101350</td>
+      <td>0.255336</td>
+      <td>-0.118431</td>
+      <td>-0.110462</td>
       <td>...</td>
-      <td>-0.011292</td>
-      <td>-0.001982</td>
-      <td>0.003655</td>
-      <td>-0.005848</td>
-      <td>0.001717</td>
-      <td>0.003201</td>
-      <td>0.002602</td>
-      <td>-0.000789</td>
-      <td>0.002421</td>
-      <td>-0.001116</td>
+      <td>-0.011271</td>
+      <td>-0.001844</td>
+      <td>0.003753</td>
+      <td>-0.005854</td>
+      <td>0.001498</td>
+      <td>0.003763</td>
+      <td>0.001739</td>
+      <td>-0.000786</td>
+      <td>0.002444</td>
+      <td>-0.001105</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.163475</td>
-      <td>0.005525</td>
-      <td>-0.030955</td>
-      <td>-0.039959</td>
-      <td>0.012560</td>
-      <td>0.031959</td>
-      <td>-0.058815</td>
-      <td>0.211082</td>
-      <td>-0.082342</td>
-      <td>-0.046756</td>
+      <td>0.163754</td>
+      <td>-0.000431</td>
+      <td>-0.025925</td>
+      <td>-0.041202</td>
+      <td>0.013025</td>
+      <td>0.030509</td>
+      <td>-0.057942</td>
+      <td>0.210415</td>
+      <td>-0.085078</td>
+      <td>-0.046613</td>
       <td>...</td>
-      <td>-0.001170</td>
-      <td>0.000700</td>
-      <td>0.005585</td>
-      <td>-0.005519</td>
-      <td>0.002010</td>
-      <td>-0.005612</td>
-      <td>-0.000135</td>
-      <td>0.002919</td>
-      <td>-0.001080</td>
-      <td>-0.001126</td>
+      <td>-0.001158</td>
+      <td>0.000962</td>
+      <td>0.005661</td>
+      <td>-0.005402</td>
+      <td>0.002034</td>
+      <td>-0.005532</td>
+      <td>0.001807</td>
+      <td>0.002835</td>
+      <td>-0.001208</td>
+      <td>-0.001142</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.118500</td>
-      <td>0.020645</td>
-      <td>-0.013977</td>
-      <td>-0.014774</td>
-      <td>0.083066</td>
-      <td>0.030866</td>
-      <td>-0.035519</td>
-      <td>0.103138</td>
-      <td>-0.041447</td>
-      <td>0.002913</td>
+      <td>0.118518</td>
+      <td>0.016843</td>
+      <td>-0.011928</td>
+      <td>-0.015334</td>
+      <td>0.083621</td>
+      <td>0.028081</td>
+      <td>-0.035692</td>
+      <td>0.102893</td>
+      <td>-0.042758</td>
+      <td>0.002825</td>
       <td>...</td>
-      <td>-0.004981</td>
-      <td>-0.001793</td>
-      <td>-0.001673</td>
-      <td>-0.002539</td>
-      <td>0.001404</td>
-      <td>0.002800</td>
-      <td>0.001274</td>
-      <td>0.006337</td>
-      <td>-0.002294</td>
-      <td>-0.000690</td>
+      <td>-0.004967</td>
+      <td>-0.001930</td>
+      <td>-0.001636</td>
+      <td>-0.002630</td>
+      <td>0.001243</td>
+      <td>0.002885</td>
+      <td>0.000698</td>
+      <td>0.006356</td>
+      <td>-0.002290</td>
+      <td>-0.000705</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2012,123 +2012,123 @@ Hasil
     </tr>
     <tr>
       <th>95</th>
-      <td>0.261650</td>
-      <td>-0.296247</td>
-      <td>-0.000182</td>
-      <td>0.737347</td>
-      <td>0.055940</td>
-      <td>-0.244198</td>
-      <td>0.034099</td>
-      <td>0.003409</td>
-      <td>-0.010409</td>
-      <td>-0.006327</td>
+      <td>0.245075</td>
+      <td>-0.300949</td>
+      <td>-0.045561</td>
+      <td>0.741992</td>
+      <td>0.049218</td>
+      <td>-0.236521</td>
+      <td>0.042576</td>
+      <td>0.003044</td>
+      <td>-0.009738</td>
+      <td>-0.006570</td>
       <td>...</td>
-      <td>0.007338</td>
-      <td>-0.085574</td>
-      <td>0.051194</td>
-      <td>-0.260439</td>
-      <td>-0.012861</td>
-      <td>0.054752</td>
-      <td>0.056774</td>
-      <td>-0.071545</td>
-      <td>-0.074248</td>
-      <td>-0.008511</td>
+      <td>0.006153</td>
+      <td>-0.081332</td>
+      <td>0.057338</td>
+      <td>-0.259607</td>
+      <td>-0.019863</td>
+      <td>0.067220</td>
+      <td>0.042261</td>
+      <td>-0.070758</td>
+      <td>-0.074679</td>
+      <td>-0.009141</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>0.158577</td>
-      <td>-0.164694</td>
-      <td>0.868738</td>
-      <td>-0.171819</td>
-      <td>0.039222</td>
-      <td>-0.172989</td>
-      <td>0.133254</td>
-      <td>0.047343</td>
-      <td>0.003199</td>
-      <td>0.005112</td>
+      <td>0.142125</td>
+      <td>-0.159811</td>
+      <td>0.887104</td>
+      <td>-0.102525</td>
+      <td>0.031707</td>
+      <td>-0.147802</td>
+      <td>0.140653</td>
+      <td>0.044669</td>
+      <td>0.001949</td>
+      <td>0.005533</td>
       <td>...</td>
-      <td>-0.022351</td>
-      <td>-0.060822</td>
-      <td>-0.015440</td>
-      <td>-0.049471</td>
-      <td>0.048976</td>
-      <td>0.015338</td>
-      <td>-0.236087</td>
-      <td>-0.006932</td>
-      <td>0.043868</td>
-      <td>-0.189498</td>
+      <td>-0.022150</td>
+      <td>-0.064582</td>
+      <td>-0.014156</td>
+      <td>-0.056717</td>
+      <td>0.048827</td>
+      <td>-0.057404</td>
+      <td>-0.225753</td>
+      <td>-0.003576</td>
+      <td>0.047690</td>
+      <td>-0.190362</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>0.100998</td>
-      <td>-0.055707</td>
-      <td>0.034597</td>
-      <td>0.006666</td>
-      <td>-0.008858</td>
-      <td>0.048533</td>
-      <td>-0.068120</td>
-      <td>-0.021754</td>
-      <td>-0.027257</td>
-      <td>-0.002236</td>
+      <td>0.095122</td>
+      <td>-0.056335</td>
+      <td>0.033442</td>
+      <td>0.008734</td>
+      <td>-0.007943</td>
+      <td>0.045214</td>
+      <td>-0.070887</td>
+      <td>-0.021102</td>
+      <td>-0.027214</td>
+      <td>-0.002286</td>
       <td>...</td>
-      <td>-0.000284</td>
-      <td>-0.001950</td>
-      <td>0.003500</td>
-      <td>-0.003891</td>
-      <td>-0.001191</td>
-      <td>0.000670</td>
-      <td>-0.001471</td>
-      <td>-0.000594</td>
-      <td>-0.000690</td>
-      <td>0.000352</td>
+      <td>-0.000218</td>
+      <td>-0.002023</td>
+      <td>0.003518</td>
+      <td>-0.003984</td>
+      <td>-0.001307</td>
+      <td>-0.000186</td>
+      <td>-0.001156</td>
+      <td>-0.000632</td>
+      <td>-0.000846</td>
+      <td>0.000328</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>0.202914</td>
-      <td>-0.154604</td>
-      <td>-0.054346</td>
-      <td>-0.063607</td>
-      <td>0.006926</td>
-      <td>-0.024041</td>
-      <td>-0.011389</td>
-      <td>0.080568</td>
-      <td>0.081669</td>
-      <td>-0.047625</td>
+      <td>0.198359</td>
+      <td>-0.162505</td>
+      <td>-0.044178</td>
+      <td>-0.064691</td>
+      <td>0.006075</td>
+      <td>-0.022337</td>
+      <td>-0.009762</td>
+      <td>0.081439</td>
+      <td>0.080633</td>
+      <td>-0.047537</td>
       <td>...</td>
-      <td>0.001063</td>
-      <td>0.003574</td>
-      <td>0.006538</td>
-      <td>-0.000303</td>
-      <td>-0.000524</td>
-      <td>0.006477</td>
-      <td>0.007798</td>
-      <td>-0.003815</td>
-      <td>0.004281</td>
-      <td>-0.005270</td>
+      <td>0.001130</td>
+      <td>0.003776</td>
+      <td>0.006377</td>
+      <td>-0.000202</td>
+      <td>-0.000756</td>
+      <td>0.008608</td>
+      <td>0.005561</td>
+      <td>-0.003847</td>
+      <td>0.004313</td>
+      <td>-0.005261</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>0.098058</td>
-      <td>-0.040767</td>
-      <td>0.015940</td>
-      <td>0.020489</td>
-      <td>-0.024215</td>
-      <td>0.092570</td>
-      <td>0.004655</td>
-      <td>0.048918</td>
-      <td>0.015887</td>
-      <td>-0.065094</td>
+      <td>0.092239</td>
+      <td>-0.041119</td>
+      <td>0.012064</td>
+      <td>0.020692</td>
+      <td>-0.022379</td>
+      <td>0.092506</td>
+      <td>0.001910</td>
+      <td>0.049443</td>
+      <td>0.015587</td>
+      <td>-0.066094</td>
       <td>...</td>
-      <td>-0.003595</td>
-      <td>0.000945</td>
-      <td>0.000668</td>
-      <td>-0.004715</td>
-      <td>-0.001967</td>
-      <td>0.000321</td>
-      <td>-0.000801</td>
-      <td>0.001620</td>
-      <td>-0.001706</td>
-      <td>-0.000005</td>
+      <td>-0.003736</td>
+      <td>0.001451</td>
+      <td>0.000955</td>
+      <td>-0.004563</td>
+      <td>-0.001959</td>
+      <td>0.000678</td>
+      <td>-0.001556</td>
+      <td>0.001794</td>
+      <td>-0.001363</td>
+      <td>-0.000010</td>
     </tr>
   </tbody>
 </table>
@@ -2195,7 +2195,7 @@ Hasil
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Singular-Value Decomposition (SVD)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Singular Value Decomposition (SVD)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-svd">Definisi SVD</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notasi-matematika">Notasi Matematika</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-svd">Komponen SVD</a></li>
