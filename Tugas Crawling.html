@@ -172,15 +172,14 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Crawling Berita</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Model.html">Vector Space Model</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Klasifikasi Berita</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Graph%20dan%20Summarization.html">Summarization</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="Keyword%20Extraction.html">Keyword Extraction</a></li>
-
-
 <li class="toctree-l1"><a class="reference internal" href="Singular-Value%20Decomposition%20%28SVD%29.html">Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression%20-%20reduksi%20dimensi.html">Klasifikasi Berita dengan Reduksi Dimensi</a></li>
 
 </ul>
 
@@ -652,7 +651,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-7e0763fb-1336-411a-b869-371fb4bbab86" class="colab-df-container">
+  <div id="df-b4d1a879-826d-4b79-ad6c-3ba57459d67a" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -680,211 +679,211 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
   <tbody>
     <tr>
       <th>0</th>
-      <td>New Tucson Resmi Meluncur, Harga Mulai Rp 600 ...</td>
-      <td>JAKARTA, KOMPAS.com - PT Hyundai Motor Indones...</td>
+      <td>35 SMP di Bandung Sudah Punya Mata Pelajaran C...</td>
+      <td>\nKOMPAS.com - Mulai tahun depan, mata pelajar...</td>
       <td>21/11/2024</td>
-      <td>OTOMOTIF</td>
+      <td>EDUKASI</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Serangan Jamur Bikin Rumah Berbau Apek? Ini So...</td>
-      <td>JAKARTA, KOMPAS.com - Sebentar lagi akan ada p...</td>
-      <td>21/11/2024</td>
-      <td>PROPERTI</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Bus Listrik Trans Jogja Baru Mau Uji Coba</td>
-      <td>JAKARTA, KOMPAS.com -  Dinas Perhubungan Daera...</td>
-      <td>21/11/2024</td>
-      <td>OTOMOTIF</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Kronologi Bocah Disiram Miras dan Disetrum di ...</td>
-      <td>KOMPAS.com - Bocah berinisial MR (10) disterum...</td>
+      <td>Erick Thohir Buka Suara soal Peluang Ole Romen...</td>
+      <td>BADUNG, KOMPAS.com - Ketua Umum PSI Erick Thoh...</td>
       <td>21/11/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>Oppo Rilis Antarmuka ColorOS 15 Global, Sudah ...</td>
+      <td>BALI, KOMPAS.com - Oppo resmi meluncurkan tamp...</td>
+      <td>21/11/2024</td>
+      <td>TEKNO</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Zulhas: Bulog Akan Transformasi Jadi Badan di ...</td>
+      <td>JAKARTA, KOMPAS.com - Menteri Koordinator Bida...</td>
+      <td>21/11/2024</td>
+      <td>MONEY</td>
+    </tr>
+    <tr>
       <th>4</th>
-      <td>Iskandar MZ Ingin Dewas dan Pimpinan KPK Tak S...</td>
-      <td>JAKARTA, KOMPAS.com - Calon anggota Dewan Peng...</td>
+      <td>Riwayat Pendidikan Setyo Budiyanto, Ketua KPK ...</td>
+      <td>KOMPAS.com - Komisaris Jenderal Polisi Setyo B...</td>
+      <td>21/11/2024</td>
+      <td>EDUKASI</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Pramono Enggan Berprasangka atas Dugaan Ketida...</td>
+      <td>JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...</td>
       <td>21/11/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>Sering Jadi MC Acara Kpop, Indra Herlambang Un...</td>
-      <td>JAKARTA, KOMPAS.com- Presenter Indra Herlamban...</td>
-      <td>21/11/2024</td>
-      <td>HYPE</td>
-    </tr>
-    <tr>
       <th>6</th>
-      <td>PR Paslon Pilkada Pandeglang: Rendahnya Tingka...</td>
-      <td>KABUPATEN Pandeglang, Banten, telah lama berge...</td>
+      <td>Kuasa Hukum Tom Lembong Kantongi Bukti dari BP...</td>
+      <td>JAKARTA, KOMPAS.com - Kuasa hukum Thomas Lembo...</td>
       <td>21/11/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>Mengapa Negara-negara Nordik Keluarkan Panduan...</td>
-      <td>SWEDIA dan Finlandia baru saja memperbarui pan...</td>
+      <td>Nunung Curhat Soal Karier Meredup, Bersyukur R...</td>
+      <td>JAKARTA, KOMPAS.com- Sempat merasa sedih karen...</td>
       <td>21/11/2024</td>
-      <td>GLOBAL</td>
+      <td>HYPE</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>Persib Vs Borneo FC, Misi Pesut Etam Pertahank...</td>
-      <td>KOMPAS.com - Borneo FC akan menjalani laga tan...</td>
-      <td>21/11/2024</td>
-      <td>BOLA</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Anies Deklarasikan Dukungan Nanti Sore? Ini Ka...</td>
-      <td>JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...</td>
+      <td>UMP Jakarta 2025 Akan Diumumkan Setelah Pilkad...</td>
+      <td>JAKARTA, KOMPAS.com - Kepala Dinas Tenaga Kerj...</td>
       <td>21/11/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Zulhas Targetkan Gula, Beras, dan Jagung Bisa ...</td>
-      <td>JAKARTA, KOMPAS.com - Menteri Koordinator Pang...</td>
+      <th>9</th>
+      <td>Survei Indikator Pilkada Jabar: Dedi-Erwan Ung...</td>
+      <td>BANDUNG, KOMPAS.com – Satu minggu menjelang pe...</td>
       <td>21/11/2024</td>
-      <td>MONEY</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Resep Pho untuk Pemula, Sederhana dan Praktis</td>
+      <td>KOMPAS.com - Membuat Pho untuk pertama kali bi...</td>
+      <td>21/11/2024</td>
+      <td>FOOD</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>Pakar Sebut Butuh Upaya Ekstra Tetapkan Judi O...</td>
-      <td>JAKARTA, KOMPAS.com – Pemerintah dinilai harus...</td>
+      <td>Komisi III DPR Gelar Rapat Bahas Kasus Jaksa J...</td>
+      <td>JAKARTA, KOMPAS.com - Komisi III DPR RI mengge...</td>
       <td>21/11/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>Seniman Sumut Luncurkan NFT Bobby Nasution, Pr...</td>
-      <td>KOMPAS.com - Komunitas seniman lokal Sumatera ...</td>
+      <td>Erick Thohir Ingin Bali Mulai Bangun Bandara B...</td>
+      <td>DENPASAR, KOMPAS.com - Menteri Badan Usaha Mil...</td>
       <td>21/11/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>Benarkah Minum Air Es Bisa Merusak Ginjal? Ini...</td>
-      <td>KOMPAS.com - Unggahan video animasi yang menye...</td>
+      <td>Mengenang Liam Payne, Ini 7 Gaya Ikonik Semasa...</td>
+      <td>KOMPAS.com - Kabar meninggalnya penyanyi sekal...</td>
       <td>21/11/2024</td>
-      <td>TREN</td>
+      <td>LIFESTYLE</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>Lewat AI Generatif, Mimin Revolusi Pengalaman ...</td>
-      <td>KOMPAS.com - Platform conversational customer ...</td>
+      <td>Hindari Denda, Warga Sengaja Bayar Pajak Saat ...</td>
+      <td>KOMPAS.com - Samsat Surabaya Utara mencatat ad...</td>
       <td>21/11/2024</td>
-      <td>ADVERTORIAL</td>
+      <td>REGIONAL</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>Wanita Banten Pingsan usai Divonis 3 Tahun Pen...</td>
-      <td>SERANG, KOMPAS.com - Seorang wanita asal Kota ...</td>
+      <td>Hindari Denda, Warga Sengaja Bayar Pajak Saat ...</td>
+      <td>KOMPAS.com - Samsat Surabaya Utara mencatat ad...</td>
       <td>21/11/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>Terkejutnya Tom Lembong Saat Beri Kesaksian Da...</td>
-      <td>JAKARTA, KOMPAS.com - Tersangka dugaan korupsi...</td>
+      <td>Kemenperin Usul Teknologi Hybrid Dimasukkan ke...</td>
+      <td>JAKARTA, KOMPAS.com - Kementerian Perindustria...</td>
       <td>21/11/2024</td>
-      <td>NEWS</td>
+      <td>OTOMOTIF</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>Suswono Bertemu Ketum The Jakmania, Pramono: K...</td>
-      <td>JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...</td>
+      <td>Momen Gibran Bertemu dengan Pria yang Matanya ...</td>
+      <td>JAKARTA, KOMPAS.com - Wakil Presiden Republik ...</td>
       <td>21/11/2024</td>
       <td>NEWS</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>Rasa Berkendara Mobil Listrik MG ZS EV, SUV Ri...</td>
-      <td>JAKARTA, KOMPAS.com - MG ZS EV merupakan SUV l...</td>
+      <td>Jadi Bumbu Andalan, Apa Saja Manfaat Lengkuas ...</td>
+      <td>KOMPAS.com - Lengkuas atau sering juga disebut...</td>
       <td>21/11/2024</td>
-      <td>OTOMOTIF</td>
+      <td>TREN</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>Keseriusan Penindakan Hukum Dinilai Kunci Pemb...</td>
-      <td>JAKARTA, KOMPAS.com – Upaya pemberantasan judi...</td>
+      <td>Anda Selalu Merasa Lelah? Ini 10 Daftar Penyeb...</td>
+      <td>KOMPAS.com - Selalu merasa lelah sepanjang har...</td>
       <td>21/11/2024</td>
-      <td>NEWS</td>
+      <td>HEALTH</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>Dua Gotri Ditemukan di Gedung Perkantoran Page...</td>
-      <td>JAKARTA, KOMPAS.com - Dua peluru gotri ditemuk...</td>
+      <td>Tsim Sha Tsui di Hong Kong Jadi Kawasan Belanj...</td>
+      <td>HONG KONG, KOMPAS.com - Tsim Sha Tsui, kawasan...</td>
       <td>21/11/2024</td>
-      <td>NEWS</td>
+      <td>GLOBAL</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>Calon Dewas KPK Heru Kreshna Tak Setuju Tersan...</td>
-      <td>JAKARTA, KOMPAS.com - Calon Dewan Pengawas (De...</td>
+      <td>Cemburu, Suami Bakar Rumah Kontrakan Istri di ...</td>
+      <td>NUNUKAN, KOMPAS.com – Unit Reskrim Polsek Nunu...</td>
       <td>21/11/2024</td>
-      <td>NEWS</td>
+      <td>REGIONAL</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>Ungkapan Hati Vadel Badjideh dan Ayahnya atas ...</td>
-      <td>JAKARTA, KOMPAS.com - Seleb TikTiok Vadel Badj...</td>
+      <td>Pelaku Pariwisata Magelang Sayangkan Kenaikan ...</td>
+      <td>MAGELANG, KOMPAS.com - Kementerian Keuangan ak...</td>
+      <td>21/11/2024</td>
+      <td>REGIONAL</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Jennie dan Lisa BLACKPINK Akan Tampil Solo di ...</td>
+      <td>JAKARTA, KOMPAS.com - Dua member BLACKPINK, Je...</td>
       <td>21/11/2024</td>
       <td>HYPE</td>
     </tr>
     <tr>
-      <th>23</th>
-      <td>Di Balik Kesuksesan Dewi Turun Berat Badan 20 ...</td>
-      <td>KOMPAS.com - Dewi Fatimah adalah seorang perem...</td>
-      <td>21/11/2024</td>
-      <td>LIFESTYLE</td>
-    </tr>
-    <tr>
       <th>24</th>
-      <td>Kesamaan KFC dan Pizza Hut, Terus Merugi dan D...</td>
-      <td>KOMPAS.com - Kondisi keuangan PT Sarimelati Ke...</td>
+      <td>Pramono Anung-Rano Karno Dapat Dukungan Yayasa...</td>
+      <td>JAKARTA, KOMPAS.com - Pasangan calon gubernur ...</td>
       <td>21/11/2024</td>
-      <td>MONEY</td>
+      <td>NEWS</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>Kenali Tanda-tanda AC Mobil Bermasalah</td>
-      <td>SOLO, KOMPAS.com - AC mobil yang bermasalah bi...</td>
+      <td>RUU Larangan Konsumsi Daging Anjing Ditolak, P...</td>
+      <td>JAKARTA, KOMPAS.com - Koalisi masyarakat pecin...</td>
       <td>21/11/2024</td>
-      <td>OTOMOTIF</td>
+      <td>NEWS</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>Erupsi Gunung Lewotobi, Akses Warga Menuju 4 D...</td>
-      <td>FLORES TIMUR, KOMPAS.com – Pemerintah Kabupate...</td>
+      <td>Cianjur Diguncang 4 Kali Gempa saat Peringatan...</td>
+      <td>CIANJUR, KOMPAS.com – Momentum dua tahun gempa...</td>
       <td>21/11/2024</td>
       <td>REGIONAL</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>Buntut Gagal Bayar, OJK Panggil Anak Usaha Koi...</td>
-      <td>JAKARTA, KOMPAS.com - Otoritas Jasa Keuangan (...</td>
+      <td>Kubu Tom Lembong Tambah Saksi Ahli di Praperad...</td>
+      <td>JAKARTA, KOMPAS.com - Tim kuasa hukum Thomas T...</td>
       <td>21/11/2024</td>
-      <td>MONEY</td>
+      <td>NEWS</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>Cerita Ryan, Berbisnis Helm Anak Berawal dari ...</td>
-      <td>SURABAYA, KOMPAS.com – Bisnis bisa datang dari...</td>
+      <td>Inul Daratista Ditipu Karyawannya, Mobil hingg...</td>
+      <td>JAKARTA, KOMPAS.com - Penyanyi Inul Daratista ...</td>
       <td>21/11/2024</td>
-      <td>UMKM</td>
+      <td>HYPE</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>Kemenhub Ungkap 3 Cara Atasi Kemacetan di Jalu...</td>
-      <td>JAKARTA, KOMPAS.com – Kementerian Perhubungan ...</td>
+      <td>Blusukan Temui Lansia Sakit, Ridwan Kamil Teka...</td>
+      <td>JAKARTA, KOMPAS.com - Calon Gubernur Jakarta n...</td>
       <td>21/11/2024</td>
       <td>NEWS</td>
     </tr>
@@ -894,7 +893,7 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-7e0763fb-1336-411a-b869-371fb4bbab86')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-b4d1a879-826d-4b79-ad6c-3ba57459d67a')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -946,12 +945,12 @@ Bisa juga menggunakan IDE atau text editor seperti PyCharm, VSCode, atau bahkan 
 
     <script>
       const buttonEl =
-        document.querySelector('#df-7e0763fb-1336-411a-b869-371fb4bbab86 button.colab-df-convert');
+        document.querySelector('#df-b4d1a879-826d-4b79-ad6c-3ba57459d67a button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-7e0763fb-1336-411a-b869-371fb4bbab86');
+        const element = document.querySelector('#df-b4d1a879-826d-4b79-ad6c-3ba57459d67a');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});

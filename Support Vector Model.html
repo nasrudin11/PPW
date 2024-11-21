@@ -174,15 +174,14 @@
 <li class="toctree-l1"><a class="reference internal" href="Tugas%20Crawling.html">Crawling Berita</a></li>
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Vector Space Model</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Klasifikasi Berita</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Graph%20dan%20Summarization.html">Summarization</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="Keyword%20Extraction.html">Keyword Extraction</a></li>
-
-
 <li class="toctree-l1"><a class="reference internal" href="Singular-Value%20Decomposition%20%28SVD%29.html">Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression%20-%20reduksi%20dimensi.html">Klasifikasi Berita dengan Reduksi Dimensi</a></li>
 
 </ul>
 
@@ -371,9 +370,19 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector Space Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumen-dan-kueri-sebagai-vektor">1. <strong>Dokumen dan Kueri sebagai Vektor</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-kata-term-weighting">2. <strong>Pembobotan Kata (Term Weighting)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kesamaan-antar-dokumen">3. <strong>Menghitung Kesamaan Antar Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengurutan-dokumen">4. <strong>Pengurutan Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-keterbatasan-vsm">5. <strong>Keuntungan dan Keterbatasan VSM</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh Sederhana:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
@@ -400,6 +409,9 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -415,15 +427,12 @@
 <p>Kelas : Pencarian dan Penambangan Web B</p>
 <section class="tex2jax_ignore mathjax_ignore" id="vector-space-model">
 <h1>Vector Space Model<a class="headerlink" href="#vector-space-model" title="Link to this heading">#</a></h1>
-<section id="penjelasan">
-<h2>Penjelasan<a class="headerlink" href="#penjelasan" title="Link to this heading">#</a></h2>
 <p>Vector Space Model (VSM) adalah pendekatan yang menggunakan vektor untuk merepresentasikan setiap kata dalam suatu ruang dimensi. Dalam VSM, dokumen dilihat sebagai vektor yang memiliki panjang (magnitudo) dan arah. Setiap kata dalam dokumen diwakili oleh sebuah dimensi dalam ruang vektor. Relevansi dokumen terhadap kueri dihitung berdasarkan kesamaan antara vektor dokumen dan vektor kueri.</p>
 <p>VSM mendukung pencocokan parsial dengan menetapkan bobot non-biner pada kata-kata dalam dokumen dan kueri. Bobot tersebut digunakan untuk mengukur kesamaan antara dokumen yang tersimpan dan kueri pengguna. Dokumen yang ditemukan diurutkan berdasarkan tingkat kemiripannya, sehingga dokumen yang paling relevan ditampilkan lebih akurat sesuai dengan kebutuhan pengguna.</p>
 <p>Berikut secara rinci langkah-langkah dan konsep di balik VSM:</p>
-<ol class="arabic simple">
-<li><p><strong>Dokumen dan Kueri sebagai Vektor</strong>
-Pada dasarnya, setiap dokumen atau kueri direpresentasikan sebagai sebuah vektor. Namun, vektor ini tidak seperti vektor geometris biasa, tetapi memiliki dimensi sebanyak jumlah kata unik (vocabulary) dalam koleksi dokumen. Setiap dimensi dalam vektor mewakili satu kata atau istilah dari koleksi.</p></li>
-</ol>
+<section id="dokumen-dan-kueri-sebagai-vektor">
+<h2>1. <strong>Dokumen dan Kueri sebagai Vektor</strong><a class="headerlink" href="#dokumen-dan-kueri-sebagai-vektor" title="Link to this heading">#</a></h2>
+<p>Pada dasarnya, setiap dokumen atau kueri direpresentasikan sebagai sebuah vektor. Namun, vektor ini tidak seperti vektor geometris biasa, tetapi memiliki dimensi sebanyak jumlah kata unik (vocabulary) dalam koleksi dokumen. Setiap dimensi dalam vektor mewakili satu kata atau istilah dari koleksi.</p>
 <ul class="simple">
 <li><p><strong>Dimensi Vektor</strong>: Jika kita memiliki sebuah kumpulan dokumen yang terdiri dari 1.000 kata unik, maka setiap dokumen dan kueri akan direpresentasikan oleh vektor dengan 1.000 dimensi.</p></li>
 <li><p><strong>Isi Vektor</strong>: Setiap elemen dalam vektor merepresentasikan bobot dari sebuah kata dalam dokumen tertentu. Sebagai contoh, jika kata “AI” muncul dalam dokumen, maka elemen yang merepresentasikan kata “AI” akan memiliki nilai lebih besar dari nol, sedangkan kata-kata yang tidak muncul akan bernilai nol.</p></li>
@@ -436,10 +445,10 @@ Pada dasarnya, setiap dokumen atau kueri direpresentasikan sebagai sebuah vektor
 </ul>
 <p>Vektor untuk Dokumen 1 mungkin tampak seperti:
 <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">0)</span></code> untuk kata-kata <code class="docutils literal notranslate"><span class="pre">(&quot;Belajar&quot;,</span> <span class="pre">&quot;AI&quot;,</span> <span class="pre">&quot;adalah&quot;,</span> <span class="pre">&quot;masa&quot;,</span> <span class="pre">&quot;depan&quot;)</span></code>, di mana angka 1 menunjukkan bahwa kata tersebut muncul sekali.</p>
-<ol class="arabic simple" start="2">
-<li><p><strong>Pembobotan Kata (Term Weighting)</strong>
-Dalam VSM, tidak semua kata memiliki nilai yang sama. Untuk membuat model lebih efisien dalam menangkap kata-kata penting, VSM biasanya menggunakan teknik <strong>pembobotan</strong>. Teknik yang paling umum adalah <strong>TF-IDF (Term Frequency - Inverse Document Frequency)</strong>. TF-IDF membantu menghitung seberapa penting sebuah kata dalam sebuah dokumen dibandingkan dengan seluruh kumpulan dokumen.</p></li>
-</ol>
+</section>
+<section id="pembobotan-kata-term-weighting">
+<h2>2. <strong>Pembobotan Kata (Term Weighting)</strong><a class="headerlink" href="#pembobotan-kata-term-weighting" title="Link to this heading">#</a></h2>
+<p>Dalam VSM, tidak semua kata memiliki nilai yang sama. Untuk membuat model lebih efisien dalam menangkap kata-kata penting, VSM biasanya menggunakan teknik <strong>pembobotan</strong>. Teknik yang paling umum adalah <strong>TF-IDF (Term Frequency - Inverse Document Frequency)</strong>. TF-IDF membantu menghitung seberapa penting sebuah kata dalam sebuah dokumen dibandingkan dengan seluruh kumpulan dokumen.</p>
 <ul class="simple">
 <li><p><strong>Term Frequency (TF)</strong>: Ini adalah jumlah kemunculan sebuah kata dalam dokumen. Semakin sering sebuah kata muncul, semakin besar bobot TF-nya. Namun, sering kali kita menggunakan versi termodifikasi seperti TF relatif (jumlah kemunculan kata dibagi total kata dalam dokumen).</p></li>
 <li><p><strong>Inverse Document Frequency (IDF)</strong>: Kata yang sering muncul di seluruh dokumen (misalnya “adalah” atau “dan”) biasanya kurang informatif, sehingga diberi bobot lebih rendah. IDF membantu mengurangi bobot kata-kata yang terlalu umum dengan menghitung kebalikan dari frekuensi dokumen yang mengandung kata tersebut.</p></li>
@@ -455,10 +464,10 @@ Dalam VSM, tidak semua kata memiliki nilai yang sama. Untuk membuat model lebih 
 <li><p><span class="math notranslate nohighlight">\((DF(t))\)</span> adalah jumlah dokumen yang mengandung kata (t)</p></li>
 </ul>
 <p>Dengan TF-IDF, kata yang unik untuk sebuah dokumen (misalnya istilah teknis atau nama produk) akan memiliki bobot lebih tinggi dibandingkan dengan kata-kata yang umum di seluruh dokumen.</p>
-<ol class="arabic simple" start="3">
-<li><p><strong>Menghitung Kesamaan Antar Dokumen</strong>
-Setelah setiap dokumen dan kueri direpresentasikan sebagai vektor, kita bisa menghitung <strong>kesamaan</strong> antar dua vektor (dokumen atau dokumen-kueri). Salah satu metode paling umum adalah <strong>Cosine Similarity</strong>.</p></li>
-</ol>
+</section>
+<section id="menghitung-kesamaan-antar-dokumen">
+<h2>3. <strong>Menghitung Kesamaan Antar Dokumen</strong><a class="headerlink" href="#menghitung-kesamaan-antar-dokumen" title="Link to this heading">#</a></h2>
+<p>Setelah setiap dokumen dan kueri direpresentasikan sebagai vektor, kita bisa menghitung <strong>kesamaan</strong> antar dua vektor (dokumen atau dokumen-kueri). Salah satu metode paling umum adalah <strong>Cosine Similarity</strong>.</p>
 <ul class="simple">
 <li><p><strong>Cosine Similarity</strong>: Ini adalah ukuran yang menghitung sudut antara dua vektor dalam ruang multidimensi. Semakin kecil sudutnya, semakin dekat atau mirip dua vektor tersebut. Nilai cosine similarity berkisar dari 0 (tidak mirip sama sekali) hingga 1 (sangat mirip).</p></li>
 </ul>
@@ -471,12 +480,14 @@ Setelah setiap dokumen dan kueri direpresentasikan sebagai vektor, kita bisa men
 <li><p><span class="math notranslate nohighlight">\((||A||)\)</span> dan <span class="math notranslate nohighlight">\((||B||)\)</span> adalah norma (panjang) dari vektor A dan B</p></li>
 </ul>
 <p>Dengan menghitung cosine similarity, kita dapat mengetahui seberapa mirip dokumen dengan kueri. Jika nilai cosine similarity tinggi, berarti dokumen tersebut lebih relevan dengan kueri, sehingga dokumen tersebut dapat ditempatkan di urutan yang lebih tinggi dalam hasil pencarian.</p>
-<ol class="arabic simple" start="4">
-<li><p><strong>Pengurutan Dokumen</strong>
-Setelah kita menghitung cosine similarity antara kueri dan setiap dokumen dalam koleksi, dokumen-dokumen tersebut bisa diurutkan berdasarkan nilai similarity dari yang tertinggi ke yang terendah. Hasil ini bisa digunakan dalam <strong>sistem pencarian</strong> untuk menampilkan dokumen yang paling relevan di posisi teratas.</p></li>
-<li><p><strong>Keuntungan dan Keterbatasan VSM</strong>
-<strong>Keuntungan</strong>:</p></li>
-</ol>
+</section>
+<section id="pengurutan-dokumen">
+<h2>4. <strong>Pengurutan Dokumen</strong><a class="headerlink" href="#pengurutan-dokumen" title="Link to this heading">#</a></h2>
+<p>Setelah kita menghitung cosine similarity antara kueri dan setiap dokumen dalam koleksi, dokumen-dokumen tersebut bisa diurutkan berdasarkan nilai similarity dari yang tertinggi ke yang terendah. Hasil ini bisa digunakan dalam <strong>sistem pencarian</strong> untuk menampilkan dokumen yang paling relevan di posisi teratas.</p>
+</section>
+<section id="keuntungan-dan-keterbatasan-vsm">
+<h2>5. <strong>Keuntungan dan Keterbatasan VSM</strong><a class="headerlink" href="#keuntungan-dan-keterbatasan-vsm" title="Link to this heading">#</a></h2>
+<p><strong>Keuntungan</strong>:</p>
 <ul class="simple">
 <li><p><strong>Sederhana dan Efisien</strong>: VSM mudah diimplementasikan dan cukup efisien dalam menangani koleksi dokumen besar.</p></li>
 <li><p><strong>Penanganan Sinonim dan Polisemik Terbatas</strong>: Meski VSM sederhana, ia tidak menangani masalah sinonim (kata-kata berbeda dengan makna sama) dan polisemik (kata yang sama dengan makna berbeda) dengan baik.</p></li>
@@ -486,7 +497,9 @@ Setelah kita menghitung cosine similarity antara kueri dan setiap dokumen dalam 
 <li><p><strong>Kata-Kata Independen</strong>: VSM mengasumsikan bahwa kata-kata dalam dokumen tidak memiliki hubungan satu sama lain, sehingga konteks sering kali hilang. Misalnya, frase “tidak setuju” akan diperlakukan sebagai dua kata terpisah, meskipun maknanya berubah ketika digabungkan.</p></li>
 <li><p><strong>Dimensi yang Tinggi</strong>: Ketika bekerja dengan kumpulan dokumen besar, jumlah kata yang unik bisa sangat banyak, menyebabkan vektor memiliki dimensi yang sangat tinggi, yang dapat menyebabkan masalah performa.</p></li>
 </ul>
-<p><strong>Contoh Sederhana</strong>:</p>
+</section>
+<section id="contoh-sederhana">
+<h2>Contoh Sederhana:<a class="headerlink" href="#contoh-sederhana" title="Link to this heading">#</a></h2>
 <p>Misalkan kita memiliki tiga dokumen:</p>
 <ol class="arabic simple">
 <li><p>“Belajar AI adalah masa depan”</p></li>
@@ -494,35 +507,16 @@ Setelah kita menghitung cosine similarity antara kueri dan setiap dokumen dalam 
 <li><p>“Manusia belajar dari AI masa depan”</p></li>
 </ol>
 <p>Jika kuerinya adalah “belajar AI”, kita bisa menghitung cosine similarity antara kueri dan setiap dokumen. Dokumen dengan cosine similarity tertinggi adalah dokumen yang paling relevan dengan kueri.</p>
-<p><strong>Kesimpulan</strong>
-Vector Space Model (VSM) adalah pendekatan sederhana namun sangat efektif untuk merepresentasikan dokumen dan kueri dalam ruang vektor, memungkinkan pencarian dan pengurutan dokumen berdasarkan kesamaan konten. Meskipun ada beberapa keterbatasan, VSM masih digunakan secara luas dalam sistem pencarian informasi, terutama ketika dipadukan dengan teknik pembobotan seperti TF-IDF.</p>
 </section>
-<section id="implementasi">
-<h2>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h2>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Vector Space Model (VSM) adalah pendekatan sederhana namun sangat efektif untuk merepresentasikan dokumen dan kueri dalam ruang vektor, memungkinkan pencarian dan pengurutan dokumen berdasarkan kesamaan konten. Meskipun ada beberapa keterbatasan, VSM masih digunakan secara luas dalam sistem pencarian informasi, terutama ketika dipadukan dengan teknik pembobotan seperti TF-IDF.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi">
+<h1>Implementasi<a class="headerlink" href="#implementasi" title="Link to this heading">#</a></h1>
 <section id="library-yang-digunakan">
-<h3>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>gdown
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: gdown in /usr/local/lib/python3.10/dist-packages (5.2.0)
-Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.10/dist-packages (from gdown) (4.12.3)
-Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from gdown) (3.16.1)
-Requirement already satisfied: requests[socks] in /usr/local/lib/python3.10/dist-packages (from gdown) (2.32.3)
-Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from gdown) (4.66.6)
-Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.10/dist-packages (from beautifulsoup4-&gt;gdown) (2.6)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (3.4.0)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (3.10)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (2.2.3)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (2024.8.30)
-Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/python3.10/dist-packages (from requests[socks]-&gt;gdown) (1.7.1)
-</pre></div>
-</div>
-</div>
-</div>
+<h2>Library yang digunakan<a class="headerlink" href="#library-yang-digunakan" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdown</span>
@@ -540,7 +534,7 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-2-64f82c86e57b&gt;</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="nn">&lt;ipython-input-1-64f82c86e57b&gt;</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
@@ -580,8 +574,7 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ganti dengan ID file Anda</span>
-<span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;13CkN5K_Bfo_V1-dTYulHoUeWClIA3s9f&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR&#39;</span>
 <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://drive.google.com/uc?id=</span><span class="si">{</span><span class="n">file_id</span><span class="si">}</span><span class="s1">&#39;</span>
 <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;crawling_2_kategori.csv&#39;</span>
 
@@ -592,9 +585,9 @@ Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/pytho
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading...
-From: https://drive.google.com/uc?id=13CkN5K_Bfo_V1-dTYulHoUeWClIA3s9f
+From: https://drive.google.com/uc?id=1-tr5TV3kjdvsHocZM3f7KoDA_ZEIAJwR
 To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kategori.csv
-100%|███████████████████████████████████████████████████████████████████████████████| 253k/253k [00:00&lt;00:00, 2.37MB/s]
+100%|███████████████████████████████████████████████████████████████████████████████| 260k/260k [00:00&lt;00:00, 2.15MB/s]
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;crawling_2_kategori.csv&#39;
@@ -611,6 +604,8 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
 </div>
 </div>
 </section>
+<section id="implementasi-code">
+<h2>Implementasi Code<a class="headerlink" href="#implementasi-code" title="Link to this heading">#</a></h2>
 <section id="dataset">
 <h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -647,38 +642,38 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
   <tbody>
     <tr>
       <th>0</th>
-      <td>Jadwal Pendaftaran STIS 2025, Siswa Kelas 12 S...</td>
-      <td>KOMPAS.com - Masuk Sekolah Tinggi Ilmu Statist...</td>
-      <td>11/09/2024</td>
-      <td>Edu</td>
+      <td>Apa yang Harus Dilakukan jika Obesitas? Ini Re...</td>
+      <td>KOMPAS.com - Orang dengan obesitas lebih mungk...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>PKKMB UDB Surakarta Gandeng Kompas.com Asah Ke...</td>
-      <td>KOMPAS.com - Fakultas Hukum dan Bisnis Univers...</td>
-      <td>11/09/2024</td>
-      <td>Edu</td>
+      <td>Apakah Baik Makan Buah untuk Sarapan? Ini Penj...</td>
+      <td>KOMPAS.com - Buah bisa menjadi pilihan menu ya...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Mahasiswa Unesa, Raih Medali Emas untuk Indone...</td>
-      <td>KOMPAS.com - Mahasiswa Universitas Negeri Sura...</td>
-      <td>11/09/2024</td>
-      <td>Edu</td>
+      <td>Tanda Malanutrisi pada Anak dan Dewasa</td>
+      <td>KOMPAS.com - Malanutrisi merupakan masalah kes...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Rayakan HUT ke-30, Sekolah Bogor Raya Luncurka...</td>
-      <td>KOMPAS.com - Merayakan hari ulang tahun ke-30,...</td>
-      <td>11/09/2024</td>
-      <td>Edu</td>
+      <td>Anak Sering Berkeringat Saat Tidur, Tanda Peny...</td>
+      <td>KOMPAS.com - Berkeringat merupakan cara alami ...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Sambut Mahasiswa Baru, Podomoro University Ber...</td>
-      <td>KOMPAS.com - Podomoro University menggelar pro...</td>
-      <td>11/09/2024</td>
-      <td>Edu</td>
+      <td>Kenali Perkembangan Motorik Normal pada Bayi, ...</td>
+      <td>KOMPAS.com - Ikatan Dokter Anak Indonesia (IDA...</td>
+      <td>18/09/2024</td>
+      <td>HEALTH</td>
     </tr>
     <tr>
       <th>...</th>
@@ -689,38 +684,38 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
     </tr>
     <tr>
       <th>95</th>
-      <td>Diabetes Tidak Boleh Makan Buah Apa? Berikut 5...</td>
-      <td>KOMPAS.com - Beberapa jenis buah memiliki kand...</td>
-      <td>08/09/2024</td>
-      <td>Health</td>
+      <td>9 Tips ke Jak-Japan Matsuri 2024, Bisa Beli Ti...</td>
+      <td>JAKARTA, KOMPAS.com - Ribuan orang nampak berg...</td>
+      <td>15/09/2024</td>
+      <td>TRAVEL</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>Apa Penyebab Badan Terasa Lemas? Berikut 29 Da...</td>
-      <td>KOMPAS.com - Badan yang terasa lemas bisa bera...</td>
-      <td>08/09/2024</td>
-      <td>Health</td>
+      <td>Waktu Terbaik Lihat Hiu Paus di Botubarani Gor...</td>
+      <td>KOMPAS.com - Provinsi Gorontalo di Pulau Sulaw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>8 Manfaat Nanas untuk Kesehatan, Termasuk Menu...</td>
-      <td>KOMPAS.com - Buah nanas memiliki beberapa jeni...</td>
-      <td>08/09/2024</td>
-      <td>Health</td>
+      <td>14 orang Ditangkap Akibat Pendakian Ilegal di ...</td>
+      <td>KOMPAS.com - Jalur pendakian yang indah di Haw...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>Apa yang Terjadi jika Konsumsi Garam Terlalu B...</td>
-      <td>KOMPAS.com - Tubuh Anda bisa mengalami berbaga...</td>
-      <td>07/09/2024</td>
-      <td>Health</td>
+      <td>Harga Paket Outbound Pondok Zidane, Banyak Pil...</td>
+      <td>KOMPAS.com - Menikmati waktu berkualitas bersa...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>Apa yang Terjadi jika Hipoglikemia Tidak Dioba...</td>
-      <td>KOMPAS.com - Hipoglikemia atau kadar gula dara...</td>
-      <td>07/09/2024</td>
-      <td>Health</td>
+      <td>Kursi Kelas Satu Jadi Beban, Maskapai di Swiss...</td>
+      <td>KOMPAS.com – Karena memiliki model kursi kelas...</td>
+      <td>14/09/2024</td>
+      <td>TRAVEL</td>
     </tr>
   </tbody>
 </table>
@@ -748,7 +743,7 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/486f40ebfe880e1e5c443ee2a3e095aa15d0fc5339edc97315d15583eeb3ff06.png" src="_images/486f40ebfe880e1e5c443ee2a3e095aa15d0fc5339edc97315d15583eeb3ff06.png" />
+<img alt="_images/7b672f2970ca7075e293f50414ba3a4878caf26d62d52ef2e89b2576c2372694.png" src="_images/7b672f2970ca7075e293f50414ba3a4878caf26d62d52ef2e89b2576c2372694.png" />
 </div>
 </div>
 </section>
@@ -790,28 +785,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
   <tbody>
     <tr>
       <th>0</th>
-      <td>KOMPAS.com - Masuk Sekolah Tinggi Ilmu Statist...</td>
-      <td>kompas.com - masuk sekolah tinggi ilmu statist...</td>
+      <td>KOMPAS.com - Orang dengan obesitas lebih mungk...</td>
+      <td>kompas.com - orang dengan obesitas lebih mungk...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>KOMPAS.com - Fakultas Hukum dan Bisnis Univers...</td>
-      <td>kompas.com - fakultas hukum dan bisnis univers...</td>
+      <td>KOMPAS.com - Buah bisa menjadi pilihan menu ya...</td>
+      <td>kompas.com - buah bisa menjadi pilihan menu ya...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>KOMPAS.com - Mahasiswa Universitas Negeri Sura...</td>
-      <td>kompas.com - mahasiswa universitas negeri sura...</td>
+      <td>KOMPAS.com - Malanutrisi merupakan masalah kes...</td>
+      <td>kompas.com - malanutrisi merupakan masalah kes...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>KOMPAS.com - Merayakan hari ulang tahun ke-30,...</td>
-      <td>kompas.com - merayakan hari ulang tahun ke-30,...</td>
+      <td>KOMPAS.com - Berkeringat merupakan cara alami ...</td>
+      <td>kompas.com - berkeringat merupakan cara alami ...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>KOMPAS.com - Podomoro University menggelar pro...</td>
-      <td>kompas.com - podomoro university menggelar pro...</td>
+      <td>KOMPAS.com - Ikatan Dokter Anak Indonesia (IDA...</td>
+      <td>kompas.com - ikatan dokter anak indonesia (ida...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -820,28 +815,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
     </tr>
     <tr>
       <th>95</th>
-      <td>KOMPAS.com - Beberapa jenis buah memiliki kand...</td>
-      <td>kompas.com - beberapa jenis buah memiliki kand...</td>
+      <td>JAKARTA, KOMPAS.com - Ribuan orang nampak berg...</td>
+      <td>jakarta, kompas.com - ribuan orang nampak berg...</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>KOMPAS.com - Badan yang terasa lemas bisa bera...</td>
-      <td>kompas.com - badan yang terasa lemas bisa bera...</td>
+      <td>KOMPAS.com - Provinsi Gorontalo di Pulau Sulaw...</td>
+      <td>kompas.com - provinsi gorontalo di pulau sulaw...</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>KOMPAS.com - Buah nanas memiliki beberapa jeni...</td>
-      <td>kompas.com - buah nanas memiliki beberapa jeni...</td>
+      <td>KOMPAS.com - Jalur pendakian yang indah di Haw...</td>
+      <td>kompas.com - jalur pendakian yang indah di haw...</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>KOMPAS.com - Tubuh Anda bisa mengalami berbaga...</td>
-      <td>kompas.com - tubuh anda bisa mengalami berbaga...</td>
+      <td>KOMPAS.com - Menikmati waktu berkualitas bersa...</td>
+      <td>kompas.com - menikmati waktu berkualitas bersa...</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>KOMPAS.com - Hipoglikemia atau kadar gula dara...</td>
-      <td>kompas.com - hipoglikemia atau kadar gula dara...</td>
+      <td>KOMPAS.com – Karena memiliki model kursi kelas...</td>
+      <td>kompas.com – karena memiliki model kursi kelas...</td>
     </tr>
   </tbody>
 </table>
@@ -885,28 +880,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
   <tbody>
     <tr>
       <th>0</th>
-      <td>kompas.com - masuk sekolah tinggi ilmu statist...</td>
-      <td>kompas com   masuk sekolah tinggi ilmu statist...</td>
+      <td>kompas.com - orang dengan obesitas lebih mungk...</td>
+      <td>kompas com   orang dengan obesitas lebih mungk...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>kompas.com - fakultas hukum dan bisnis univers...</td>
-      <td>kompas com   fakultas hukum dan bisnis univers...</td>
+      <td>kompas.com - buah bisa menjadi pilihan menu ya...</td>
+      <td>kompas com   buah bisa menjadi pilihan menu ya...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>kompas.com - mahasiswa universitas negeri sura...</td>
-      <td>kompas com   mahasiswa universitas negeri sura...</td>
+      <td>kompas.com - malanutrisi merupakan masalah kes...</td>
+      <td>kompas com   malanutrisi merupakan masalah kes...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>kompas.com - merayakan hari ulang tahun ke-30,...</td>
-      <td>kompas com   merayakan hari ulang tahun ke 30 ...</td>
+      <td>kompas.com - berkeringat merupakan cara alami ...</td>
+      <td>kompas com   berkeringat merupakan cara alami ...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>kompas.com - podomoro university menggelar pro...</td>
-      <td>kompas com   podomoro university menggelar pro...</td>
+      <td>kompas.com - ikatan dokter anak indonesia (ida...</td>
+      <td>kompas com   ikatan dokter anak indonesia  ida...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -915,28 +910,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
     </tr>
     <tr>
       <th>95</th>
-      <td>kompas.com - beberapa jenis buah memiliki kand...</td>
-      <td>kompas com   beberapa jenis buah memiliki kand...</td>
+      <td>jakarta, kompas.com - ribuan orang nampak berg...</td>
+      <td>jakarta  kompas com   ribuan orang nampak berg...</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>kompas.com - badan yang terasa lemas bisa bera...</td>
-      <td>kompas com   badan yang terasa lemas bisa bera...</td>
+      <td>kompas.com - provinsi gorontalo di pulau sulaw...</td>
+      <td>kompas com   provinsi gorontalo di pulau sulaw...</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>kompas.com - buah nanas memiliki beberapa jeni...</td>
-      <td>kompas com   buah nanas memiliki beberapa jeni...</td>
+      <td>kompas.com - jalur pendakian yang indah di haw...</td>
+      <td>kompas com   jalur pendakian yang indah di haw...</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>kompas.com - tubuh anda bisa mengalami berbaga...</td>
-      <td>kompas com   tubuh anda bisa mengalami berbaga...</td>
+      <td>kompas.com - menikmati waktu berkualitas bersa...</td>
+      <td>kompas com   menikmati waktu berkualitas bersa...</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>kompas.com - hipoglikemia atau kadar gula dara...</td>
-      <td>kompas com   hipoglikemia atau kadar gula dara...</td>
+      <td>kompas.com – karena memiliki model kursi kelas...</td>
+      <td>kompas com   karena memiliki model kursi kelas...</td>
     </tr>
   </tbody>
 </table>
@@ -980,28 +975,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
   <tbody>
     <tr>
       <th>0</th>
-      <td>kompas com   masuk sekolah tinggi ilmu statist...</td>
-      <td>[kompas, com, masuk, sekolah, tinggi, ilmu, st...</td>
+      <td>kompas com   orang dengan obesitas lebih mungk...</td>
+      <td>[kompas, com, orang, dengan, obesitas, lebih, ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>kompas com   fakultas hukum dan bisnis univers...</td>
-      <td>[kompas, com, fakultas, hukum, dan, bisnis, un...</td>
+      <td>kompas com   buah bisa menjadi pilihan menu ya...</td>
+      <td>[kompas, com, buah, bisa, menjadi, pilihan, me...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>kompas com   mahasiswa universitas negeri sura...</td>
-      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
+      <td>kompas com   malanutrisi merupakan masalah kes...</td>
+      <td>[kompas, com, malanutrisi, merupakan, masalah,...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>kompas com   merayakan hari ulang tahun ke 30 ...</td>
-      <td>[kompas, com, merayakan, hari, ulang, tahun, k...</td>
+      <td>kompas com   berkeringat merupakan cara alami ...</td>
+      <td>[kompas, com, berkeringat, merupakan, cara, al...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>kompas com   podomoro university menggelar pro...</td>
-      <td>[kompas, com, podomoro, university, menggelar,...</td>
+      <td>kompas com   ikatan dokter anak indonesia  ida...</td>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1010,28 +1005,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
     </tr>
     <tr>
       <th>95</th>
-      <td>kompas com   beberapa jenis buah memiliki kand...</td>
-      <td>[kompas, com, beberapa, jenis, buah, memiliki,...</td>
+      <td>jakarta  kompas com   ribuan orang nampak berg...</td>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>kompas com   badan yang terasa lemas bisa bera...</td>
-      <td>[kompas, com, badan, yang, terasa, lemas, bisa...</td>
+      <td>kompas com   provinsi gorontalo di pulau sulaw...</td>
+      <td>[kompas, com, provinsi, gorontalo, di, pulau, ...</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>kompas com   buah nanas memiliki beberapa jeni...</td>
-      <td>[kompas, com, buah, nanas, memiliki, beberapa,...</td>
+      <td>kompas com   jalur pendakian yang indah di haw...</td>
+      <td>[kompas, com, jalur, pendakian, yang, indah, d...</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>kompas com   tubuh anda bisa mengalami berbaga...</td>
-      <td>[kompas, com, tubuh, anda, bisa, mengalami, be...</td>
+      <td>kompas com   menikmati waktu berkualitas bersa...</td>
+      <td>[kompas, com, menikmati, waktu, berkualitas, b...</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>kompas com   hipoglikemia atau kadar gula dara...</td>
-      <td>[kompas, com, hipoglikemia, atau, kadar, gula,...</td>
+      <td>kompas com   karena memiliki model kursi kelas...</td>
+      <td>[kompas, com, karena, memiliki, model, kursi, ...</td>
     </tr>
   </tbody>
 </table>
@@ -1077,28 +1072,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
   <tbody>
     <tr>
       <th>0</th>
-      <td>[kompas, com, masuk, sekolah, tinggi, ilmu, st...</td>
-      <td>[kompas, com, masuk, sekolah, ilmu, statistik,...</td>
+      <td>[kompas, com, orang, dengan, obesitas, lebih, ...</td>
+      <td>[kompas, com, orang, obesitas, mengalami, kese...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>[kompas, com, fakultas, hukum, dan, bisnis, un...</td>
-      <td>[kompas, com, fakultas, hukum, bisnis, univers...</td>
+      <td>[kompas, com, buah, bisa, menjadi, pilihan, me...</td>
+      <td>[kompas, com, buah, pilihan, menu, ringan, bag...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
-      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
+      <td>[kompas, com, malanutrisi, merupakan, masalah,...</td>
+      <td>[kompas, com, malanutrisi, kesehatan, serius, ...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>[kompas, com, merayakan, hari, ulang, tahun, k...</td>
-      <td>[kompas, com, merayakan, ulang, 30, sekolah, b...</td>
+      <td>[kompas, com, berkeringat, merupakan, cara, al...</td>
+      <td>[kompas, com, berkeringat, alami, tubuh, mendi...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>[kompas, com, podomoro, university, menggelar,...</td>
-      <td>[kompas, com, podomoro, university, menggelar,...</td>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1107,28 +1102,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
     </tr>
     <tr>
       <th>95</th>
-      <td>[kompas, com, beberapa, jenis, buah, memiliki,...</td>
-      <td>[kompas, com, jenis, buah, memiliki, kandungan...</td>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>[kompas, com, badan, yang, terasa, lemas, bisa...</td>
-      <td>[kompas, com, badan, lemas, berangsur, membaik...</td>
+      <td>[kompas, com, provinsi, gorontalo, di, pulau, ...</td>
+      <td>[kompas, com, provinsi, gorontalo, pulau, sula...</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>[kompas, com, buah, nanas, memiliki, beberapa,...</td>
-      <td>[kompas, com, buah, nanas, memiliki, jenis, mi...</td>
+      <td>[kompas, com, jalur, pendakian, yang, indah, d...</td>
+      <td>[kompas, com, jalur, pendakian, indah, hawaii,...</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>[kompas, com, tubuh, anda, bisa, mengalami, be...</td>
-      <td>[kompas, com, tubuh, mengalami, kondisi, menge...</td>
+      <td>[kompas, com, menikmati, waktu, berkualitas, b...</td>
+      <td>[kompas, com, menikmati, berkualitas, keluarga...</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>[kompas, com, hipoglikemia, atau, kadar, gula,...</td>
-      <td>[kompas, com, hipoglikemia, kadar, gula, darah...</td>
+      <td>[kompas, com, karena, memiliki, model, kursi, ...</td>
+      <td>[kompas, com, memiliki, model, kursi, kelas, t...</td>
     </tr>
   </tbody>
 </table>
@@ -1178,28 +1173,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
   <tbody>
     <tr>
       <th>0</th>
-      <td>[kompas, com, masuk, sekolah, ilmu, statistik,...</td>
-      <td>kompas com masuk sekolah ilmu statistik stis s...</td>
+      <td>[kompas, com, orang, obesitas, mengalami, kese...</td>
+      <td>kompas com orang obesitas alami sehat potensi ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>[kompas, com, fakultas, hukum, bisnis, univers...</td>
-      <td>kompas com fakultas hukum bisnis universitas d...</td>
+      <td>[kompas, com, buah, pilihan, menu, ringan, bag...</td>
+      <td>kompas com buah pilih menu ringan bagus konsum...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>[kompas, com, mahasiswa, universitas, negeri, ...</td>
-      <td>kompas com mahasiswa universitas negeri suraba...</td>
+      <td>[kompas, com, malanutrisi, kesehatan, serius, ...</td>
+      <td>kompas com malanutrisi sehat serius indonesia ...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>[kompas, com, merayakan, ulang, 30, sekolah, b...</td>
-      <td>kompas com raya ulang 30 sekolah bogor raya sb...</td>
+      <td>[kompas, com, berkeringat, alami, tubuh, mendi...</td>
+      <td>kompas com keringat alami tubuh dingin orang d...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>[kompas, com, podomoro, university, menggelar,...</td>
-      <td>kompas com podomoro university gelar program k...</td>
+      <td>[kompas, com, ikatan, dokter, anak, indonesia,...</td>
+      <td>kompas com ikat dokter anak indonesia ida gera...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1208,28 +1203,28 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
     </tr>
     <tr>
       <th>95</th>
-      <td>[kompas, com, jenis, buah, memiliki, kandungan...</td>
-      <td>kompas com jenis buah milik kandung gula tingk...</td>
+      <td>[jakarta, kompas, com, ribuan, orang, nampak, ...</td>
+      <td>jakarta kompas com ribu orang nampak ganti fes...</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>[kompas, com, badan, lemas, berangsur, membaik...</td>
-      <td>kompas com badan lemas angsur baik jangka seba...</td>
+      <td>[kompas, com, provinsi, gorontalo, pulau, sula...</td>
+      <td>kompas com provinsi gorontalo pulau sulawesi u...</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>[kompas, com, buah, nanas, memiliki, jenis, mi...</td>
-      <td>kompas com buah nanas milik jenis mineral zat ...</td>
+      <td>[kompas, com, jalur, pendakian, indah, hawaii,...</td>
+      <td>kompas com jalur daki indah hawaii nikmat unju...</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>[kompas, com, tubuh, mengalami, kondisi, menge...</td>
-      <td>kompas com tubuh alami kondisi kena konsumsi g...</td>
+      <td>[kompas, com, menikmati, berkualitas, keluarga...</td>
+      <td>kompas com nikmat kualitas keluarga teman tema...</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>[kompas, com, hipoglikemia, kadar, gula, darah...</td>
-      <td>kompas com hipoglikemia kadar gula darah renda...</td>
+      <td>[kompas, com, memiliki, model, kursi, kelas, t...</td>
+      <td>kompas com milik model kursi kelas baru swiss ...</td>
     </tr>
   </tbody>
 </table>
@@ -1238,7 +1233,7 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;final_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
@@ -1252,29 +1247,329 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vect</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="n">X_array</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_array</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terms</span> <span class="o">=</span> <span class="n">vect</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">terms</span><span class="p">)</span>
+<span class="n">tfidf</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.03312885 0.         0.         ... 0.         0.         0.        ]
- [0.         0.         0.         ... 0.         0.         0.        ]
- [0.         0.         0.         ... 0.         0.         0.        ]
- ...
- [0.         0.         0.         ... 0.         0.         0.        ]
- [0.         0.03599698 0.         ... 0.         0.         0.        ]
- [0.         0.         0.         ... 0.         0.         0.        ]]
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abad</th>
+      <th>abadi</th>
+      <th>abai</th>
+      <th>abang</th>
+      <th>abar</th>
+      <th>abdi</th>
+      <th>abdullah</th>
+      <th>abu</th>
+      <th>abuan</th>
+      <th>ac</th>
+      <th>...</th>
+      <th>yudi</th>
+      <th>yunani</th>
+      <th>zaman</th>
+      <th>zat</th>
+      <th>zeus</th>
+      <th>zhongli</th>
+      <th>zidane</th>
+      <th>zona</th>
+      <th>zone</th>
+      <th>zumba</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.033878</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.381613</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 3472 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1285,7 +1580,7 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur kata dari hasil TF-IDF: 4743
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur kata dari hasil TF-IDF: 3472
 </pre></div>
 </div>
 </div>
@@ -1306,37 +1601,37 @@ To: C:\Users\EBC KOMPUTER\Documents\Jupyter Notebook\PPW\Tugas 2\crawling_2_kate
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>category       Edu       Edu       Edu       Edu       Edu       Edu  \
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>category    HEALTH    HEALTH    HEALTH    HEALTH    HEALTH    HEALTH  \
 category                                                               
-Edu       1.000000  0.091693  0.077027  0.127135  0.068241  0.107589   
-Edu       0.091693  1.000000  0.119180  0.090717  0.284201  0.115269   
-Edu       0.077027  0.119180  1.000000  0.060997  0.104898  0.046514   
-Edu       0.127135  0.090717  0.060997  1.000000  0.072921  0.102683   
-Edu       0.068241  0.284201  0.104898  0.072921  1.000000  0.074666   
+HEALTH    1.000000  0.061819  0.140896  0.055278  0.043861  0.103341   
+HEALTH    0.061819  1.000000  0.045522  0.040682  0.021537  0.102970   
+HEALTH    0.140896  0.045522  1.000000  0.074180  0.069285  0.081906   
+HEALTH    0.055278  0.040682  0.074180  1.000000  0.069985  0.043280   
+HEALTH    0.043861  0.021537  0.069285  0.069985  1.000000  0.022634   
 
-category       Edu       Edu       Edu       Edu  ...    Health    Health  \
+category    HEALTH    HEALTH    HEALTH    HEALTH  ...    TRAVEL    TRAVEL  \
 category                                          ...                       
-Edu       0.268005  0.076923  0.124029  0.076964  ...  0.047007  0.040384   
-Edu       0.056911  0.112718  0.052267  0.137848  ...  0.047570  0.052708   
-Edu       0.067137  0.091481  0.211862  0.107909  ...  0.032137  0.024289   
-Edu       0.042622  0.048685  0.078675  0.063733  ...  0.034082  0.034648   
-Edu       0.055064  0.168138  0.041886  0.164383  ...  0.042891  0.064187   
+HEALTH    0.092464  0.075711  0.106527  0.075437  ...  0.018029  0.004980   
+HEALTH    0.172563  0.101979  0.062231  0.053169  ...  0.019314  0.004398   
+HEALTH    0.058958  0.066895  0.089433  0.052605  ...  0.034834  0.028944   
+HEALTH    0.075586  0.038085  0.084278  0.120622  ...  0.067809  0.003715   
+HEALTH    0.026505  0.016314  0.009589  0.012550  ...  0.029109  0.021264   
 
-category    Health    Health    Health    Health    Health    Health  \
+category    TRAVEL    TRAVEL    TRAVEL    TRAVEL    TRAVEL    TRAVEL  \
 category                                                               
-Edu       0.040330  0.045409  0.042095  0.052984  0.055139  0.050291   
-Edu       0.041362  0.047463  0.048793  0.053110  0.047364  0.052206   
-Edu       0.027607  0.035132  0.028328  0.030289  0.033834  0.035281   
-Edu       0.040528  0.033484  0.035594  0.053788  0.039508  0.048666   
-Edu       0.034212  0.030762  0.042322  0.047084  0.036720  0.044706   
+HEALTH    0.005878  0.011930  0.018405  0.006322  0.008406  0.013156   
+HEALTH    0.005860  0.004313  0.021362  0.008623  0.004411  0.024778   
+HEALTH    0.015299  0.010251  0.028299  0.022740  0.006522  0.016855   
+HEALTH    0.003778  0.000243  0.008406  0.003728  0.001624  0.018708   
+HEALTH    0.009025  0.003817  0.017405  0.005851  0.002632  0.010508   
 
-category    Health    Health  
+category    TRAVEL    TRAVEL  
 category                      
-Edu       0.053544  0.070003  
-Edu       0.067338  0.065036  
-Edu       0.042063  0.032977  
-Edu       0.047673  0.043380  
-Edu       0.054086  0.039382  
+HEALTH    0.017273  0.049868  
+HEALTH    0.030378  0.012188  
+HEALTH    0.042347  0.032586  
+HEALTH    0.048354  0.012258  
+HEALTH    0.020210  0.001977  
 
 [5 rows x 100 columns]
 </pre></div>
@@ -1583,9 +1878,19 @@ Edu       0.054086  0.039382
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector Space Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumen-dan-kueri-sebagai-vektor">1. <strong>Dokumen dan Kueri sebagai Vektor</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-kata-term-weighting">2. <strong>Pembobotan Kata (Term Weighting)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kesamaan-antar-dokumen">3. <strong>Menghitung Kesamaan Antar Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengurutan-dokumen">4. <strong>Pengurutan Dokumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-keterbatasan-vsm">5. <strong>Keuntungan dan Keterbatasan VSM</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh Sederhana:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi">Implementasi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-digunakan">Library yang digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code">Implementasi Code</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-dataset-per-label">Jumlah Dataset Per Label</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
@@ -1612,6 +1917,9 @@ Edu       0.054086  0.039382
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
