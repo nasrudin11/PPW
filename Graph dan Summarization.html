@@ -722,7 +722,7 @@ To: /content/drive/MyDrive/MATERI KULIAH (JAMIL)/SEMESTER 7/PPW/report/crawling_
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-cdf578b3-98df-4e71-916c-7c7a684af4ef" class="colab-df-container">
+  <div id="df-6f666b8c-6599-4f64-b455-b90fc577601f" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -832,7 +832,7 @@ To: /content/drive/MyDrive/MATERI KULIAH (JAMIL)/SEMESTER 7/PPW/report/crawling_
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-cdf578b3-98df-4e71-916c-7c7a684af4ef')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-6f666b8c-6599-4f64-b455-b90fc577601f')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -884,12 +884,12 @@ To: /content/drive/MyDrive/MATERI KULIAH (JAMIL)/SEMESTER 7/PPW/report/crawling_
 
     <script>
       const buttonEl =
-        document.querySelector('#df-cdf578b3-98df-4e71-916c-7c7a684af4ef button.colab-df-convert');
+        document.querySelector('#df-6f666b8c-6599-4f64-b455-b90fc577601f button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-cdf578b3-98df-4e71-916c-7c7a684af4ef');
+        const element = document.querySelector('#df-6f666b8c-6599-4f64-b455-b90fc577601f');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -2491,7 +2491,7 @@ Yang perlu diingat, berkeringat di malam hari adalah normal dan sebagian besar t
 <span class="c1"># Membuat matriks adjensi berdasarkan cosine similarity</span>
 <span class="n">adjacency</span> <span class="o">=</span> <span class="p">(</span><span class="n">cosine_sim_filled</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
-<span class="n">adjacency_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span> 
+<span class="n">adjacency_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span>
                              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">berita_no_stopwords</span><span class="p">))],</span>
                              <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">berita_no_stopwords</span><span class="p">))])</span>
 
@@ -3161,8 +3161,8 @@ Yang perlu diingat, berkeringat di malam hari adalah normal dan sebagian besar t
 <span class="c1"># Tambahkan edge (hubungan) antara kalimat berdasarkan matriks adjensi</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adjacency_matrix</span><span class="p">)):</span>
-        <span class="n">similarity</span> <span class="o">=</span> <span class="n">adjacency_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>  
-        <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>  
+        <span class="n">similarity</span> <span class="o">=</span> <span class="n">adjacency_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
             <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">similarity</span><span class="p">)</span>
 
 <span class="c1"># Visualisasikan grafik dengan tata letak &quot;circular&quot;</span>
@@ -3387,7 +3387,7 @@ K10: anak yang mengalami sleep apnea akan merasa tidak bisa tidur nyenyak dan me
 <section id="deployment">
 <h2>Deployment<a class="headerlink" href="#deployment" title="Link to this heading">#</a></h2>
 <p>Deployment aplikasi menggunakan bantuan gradio</p>
-<p>Link : <a class="reference external" href="https://news-summarizationgit-5cjkrn6eqhjqmn3dhks5ia.streamlit.app/">https://news-summarizationgit-5cjkrn6eqhjqmn3dhks5ia.streamlit.app/</a></p>
+<p>Link : <a class="reference external" href="https://nasrudnj11-summary-news.hf.space">https://nasrudnj11-summary-news.hf.space</a></p>
 </section>
 </section>
 
