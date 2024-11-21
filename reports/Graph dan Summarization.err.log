@@ -29,44 +29,51 @@ berita_tokenized
 [0m[1;32m      3[0m [0mberita_tokenized[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/local/lib/python3.10/dist-packages/nltk/tokenize/__init__.py[0m in [0;36msent_tokenize[0;34m(text, language)[0m
-[1;32m    104[0m     [0;34m:[0m[0mparam[0m [0mlanguage[0m[0;34m:[0m [0mthe[0m [0mmodel[0m [0mname[0m [0;32min[0m [0mthe[0m [0mPunkt[0m [0mcorpus[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    105[0m     """
-[0;32m--> 106[0;31m     [0mtokenizer[0m [0;34m=[0m [0mload[0m[0;34m([0m[0;34mf"tokenizers/punkt/{language}.pickle"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    107[0m     [0;32mreturn[0m [0mtokenizer[0m[0;34m.[0m[0mtokenize[0m[0;34m([0m[0mtext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    108[0m [0;34m[0m[0m
+[1;32m    117[0m     [0;34m:[0m[0mparam[0m [0mlanguage[0m[0;34m:[0m [0mthe[0m [0mmodel[0m [0mname[0m [0;32min[0m [0mthe[0m [0mPunkt[0m [0mcorpus[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    118[0m     """
+[0;32m--> 119[0;31m     [0mtokenizer[0m [0;34m=[0m [0m_get_punkt_tokenizer[0m[0;34m([0m[0mlanguage[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    120[0m     [0;32mreturn[0m [0mtokenizer[0m[0;34m.[0m[0mtokenize[0m[0;34m([0m[0mtext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    121[0m [0;34m[0m[0m
 
-[0;32m/usr/local/lib/python3.10/dist-packages/nltk/data.py[0m in [0;36mload[0;34m(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)[0m
-[1;32m    748[0m [0;34m[0m[0m
-[1;32m    749[0m     [0;31m# Load the resource.[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 750[0;31m     [0mopened_resource[0m [0;34m=[0m [0m_open[0m[0;34m([0m[0mresource_url[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    751[0m [0;34m[0m[0m
-[1;32m    752[0m     [0;32mif[0m [0mformat[0m [0;34m==[0m [0;34m"raw"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/usr/local/lib/python3.10/dist-packages/nltk/tokenize/__init__.py[0m in [0;36m_get_punkt_tokenizer[0;34m(language)[0m
+[1;32m    103[0m     [0;34m:[0m[0mtype[0m [0mlanguage[0m[0;34m:[0m [0mstr[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    104[0m     """
+[0;32m--> 105[0;31m     [0;32mreturn[0m [0mPunktTokenizer[0m[0;34m([0m[0mlanguage[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    106[0m [0;34m[0m[0m
+[1;32m    107[0m [0;34m[0m[0m
 
-[0;32m/usr/local/lib/python3.10/dist-packages/nltk/data.py[0m in [0;36m_open[0;34m(resource_url)[0m
-[1;32m    874[0m [0;34m[0m[0m
-[1;32m    875[0m     [0;32mif[0m [0mprotocol[0m [0;32mis[0m [0;32mNone[0m [0;32mor[0m [0mprotocol[0m[0;34m.[0m[0mlower[0m[0;34m([0m[0;34m)[0m [0;34m==[0m [0;34m"nltk"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 876[0;31m         [0;32mreturn[0m [0mfind[0m[0;34m([0m[0mpath_[0m[0;34m,[0m [0mpath[0m [0;34m+[0m [0;34m[[0m[0;34m""[0m[0;34m][0m[0;34m)[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    877[0m     [0;32melif[0m [0mprotocol[0m[0;34m.[0m[0mlower[0m[0;34m([0m[0;34m)[0m [0;34m==[0m [0;34m"file"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    878[0m         [0;31m# urllib might not use mode='rb', so handle this one ourselves:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/usr/local/lib/python3.10/dist-packages/nltk/tokenize/punkt.py[0m in [0;36m__init__[0;34m(self, lang)[0m
+[1;32m   1742[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mlang[0m[0;34m=[0m[0;34m"english"[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1743[0m         [0mPunktSentenceTokenizer[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1744[0;31m         [0mself[0m[0;34m.[0m[0mload_lang[0m[0;34m([0m[0mlang[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1745[0m [0;34m[0m[0m
+[1;32m   1746[0m     [0;32mdef[0m [0mload_lang[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mlang[0m[0;34m=[0m[0;34m"english"[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/nltk/tokenize/punkt.py[0m in [0;36mload_lang[0;34m(self, lang)[0m
+[1;32m   1747[0m         [0;32mfrom[0m [0mnltk[0m[0;34m.[0m[0mdata[0m [0;32mimport[0m [0mfind[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1748[0m [0;34m[0m[0m
+[0;32m-> 1749[0;31m         [0mlang_dir[0m [0;34m=[0m [0mfind[0m[0;34m([0m[0;34mf"tokenizers/punkt_tab/{lang}/"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1750[0m         [0mself[0m[0;34m.[0m[0m_params[0m [0;34m=[0m [0mload_punkt_params[0m[0;34m([0m[0mlang_dir[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1751[0m         [0mself[0m[0;34m.[0m[0m_lang[0m [0;34m=[0m [0mlang[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/local/lib/python3.10/dist-packages/nltk/data.py[0m in [0;36mfind[0;34m(resource_name, paths)[0m
-[1;32m    581[0m     [0msep[0m [0;34m=[0m [0;34m"*"[0m [0;34m*[0m [0;36m70[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    582[0m     [0mresource_not_found[0m [0;34m=[0m [0;34mf"\n{sep}\n{msg}\n{sep}\n"[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 583[0;31m     [0;32mraise[0m [0mLookupError[0m[0;34m([0m[0mresource_not_found[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    584[0m [0;34m[0m[0m
-[1;32m    585[0m [0;34m[0m[0m
+[1;32m    577[0m     [0msep[0m [0;34m=[0m [0;34m"*"[0m [0;34m*[0m [0;36m70[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    578[0m     [0mresource_not_found[0m [0;34m=[0m [0;34mf"\n{sep}\n{msg}\n{sep}\n"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 579[0;31m     [0;32mraise[0m [0mLookupError[0m[0;34m([0m[0mresource_not_found[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    580[0m [0;34m[0m[0m
+[1;32m    581[0m [0;34m[0m[0m
 
 [0;31mLookupError[0m: 
 **********************************************************************
-  Resource [93mpunkt[0m not found.
+  Resource [93mpunkt_tab[0m not found.
   Please use the NLTK Downloader to obtain the resource:
 
   [31m>>> import nltk
-  >>> nltk.download('punkt')
+  >>> nltk.download('punkt_tab')
   [0m
   For more information see: https://www.nltk.org/data.html
 
-  Attempted to load [93mtokenizers/punkt/PY3/english.pickle[0m
+  Attempted to load [93mtokenizers/punkt_tab/english/[0m
 
   Searched in:
     - '/root/nltk_data'
@@ -77,7 +84,6 @@ berita_tokenized
     - '/usr/local/share/nltk_data'
     - '/usr/lib/nltk_data'
     - '/usr/local/lib/nltk_data'
-    - ''
 **********************************************************************
 
 
